@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Outfit", sans-serif;
+
+  --color-bg-primary: #0D0D0D;
+  --color-bg-secondary: #131313;
+  --color-bg-card: #1A1A1A;
+  --color-gold: #C9973A;
+  --color-gold-light: #E8BC6A;
+  --color-gold-dim: rgba(201, 151, 58, 0.12);
+  --color-text-primary: #F0EDE8;
+  --color-text-secondary: #B0AAA2;
+  --color-text-muted: #7A7570;
+  --color-border-subtle: rgba(255, 255, 255, 0.07);
+
+  --animate-fade-up: fade-up 0.8s ease-out forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+.gold-glow {
+  background: radial-gradient(circle at center, rgba(201, 151, 58, 0.15) 0%, transparent 70%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(to bottom, #E8BC6A, #C9973A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-blur {
+  backdrop-filter: blur(12px);
+  background: rgba(13, 13, 13, 0.8);
+}
