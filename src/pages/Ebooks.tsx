@@ -8,9 +8,9 @@ export default function Ebooks() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <AnimatedSection>
             <img 
-              src="https://d1yei2z3i6k35z.cloudfront.net/10694324/685425ba1829b_UBBlogo.jpg" 
+              src="https://d1yei2z3i6k35z.cloudfront.net/10694324/691e68ac86ecf_ubb.jpg" 
               alt="UBB Logo" 
-              className="h-24 mx-auto mb-10 grayscale hover:grayscale-0 transition-all rounded-xs shadow-xl"
+              className="h-32 mx-auto mb-10 transition-all rounded-xs shadow-2xl brightness-110"
             />
             <h1 className="text-4xl md:text-6xl font-serif text-text-primary mb-6 italic">UBUNTU BUSINESS BUILDERS</h1>
             <p className="text-gold text-2xl italic font-serif mb-8 tracking-widest uppercase">Ressources Digitales</p>

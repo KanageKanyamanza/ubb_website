@@ -10,7 +10,7 @@ export default function Footer() {
             <img
               src="https://d1yei2z3i6k35z.cloudfront.net/10694324/691e68ac86ecf_ubb.jpg"
               alt="UBB Logo"
-              className="h-16 mb-6 grayscale hover:grayscale-0 transition-all duration-500"
+              className="h-16 mb-6 transition-all duration-500"
             />
             <p className="text-text-secondary max-w-md leading-relaxed">
               Ubuntu Business Builders — Partenaire pour la croissance des PME Africaines. 

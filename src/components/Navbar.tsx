@@ -31,9 +31,19 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <span className="text-xl font-serif font-bold tracking-wider text-text-primary">
-            UBB <span className="text-gold">·</span> <span className="text-sm font-sans font-light uppercase tracking-[0.2em] hidden sm:inline">Ubuntu Business Builders</span>
-          </span>
+          <img 
+            src="https://d1yei2z3i6k35z.cloudfront.net/10694324/691e68ac86ecf_ubb.jpg" 
+            alt="UBB Logo" 
+            className="h-10 w-auto brightness-125"
+          />
+          <div className="flex flex-col">
+            <span className="text-lg font-serif font-bold tracking-wider text-text-primary leading-tight">
+              UBB
+            </span>
+            <span className="text-[8px] font-sans font-light uppercase tracking-[0.2em] text-gold hidden sm:inline">
+              Ubuntu Business Builders
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
