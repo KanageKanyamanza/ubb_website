@@ -239,7 +239,7 @@ export default function Home() {
               <AnimatedSection delay={0.3}>
                 <div className="relative p-4 border border-border-subtle bg-bg-card group">
                    <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                   <img src="https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg" alt="Ambrose Nzeyimana" className="w-full object-cover relative z-10 grayscale hover:grayscale-0 transition-all duration-700" />
+                   <img src="https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg" alt="Ambrose Nzeyimana" className="w-full object-cover relative z-10 hover:scale-[1.02] transition-all duration-700" />
                 </div>
               </AnimatedSection>
             </div>

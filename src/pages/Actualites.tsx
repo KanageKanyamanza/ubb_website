@@ -24,7 +24,7 @@ export default function Actualites() {
                     <img 
                       src={img} 
                       alt={`Actualité ${idx + 1}`} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gold/20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
