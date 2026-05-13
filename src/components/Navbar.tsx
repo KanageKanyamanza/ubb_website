@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { navigation } from "../data/navigation";
 
 export default function Navbar() {
@@ -12,7 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 60);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -23,144 +23,378 @@ export default function Navbar() {
     setActiveDropdown(null);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  const phoneNumbers = navigation.main
+    .find((item) => item.name === "Contact")
+    ?.dropdown?.filter((d) => d.href.startsWith("tel:")) ?? [];
+
+  const mainLinks = navigation.main.filter((item) => item.name !== "Contact");
+
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "nav-blur py-4 shadow-xl border-b border-border-subtle" : "bg-transparent py-6"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <img 
-            src="https://d1yei2z3i6k35z.cloudfront.net/10694324/691e68ac86ecf_ubb.jpg" 
-            alt="UBB Logo" 
-            className="h-10 w-auto brightness-125"
-          />
-          <div className="flex flex-col">
-            <span className="text-lg font-serif font-bold tracking-wider text-text-primary leading-tight">
-              UBB
-            </span>
-            <span className="text-[8px] font-sans font-light uppercase tracking-[0.2em] text-gold hidden sm:inline">
-              Ubuntu Business Builders
-            </span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8">
-          {navigation.main.map((item) => (
-            <div
-              key={item.name}
-              className="relative group"
-              onMouseEnter={() => setActiveDropdown(item.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              {item.dropdown ? (
-                <button
-                  className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-gold ${
-                    location.pathname === item.href ? "text-gold" : "text-text-secondary"
-                  }`}
+    <>
+      {/* ── Top Bar ────────────────────────────────────────────── */}
+      <div
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
+        }`}
+      >
+        <div className="bg-gold/10 border-b border-gold/20 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-9 text-[11px]">
+            {/* Phones */}
+            <div className="flex items-center gap-5">
+              {phoneNumbers.map((p) => (
+                <a
+                  key={p.href}
+                  href={p.href}
+                  className="flex items-center gap-1.5 text-gold/80 hover:text-gold transition-colors font-medium"
                 >
-                  {item.name}
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              ) : (
-                <Link
-                  to={item.href || "#"}
-                  className={`text-sm font-medium transition-colors hover:text-gold ${
-                    location.pathname === item.href ? "text-gold" : "text-text-secondary"
-                  }`}
-                  target={item.external ? "_blank" : undefined}
-                >
-                  {item.name}
-                </Link>
-              )}
-
-              {item.dropdown && activeDropdown === item.name && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute top-full left-0 mt-2 w-56 bg-bg-card border border-border-subtle shadow-2xl rounded-sm p-2"
-                >
-                  {item.dropdown.map((sub) => (
-                    <a
-                      key={sub.name}
-                      href={sub.href}
-                      target={sub.href.startsWith("http") ? "_blank" : undefined}
-                      rel="noreferrer"
-                      className="block px-4 py-2 text-sm text-text-secondary hover:text-gold hover:bg-gold-dim transition-all rounded-xs"
-                    >
-                      {sub.name}
-                    </a>
-                  ))}
-                </motion.div>
-              )}
+                  <Phone className="w-3 h-3" />
+                  {p.name}
+                </a>
+              ))}
             </div>
-          ))}
 
-          <Link
-            to="/inscription"
-            className="px-6 py-2 bg-gold text-bg-primary text-sm font-bold uppercase tracking-widest hover:bg-gold-light transition-colors"
-          >
-            S'inscrire
-          </Link>
+            {/* Social icons */}
+            <div className="hidden sm:flex items-center gap-4">
+              {navigation.socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={s.name}
+                  className="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
+                >
+                  <img src={s.icon} alt={s.name} className="w-full h-full object-contain" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-
-        {/* Mobile Toggle */}
-        <button className="lg:hidden text-text-primary" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
-        </button>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            className="fixed inset-0 top-[70px] bg-bg-primary z-40 lg:hidden p-6 overflow-y-auto"
-          >
-            <div className="flex flex-col gap-6">
-              {navigation.main.map((item) => (
-                <div key={item.name} className="flex flex-col gap-3">
-                  {item.dropdown ? (
-                    <>
-                      <span className="text-lg font-serif text-gold">{item.name}</span>
-                      <div className="flex flex-col gap-2 pl-4 border-l border-border-subtle">
-                        {item.dropdown.map((sub) => (
-                          <a
+      {/* ── Main Navbar ─────────────────────────────────────────── */}
+      <nav
+        className={`fixed left-0 w-full z-40 transition-all duration-500 ${
+          scrolled
+            ? "top-0 py-3 shadow-2xl border-b border-white/5"
+            : "top-9 py-5"
+        }`}
+        style={{
+          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
+          backgroundColor: scrolled
+            ? "rgba(13, 13, 13, 0.88)"
+            : "transparent",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-gold/20 blur-md scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <img
+                src="https://d1yei2z3i6k35z.cloudfront.net/10694324/691e68ac86ecf_ubb.jpg"
+                alt="UBB Logo"
+                className="relative h-10 w-auto brightness-125 transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-serif font-bold tracking-wider text-text-primary leading-tight">
+                UBB
+              </span>
+              <span className="text-[8px] font-sans font-light uppercase tracking-[0.2em] text-gold hidden sm:inline">
+                Ubuntu Business Builders
+              </span>
+            </div>
+          </Link>
+
+          {/* ── Desktop Navigation ─────────────────────────────── */}
+          <div className="hidden lg:flex items-center gap-1">
+            {mainLinks.map((item) => (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => setActiveDropdown(item.name)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                {item.dropdown ? (
+                  <button
+                    className={`group flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      activeDropdown === item.name
+                        ? "text-gold bg-gold/10"
+                        : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                    }`}
+                  >
+                    {item.name}
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        activeDropdown === item.name ? "rotate-180 text-gold" : ""
+                      }`}
+                    />
+                  </button>
+                ) : (
+                  <Link
+                    to={item.href || "#"}
+                    target={item.external ? "_blank" : undefined}
+                    className={`relative block px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      location.pathname === item.href
+                        ? "text-gold bg-gold/10"
+                        : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                    }`}
+                  >
+                    {item.name}
+                    {location.pathname === item.href && (
+                      <motion.span
+                        layoutId="active-pill"
+                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold"
+                      />
+                    )}
+                  </Link>
+                )}
+
+                {/* Dropdown */}
+                <AnimatePresence>
+                  {item.dropdown && activeDropdown === item.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-58 min-w-max"
+                    >
+                      {/* Arrow */}
+                      <div className="mx-auto w-3 h-1.5 overflow-hidden flex justify-center mb-0.5">
+                        <div className="w-3 h-3 rotate-45 bg-bg-card border-t border-l border-border-subtle translate-y-1.5" />
+                      </div>
+                      <div className="bg-bg-card border border-border-subtle shadow-2xl rounded-xl p-1.5 overflow-hidden">
+                        {item.dropdown.map((sub, i) => (
+                          <motion.a
                             key={sub.name}
                             href={sub.href}
                             target={sub.href.startsWith("http") ? "_blank" : undefined}
                             rel="noreferrer"
-                            className="text-text-secondary py-2"
+                            initial={{ opacity: 0, x: -6 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.05 }}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-gold hover:bg-gold/8 rounded-lg transition-all duration-150 group"
                           >
+                            <span className="w-1 h-1 rounded-full bg-gold/40 group-hover:bg-gold transition-colors" />
                             {sub.name}
-                          </a>
+                          </motion.a>
                         ))}
                       </div>
-                    </>
-                  ) : (
-                    <Link
-                      to={item.href || "#"}
-                      className="text-lg font-serif text-text-primary hover:text-gold"
-                    >
-                      {item.name}
-                    </Link>
+                    </motion.div>
                   )}
-                </div>
-              ))}
-              <Link
-                to="/inscription"
-                className="mt-4 px-6 py-3 bg-gold text-bg-primary text-center font-bold uppercase tracking-widest"
+                </AnimatePresence>
+              </div>
+            ))}
+
+
+
+            {/* CTA */}
+            <Link
+              to="/inscription"
+              className="relative overflow-hidden px-6 py-2.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(201,151,58,0.45)] hover:scale-105 active:scale-95"
+              style={{
+                background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)",
+              }}
+            >
+              <span className="relative z-10">S'inscrire</span>
+              {/* Shimmer */}
+              <span
+                className="absolute inset-0 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
+                }}
+              />
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            id="mobile-menu-toggle"
+            className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-border-subtle text-text-primary hover:bg-white/10 transition-all"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isOpen ? "close" : "open"}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.15 }}
               >
-                S'inscrire
-              </Link>
-            </div>
-          </motion.div>
+                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </motion.span>
+            </AnimatePresence>
+          </button>
+        </div>
+      </nav>
+
+      {/* ── Mobile Menu (slide from right) ──────────────────────── */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 35 }}
+              className="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-40 lg:hidden flex flex-col"
+              style={{
+                background: "linear-gradient(160deg, #1A1A1A 0%, #0D0D0D 100%)",
+                borderLeft: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-border-subtle">
+                <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                  <img
+                    src="https://d1yei2z3i6k35z.cloudfront.net/10694324/691e68ac86ecf_ubb.jpg"
+                    alt="UBB"
+                    className="h-8 w-auto brightness-125"
+                  />
+                  <span className="font-serif font-bold text-text-primary">UBB</span>
+                </Link>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-text-secondary hover:text-text-primary transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Nav Links */}
+              <div className="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-1">
+                {mainLinks.map((item, i) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.25 }}
+                  >
+                    {item.dropdown ? (
+                      <div>
+                        <button
+                          onClick={() =>
+                            setActiveDropdown(activeDropdown === item.name ? null : item.name)
+                          }
+                          className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-gold hover:bg-gold/8 transition-all"
+                        >
+                          {item.name}
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              activeDropdown === item.name ? "rotate-180 text-gold" : ""
+                            }`}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {activeDropdown === item.name && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="ml-4 mt-1 flex flex-col gap-0.5 pl-4 border-l border-gold/20">
+                                {item.dropdown.map((sub) => (
+                                  <a
+                                    key={sub.name}
+                                    href={sub.href}
+                                    target={sub.href.startsWith("http") ? "_blank" : undefined}
+                                    rel="noreferrer"
+                                    className="flex items-center gap-2 px-3 py-2.5 text-sm text-text-secondary hover:text-gold transition-colors rounded-lg hover:bg-gold/5"
+                                  >
+                                    <span className="w-1 h-1 rounded-full bg-gold/40" />
+                                    {sub.name}
+                                  </a>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        to={item.href || "#"}
+                        className={`flex items-center px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                          location.pathname === item.href
+                            ? "text-gold bg-gold/10"
+                            : "text-text-secondary hover:text-gold hover:bg-gold/8"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Drawer Footer */}
+              <div className="px-4 pb-8 flex flex-col gap-4 border-t border-border-subtle pt-5">
+                {/* Phone numbers */}
+                <div className="flex flex-col gap-2">
+                  {phoneNumbers.map((p) => (
+                    <a
+                      key={p.href}
+                      href={p.href}
+                      className="flex items-center gap-2 text-sm text-gold/80 hover:text-gold transition-colors"
+                    >
+                      <Phone className="w-3.5 h-3.5" />
+                      {p.name}
+                    </a>
+                  ))}
+                </div>
+
+                {/* Social icons */}
+                <div className="flex items-center gap-3">
+                  {navigation.socials.map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      title={s.name}
+                      className="w-6 h-6 opacity-50 hover:opacity-100 transition-opacity"
+                    >
+                      <img src={s.icon} alt={s.name} className="w-full h-full object-contain" />
+                    </a>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <Link
+                  to="/inscription"
+                  className="text-center py-3.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full"
+                  style={{
+                    background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)",
+                  }}
+                >
+                  S'inscrire
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

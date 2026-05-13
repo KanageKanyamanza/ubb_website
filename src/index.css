@@ -53,6 +53,36 @@
 }
 
 .nav-blur {
-  backdrop-filter: blur(12px);
-  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(13, 13, 13, 0.88);
 }
+
+/* Hover dim for gold items (bg-gold/8 equivalent) */
+.hover\:bg-gold\/8:hover {
+  background-color: rgba(201, 151, 58, 0.08);
+}
+.bg-gold\/8 {
+  background-color: rgba(201, 151, 58, 0.08);
+}
+.bg-gold\/5 {
+  background-color: rgba(201, 151, 58, 0.05);
+}
+.bg-gold\/10 {
+  background-color: rgba(201, 151, 58, 0.10);
+}
+.bg-gold\/20 {
+  background-color: rgba(201, 151, 58, 0.20);
+}
+.border-gold\/20 {
+  border-color: rgba(201, 151, 58, 0.20);
+}
+.border-gold\/40 {
+  border-color: rgba(201, 151, 58, 0.40);
+}
+.text-gold\/80 {
+  color: rgba(201, 151, 58, 0.80);
+}
+.bg-gold\/10 {
+  background-color: rgba(201, 151, 58, 0.10);
+}
+
