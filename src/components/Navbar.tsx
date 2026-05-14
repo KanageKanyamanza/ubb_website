@@ -1,8 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
 import { navigation } from "../data/navigation";
+
+// TikTok SVG (absent de lucide-react)
+const TikTokIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.16 8.16 0 0 0 4.77 1.52V6.82a4.85 4.85 0 0 1-1-.13z"/>
+  </svg>
+);
+
+const socialIcons: Record<string, React.ReactNode> = {
+  Facebook:  <Facebook className="w-4 h-4" />,
+  LinkedIn:  <Linkedin className="w-4 h-4" />,
+  Instagram: <Instagram className="w-4 h-4" />,
+  YouTube:   <Youtube className="w-4 h-4" />,
+  TikTok:    <TikTokIcon />,
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +75,7 @@ export default function Navbar() {
             </div>
 
             {/* Social icons */}
-            <div className="hidden sm:flex items-center gap-4">
+            <div className="hidden sm:flex items-center gap-2">
               {navigation.socials.map((s) => (
                 <a
                   key={s.name}
@@ -68,9 +83,9 @@ export default function Navbar() {
                   target="_blank"
                   rel="noreferrer"
                   title={s.name}
-                  className="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-gold/70 hover:text-gold hover:bg-gold/15 hover:scale-110 transition-all duration-200"
                 >
-                  <img src={s.icon} alt={s.name} className="w-full h-full object-contain" />
+                  {socialIcons[s.name] ?? <span className="text-[10px]">{s.name[0]}</span>}
                 </a>
               ))}
             </div>
@@ -365,7 +380,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Social icons */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 flex-wrap">
                   {navigation.socials.map((s) => (
                     <a
                       key={s.name}
@@ -373,9 +388,9 @@ export default function Navbar() {
                       target="_blank"
                       rel="noreferrer"
                       title={s.name}
-                      className="w-6 h-6 opacity-50 hover:opacity-100 transition-opacity"
+                      className="w-9 h-9 rounded-full border border-border-subtle bg-bg-card flex items-center justify-center text-text-muted hover:text-gold hover:border-gold/50 hover:bg-gold/10 hover:scale-110 transition-all duration-200"
                     >
-                      <img src={s.icon} alt={s.name} className="w-full h-full object-contain" />
+                      {socialIcons[s.name] ?? <span className="text-[10px]">{s.name[0]}</span>}
                     </a>
                   ))}
                 </div>

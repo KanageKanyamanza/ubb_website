@@ -3,7 +3,7 @@ export const team = [
     id: 1,
     name: "Ambrose Nzeyimana",
     role: "Directeur Exécutif",
-    badge: "⭐ Fondateur & DG",
+    badge: "Fondateur & DG",
     image: "https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg",
     bio: "Fort de son expérience en gestion de projets et en croissance d'entreprises, Ambrose guide les organisations vers leurs objectifs financiers et stratégiques. Son expertise en structures d'affaires et en optimisation des processus lui permet de concevoir des stratégies sur mesure. Passionné d'analyse et d'innovation, il incarne la mission d'UBB : transformer les défis en opportunités durables.",
     chips: ["Gestion de projets", "Croissance d'entreprise", "Stratégie"]

@@ -1,29 +1,57 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
 import { ArrowRight, CheckCircle, Database, Layout, TrendingUp } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+const heroImages = [
+  "/images/hero-1.png",
+  "/images/hero-2.png",
+  "/images/hero-3.png"
+];
 
+export default function Home() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="flex flex-col w-full">
       {/* ── Hero Section ─────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
 
-        {/* Background image with subtle zoom */}
-        <motion.div
-          initial={{ scale: 1.08 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 8, ease: "easeOut" }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://d1yei2z3i6k35z.cloudfront.net/10694324/6943262fb4eee_WhatsAppImage2025-11-20at15.08.2711.jpeg')" }}
-        />
+        {/* Background Slideshow (Sliding effect) */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-bg-primary">
+          {/* Fallback static background to avoid void during transitions */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-40"
+            style={{ backgroundImage: `url(${heroImages[0]})` }}
+          />
+
+          <AnimatePresence initial={false}>
+            {heroImages.length > 0 && (
+              <motion.div
+                key={currentImage}
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url(${heroImages[currentImage % heroImages.length]})` }}
+              />
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Multi-layer overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/70 via-bg-primary/60 to-bg-primary/95" />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg-primary/40 via-transparent to-bg-primary/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/80 via-bg-primary/60 to-bg-primary/95" />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg-primary/50 via-transparent to-bg-primary/50" />
 
         {/* Gold radial glow */}
         <div className="absolute inset-0 gold-glow opacity-50" />
@@ -39,6 +67,7 @@ export default function Home() {
         {/* Decorative gold lines */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+
 
         {/* ── Hero Content ─────────────────────────── */}
         <div className="relative max-w-5xl mx-auto px-6 text-center pt-28 pb-20">
@@ -532,7 +561,7 @@ export default function Home() {
 
 
       {/* ── Message du CEO / Manifeste ───────────────────────────── */}
-      <section className="py-28 bg-bg-secondary relative overflow-hidden">
+      <section className="py-32 md:py-40 bg-bg-secondary relative overflow-hidden">
 
         {/* Background elements */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/4 blur-3xl pointer-events-none" />
@@ -544,16 +573,19 @@ export default function Home() {
           <AnimatedSection>
             <div className="flex items-center gap-4 mb-20">
               <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/30" />
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium">Manifeste</span>
+              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium">Le Mot du Directeur</span>
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/30" />
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-
-            {/* Text col */}
-            <div className="lg:col-span-3">
+          <div className="flex justify-center">
+            <div className="max-w-4xl">
               <AnimatedSection>
+                <h3 className="text-gold text-sm font-bold uppercase tracking-[0.3em] mb-4">Message de Vision</h3>
+                <h2 className="text-4xl md:text-6xl font-serif text-text-primary mb-12 italic leading-tight">
+                  Le Mot du <span className="text-gold-gradient not-italic">Directeur</span>
+                </h2>
+
                 {/* Giant decorative quote */}
                 <div
                   className="font-serif text-[120px] leading-none text-gold/10 select-none mb-[-40px] ml-[-10px]"
@@ -562,7 +594,7 @@ export default function Home() {
                   "
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-serif text-text-primary mb-6 leading-tight italic">
+                <h2 className="text-2xl md:text-4xl font-serif text-text-primary mb-6 leading-tight italic">
                   La Force Transformatrice de la Rigueur et de la Discipline: Une Expérience Réelle
                 </h2>
 
@@ -611,45 +643,10 @@ export default function Home() {
                 </div>
 
                 {/* Signature */}
-                <div className="mt-12 pt-8 border-t border-border-subtle flex items-center gap-5">
-                  <div className="w-14 h-14 rounded-full border-2 border-gold/40 overflow-hidden flex-shrink-0 shadow-lg">
-                    <img
-                      src="https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg"
-                      alt="Ambrose Nzeyimana"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                <div className="mt-12 pt-8 border-t border-border-subtle">
                   <div>
                     <p className="font-serif text-2xl text-gold italic leading-none">Ambrose Nzeyimana</p>
                     <p className="text-text-muted uppercase tracking-widest text-[10px] mt-2 font-medium">CEO & Fondateur · Ubuntu Business Builders</p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </div>
-
-            {/* Portrait col */}
-            <div className="lg:col-span-2">
-              <AnimatedSection delay={0.3}>
-                <div className="relative">
-                  {/* Gold frame */}
-                  <div className="absolute -bottom-5 -right-5 w-full h-full border border-gold/30 rounded-xl pointer-events-none z-0" />
-
-                  <div className="relative z-10 overflow-hidden rounded-xl border border-border-subtle group shadow-2xl">
-                    <img
-                      src="https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg"
-                      alt="Ambrose Nzeyimana — CEO"
-                      className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-secondary/70 via-transparent to-transparent" />
-                    <div className="absolute inset-0 bg-gold/5 mix-blend-overlay" />
-
-                    {/* Name badge */}
-                    <div className="absolute bottom-5 left-5 right-5 px-4 py-3 rounded-lg border border-gold/25 backdrop-blur-sm"
-                      style={{ background: "rgba(13,13,13,0.82)" }}
-                    >
-                      <p className="text-text-primary font-serif italic text-base">Ambrose Nzeyimana</p>
-                      <p className="text-gold text-[10px] uppercase tracking-widest mt-0.5">CEO & Fondateur</p>
-                    </div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -726,6 +723,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
     </div>
   );
 }
