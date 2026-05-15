@@ -159,8 +159,8 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-gold/60 mt-0.5 flex-shrink-0" />
-                <a href="mailto:contact@growthubb.space" className="hover:text-gold transition-colors">
-                  contact@growthubb.space
+                <a href="mailto:info@growthubb.space" className="hover:text-gold transition-colors">
+                  info@growthubb.space
                 </a>
               </li>
               <li className="flex items-start gap-3">

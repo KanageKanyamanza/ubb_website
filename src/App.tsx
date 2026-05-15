@@ -27,6 +27,9 @@ function ScrollToTop() {
   return null;
 }
 
+import { Link } from "react-router-dom";
+import ChatWidget from "./components/chatbot/ChatWidget";
+
 // Layout wrapper to conditionally show/hide Navbar and Footer
 function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -44,13 +47,12 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="bg-bg-primary py-4 text-center border-t border-border-subtle/30">
             <Link to="/admin/login" className="text-[10px] text-text-muted hover:text-gold transition-colors tracking-widest uppercase">Admin</Link>
           </div>
+          <ChatWidget />
         </>
       )}
     </div>
   );
 }
-
-import { Link } from "react-router-dom";
 
 export default function App() {
   return (

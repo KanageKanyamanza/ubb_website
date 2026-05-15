@@ -723,6 +723,50 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* ── Chatbot Promo Section ───────────────────────────── */}
+      <section className="py-24 bg-bg-secondary border-t border-border-subtle relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/5 blur-3xl rounded-full pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <AnimatedSection>
+            {/* Decorative chat icon */}
+            <div className="w-20 h-20 mx-auto mb-8 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center text-4xl shadow-[0_0_40px_rgba(201,151,58,0.1)]">
+              💬
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6">
+              Une question sur <span className="text-gold-gradient not-italic">UBB</span> ?
+            </h2>
+
+            <p className="text-text-secondary text-lg mb-10 leading-relaxed max-w-2xl mx-auto font-light italic">
+              Notre assistant virtuel est disponible 24h/24 pour répondre à toutes vos questions sur nos services, notre équipe et nos ressources pour PME africaines.
+            </p>
+
+            {/* Button that opens the chatbot via CustomEvent */}
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("ubb:open-chat"));
+              }}
+              className="inline-flex items-center gap-4 px-10 py-5 bg-gold-gradient text-bg-primary font-bold text-xs uppercase tracking-[0.2em] hover:shadow-[0_0_30px_rgba(201,151,58,0.4)] transition-all duration-300 rounded-sm group"
+            >
+              <span>Parler à l'assistant</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            {/* Examples of questions */}
+            <div className="mt-12 flex flex-wrap justify-center gap-3">
+              {["C'est quoi UBB ?", "Quels sont vos services ?", "Comment vous contacter ?"]
+                .map((q) => (
+                  <span key={q}
+                    className="text-[10px] uppercase tracking-widest border border-border-subtle text-text-muted px-5 py-2.5 rounded-full hover:border-gold/30 hover:text-gold transition-colors duration-300 cursor-default">
+                    "{q}"
+                  </span>
+                ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
       
     </div>
   );
