@@ -1,10 +1,40 @@
 // src/pages/Ebooks.tsx
-import { motion } from "motion/react";
-import { BookOpen, Download, ShieldCheck, Mail, ArrowRight, Library } from "lucide-react";
+import React, { useState } from "react";
+import { BookOpen, Download, ShieldCheck, ArrowRight, Library } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 
+// Checkout Components
+import { useCheckoutForm } from "../hooks/useCheckoutForm";
+import { OrderForm } from "../components/checkout/OrderForm";
+import { OrderSummary } from "../components/checkout/OrderSummary";
+import { CheckoutSuccess } from "../components/checkout/CheckoutSuccess";
+
 export default function Ebooks() {
+  // Checkout State
+  const { formData, errors, touched, handleChange, handleBlur, isValid, countries } = useCheckoutForm();
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState<any>(null);
+  const [paymentError, setPaymentError] = useState(false);
+
+  const handlePayPalSuccess = (details: any) => {
+    setPaymentDetails(details);
+    setPaymentSuccess(true);
+    // Optionnel : envoyer les données vers un webhook / email
+    console.log("Paiement réussi :", details);
+    window.scrollTo({ top: document.getElementById('commander')?.offsetTop ? document.getElementById('commander')!.offsetTop - 100 : 0, behavior: 'smooth' });
+  };
+
+  const handlePayPalError = (err: any) => {
+    setPaymentError(true);
+    setTimeout(() => setPaymentError(false), 8000);
+  };
+
+  const handleReset = () => {
+    setPaymentSuccess(false);
+    setPaymentDetails(null);
+  };
+
   return (
     <div className="flex flex-col w-full bg-bg-primary overflow-hidden">
       
@@ -44,9 +74,16 @@ export default function Ebooks() {
             <p className="text-text-secondary text-xl md:text-2xl font-serif italic max-w-3xl mx-auto mb-10 leading-relaxed">
               Des ressources exclusives pour transformer votre vision en exécution opérationnelle.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-12">
               <GoldDivider />
             </div>
+            <a 
+              href="#commander" 
+              className="inline-flex items-center gap-4 px-12 py-6 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_30px_rgba(201,151,58,0.5)] transition-all rounded-sm group"
+            >
+              Commander le Pack
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </a>
           </AnimatedSection>
         </div>
       </section>
@@ -56,7 +93,6 @@ export default function Ebooks() {
         <div className="max-w-7xl mx-auto px-6">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <AnimatedSection className="grid grid-cols-2 gap-6 relative">
-                 {/* Decorative background glow */}
                  <div className="absolute inset-0 bg-gold/5 blur-[100px] pointer-events-none" />
                  
                  <div className="relative transform hover:-translate-y-4 transition-all duration-700 shadow-2xl group">
@@ -100,76 +136,63 @@ export default function Ebooks() {
         </div>
       </section>
 
-      {/* ── Order Form ───────────────────────────────────────────── */}
-      <section className="py-32 relative overflow-hidden">
+      {/* ── Integrated Checkout Flow ─────────────────────────────── */}
+      <section id="commander" className="py-32 bg-bg-primary relative overflow-hidden border-t border-border-subtle">
         {/* Background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/3 blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 blur-[150px] rounded-full pointer-events-none" />
         
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-           <AnimatedSection className="bg-bg-card border border-border-subtle p-10 md:p-16 shadow-[0_40px_100px_rgba(0,0,0,0.6)] rounded-sm relative overflow-hidden">
-              {/* Top Accent Line */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gold-gradient" />
-              
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-serif text-text-primary italic mb-4">Formulaire de Commande</h2>
-                <p className="text-text-muted text-sm uppercase tracking-widest">Recevez vos liens d'accès instantanément</p>
-              </div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif italic text-gold mb-6">Commander le Pack Complet</h2>
+              <p className="text-text-secondary max-w-xl mx-auto text-lg italic">
+                Accédez immédiatement à tous nos e-books, podcasts et supports de formation pour booster votre PME.
+              </p>
+            </div>
 
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <div className="flex flex-col gap-3">
-                    <label className="text-text-muted text-[10px] uppercase tracking-widest font-bold pl-1">Prénom</label>
-                    <input 
-                      type="text" 
-                      className="bg-bg-primary border border-border-subtle p-4 text-text-primary focus:border-gold/50 outline-none transition-all rounded-sm placeholder:text-text-muted/30" 
-                      placeholder="Votre prénom" 
-                    />
-                 </div>
-                 <div className="flex flex-col gap-3">
-                    <label className="text-text-muted text-[10px] uppercase tracking-widest font-bold pl-1">Nom</label>
-                    <input 
-                      type="text" 
-                      className="bg-bg-primary border border-border-subtle p-4 text-text-primary focus:border-gold/50 outline-none transition-all rounded-sm placeholder:text-text-muted/30" 
-                      placeholder="Votre nom" 
-                    />
-                 </div>
-                 <div className="flex flex-col gap-3 md:col-span-2">
-                    <label className="text-text-muted text-[10px] uppercase tracking-widest font-bold pl-1 flex items-center gap-2">
-                      <Mail className="w-3 h-3 text-gold" /> Email professionnel
-                    </label>
-                    <input 
-                      type="email" 
-                      className="bg-bg-primary border border-border-subtle p-4 text-text-primary focus:border-gold/50 outline-none transition-all rounded-sm placeholder:text-text-muted/30" 
-                      placeholder="adresse@entreprise.com" 
-                    />
-                 </div>
-                 <div className="flex flex-col gap-3">
-                    <label className="text-text-muted text-[10px] uppercase tracking-widest font-bold pl-1">Ville</label>
-                    <input 
-                      type="text" 
-                      className="bg-bg-primary border border-border-subtle p-4 text-text-primary focus:border-gold/50 outline-none transition-all rounded-sm placeholder:text-text-muted/30" 
-                      placeholder="Dakar, Abidjan..." 
-                    />
-                 </div>
-                 <div className="flex flex-col gap-3">
-                    <label className="text-text-muted text-[10px] uppercase tracking-widest font-bold pl-1">Code postal</label>
-                    <input 
-                      type="text" 
-                      className="bg-bg-primary border border-border-subtle p-4 text-text-primary focus:border-gold/50 outline-none transition-all rounded-sm placeholder:text-text-muted/30" 
-                      placeholder="00000" 
-                    />
-                 </div>
-                 <div className="md:col-span-2 pt-6">
-                    <button className="w-full py-5 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(201,151,58,0.4)] transition-all flex items-center justify-center gap-3 group rounded-sm">
-                       Soumettre la commande
-                       <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                    </button>
-                    <p className="text-[10px] text-text-muted text-center mt-6 flex items-center justify-center gap-2">
-                      <ShieldCheck className="w-3 h-3 text-gold" />
-                      Paiement sécurisé & Traitement immédiat des ressources
-                    </p>
-                 </div>
-              </form>
-           </AnimatedSection>
+            {!paymentSuccess ? (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                {/* Colonne gauche : formulaire */}
+                <div className="bg-bg-card border border-border-subtle p-8 rounded-sm shadow-xl">
+                  <OrderForm
+                    formData={formData}
+                    errors={errors}
+                    touched={touched}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    countries={countries}
+                  />
+                </div>
+
+                {/* Colonne droite : récapitulatif + PayPal */}
+                <div className="bg-bg-card border border-border-subtle p-8 rounded-sm shadow-xl sticky top-32">
+                  <OrderSummary
+                    formData={formData}
+                    isFormValid={isValid}
+                    onPayPalApprove={handlePayPalSuccess}
+                    onPayPalError={handlePayPalError}
+                  />
+                </div>
+              </div>
+            ) : (
+              <CheckoutSuccess
+                details={paymentDetails}
+                formData={formData}
+                onReset={handleReset}
+              />
+            )}
+
+            {/* Message d'erreur PayPal global */}
+            {paymentError && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-12 p-6 border border-red-500/30 bg-red-500/5 text-red-400 text-sm text-center rounded-sm max-w-2xl mx-auto"
+              >
+                Une erreur est survenue lors du paiement. Veuillez réessayer ou contacter le support UBB.
+              </motion.div>
+            )}
+          </AnimatedSection>
         </div>
       </section>
 
