@@ -71,7 +71,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-text-secondary text-sm leading-relaxed max-w-sm mb-8">
-              Cabinet de conseil panafricain aidant les PME africaines à croître durablement
+              Cabinet de conseil panafricain aidant les entreprises africaines à croître durablement
               grâce à la philosophie Ubuntu, la rigueur et des systèmes de croissance sur mesure.
             </p>
 

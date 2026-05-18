@@ -43,7 +43,10 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
         </div>
         <div className="flex justify-between items-center border-b border-border-subtle pb-4">
           <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Montant</span>
-          <span className="text-sm text-gold font-bold">£ 20,00</span>
+          <div className="text-right">
+            <span className="text-sm text-gold font-bold">23,50 €</span>
+            <span className="text-[10px] text-text-muted block mt-1">(traité en livres sterling via PayPal)</span>
+          </div>
         </div>
         <div className="flex justify-between items-center border-b border-border-subtle pb-4">
           <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Email de livraison</span>

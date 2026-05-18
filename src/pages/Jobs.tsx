@@ -3,8 +3,15 @@ import { motion } from "motion/react";
 import { ArrowRight, Briefcase, Globe, Award, ChevronRight, ExternalLink } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
+import { useSEO } from "../hooks/useSEO";
 
 export default function Jobs() {
+  useSEO({
+    title: "Opportunités de Carrières & Partenaires Locaux UBB",
+    description: "Rejoignez Ubuntu Business Builders (UBB) en tant que Partenaire Local. Portez la vision Ubuntu dans votre pays (Sénégal, Côte d'Ivoire, Cameroun, RDC, Burkina Faso...) et accélérez la croissance des entreprises africaines locales.",
+    keywords: "partenaire local ubb, carrieres ubb, recrutement afrique, developpement commercial, dakar jobs, cote d'ivoire jobs",
+    ogImage: "https://d1yei2z3i6k35z.cloudfront.net/10694324/692da5faacfcd_41809.jpg"
+  });
   return (
     <div className="flex flex-col w-full bg-bg-primary overflow-hidden">
       
@@ -36,7 +43,7 @@ export default function Jobs() {
               <span className="text-gold-gradient not-italic">Local UBB</span>
             </h1>
             <p className="text-text-secondary text-xl md:text-2xl font-serif italic max-w-3xl mx-auto mb-12 leading-relaxed">
-              Rejoignez une élite panafricaine dédiée à l'accélération de la croissance des PME locales.
+              Rejoignez une élite panafricaine dédiée à l'accélération de la croissance des entreprises africaines.
             </p>
             <div className="flex justify-center">
               <GoldDivider />

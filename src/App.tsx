@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Team from "./pages/Team";
+import Founder from "./pages/Founder";
 import Jobs from "./pages/Jobs";
 import Ebooks from "./pages/Ebooks";
 import Actualites from "./pages/Actualites";
@@ -12,6 +13,7 @@ import Register from "./pages/Register";
 // Admin Imports
 import { AuthProvider } from "./context/AuthContext";
 import { NewsProvider } from "./context/NewsContext";
+import { TeamProvider } from "./context/TeamContext";
 import { ProtectedRoute } from "./components/admin/ProtectedRoute";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -58,29 +60,32 @@ export default function App() {
   return (
     <AuthProvider>
       <NewsProvider>
-        <Router>
-          <ScrollToTop />
-          <AppLayout>
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/jobs" element={<Jobs />} />
-              <Route path="/ebooks" element={<Ebooks />} />
-              <Route path="/actualites" element={<Actualites />} />
-              <Route path="/inscription" element={<Register />} />
-              
-              {/* Admin Routes */}
-              <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={
-                <ProtectedRoute>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              } />
-            </Routes>
-          </AppLayout>
-        </Router>
+        <TeamProvider>
+          <Router>
+            <ScrollToTop />
+            <AppLayout>
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/founder" element={<Founder />} />
+                <Route path="/jobs" element={<Jobs />} />
+                <Route path="/ebooks" element={<Ebooks />} />
+                <Route path="/actualites" element={<Actualites />} />
+                <Route path="/inscription" element={<Register />} />
+                
+                {/* Admin Routes */}
+                <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin/dashboard" element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                } />
+              </Routes>
+            </AppLayout>
+          </Router>
+        </TeamProvider>
       </NewsProvider>
     </AuthProvider>
   );

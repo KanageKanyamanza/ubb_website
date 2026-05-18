@@ -17,9 +17,10 @@ import {
 // Sections
 import GalerieAdmin from "./sections/GalerieAdmin";
 import ProjectsAdmin from "./sections/ProjectsAdmin";
+import TeamAdmin from "./sections/TeamAdmin";
 import SettingsAdmin from "./sections/SettingsAdmin";
 
-type ActiveTab = "gallery" | "projects" | "settings";
+type ActiveTab = "gallery" | "projects" | "team" | "settings";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("gallery");
@@ -35,6 +36,7 @@ export default function AdminDashboard() {
   const navItems = [
     { id: "gallery", label: "Galerie d'images", icon: <ImageIcon className="w-5 h-5" /> },
     { id: "projects", label: "Projets Stratégiques", icon: <Layout className="w-5 h-5" /> },
+    { id: "team", label: "Membres de l'Équipe", icon: <UserIcon className="w-5 h-5" /> },
     { id: "settings", label: "Paramètres", icon: <Settings className="w-5 h-5" /> },
   ];
 
@@ -42,6 +44,7 @@ export default function AdminDashboard() {
     switch (activeTab) {
       case "gallery": return <GalerieAdmin />;
       case "projects": return <ProjectsAdmin />;
+      case "team": return <TeamAdmin />;
       case "settings": return <SettingsAdmin />;
       default: return <GalerieAdmin />;
     }

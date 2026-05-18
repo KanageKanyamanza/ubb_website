@@ -6,6 +6,25 @@ export const team = [
     badge: "Fondateur & DG",
     image: "https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg",
     bio: "Fort de son expérience en gestion de projets et en croissance d'entreprises, Ambrose guide les organisations vers leurs objectifs financiers et stratégiques. Son expertise en structures d'affaires et en optimisation des processus lui permet de concevoir des stratégies sur mesure. Passionné d'analyse et d'innovation, il incarne la mission d'UBB : transformer les défis en opportunités durables.",
+    bioLong: `Ambrose Nzeyimana a fondé Ubuntu Business Builders avec
+une conviction forgée sur le terrain : les entreprises africaines
+ont le potentiel, mais pas toujours les systèmes pour l'exprimer.
+
+Sa méthode repose sur trois piliers — le diagnostic précis,
+l'accompagnement opérationnel rigoureux et la transformation
+des comportements managériaux. Pas de recettes génériques :
+chaque mission est conçue sur mesure, après une analyse
+approfondie de l'entreprise, de son secteur et de ses équipes.
+
+Lors d'une mission documentée dans le secteur de l'hygiène,
+Ambrose a conduit un diagnostic complet en quinze jours, mis en
+place des réunions quotidiennes à 10h avec tous les managers,
+et accompagné l'entreprise vers des records de ventes en trois
+mois — un exploit inédit en onze ans d'existence.
+
+La philosophie Ubuntu — "Je suis parce que nous sommes" — n'est
+pas un slogan. C'est le cadre dans lequel Ambrose travaille :
+votre réussite est aussi la sienne.`,
     chips: ["Gestion de projets", "Croissance d'entreprise", "Stratégie"]
   },
   {

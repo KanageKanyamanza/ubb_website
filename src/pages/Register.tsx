@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 
+import { useSEO } from "../hooks/useSEO";
+
 const backgroundImages = [
   "/images/register-1.png",
   "/images/register-2.png",
@@ -10,6 +12,13 @@ const backgroundImages = [
 ];
 
 export default function Register() {
+  useSEO({
+    title: "Rejoindre la Communauté UBB - Inscription",
+    description: "Inscrivez-vous dès maintenant pour rejoindre la communauté d'Ubuntu Business Builders (UBB) et accéder en exclusivité à nos programmes d'accélération de croissance, nos outils SaaS (vitalCHECK, HARVESTS 2.0) et nos événements exclusifs.",
+    keywords: "inscription ubb, rejoindre ubuntu, vitalcheck gratuit, harvests crm, acceleration croissance afrique",
+    ogImage: "https://d1yei2z3i6k35z.cloudfront.net/10694324/6943262fb4eee_WhatsAppImage2025-11-20at15.08.2711.jpeg"
+  });
+
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -128,7 +137,7 @@ export default function Register() {
 
                <div className="pt-8 text-center">
                   <motion.button 
-                    whileHover={{ scale: 1.05, shadow: "0 0 30px rgba(201, 151, 58, 0.4)" }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(201, 151, 58, 0.4)" }}
                     whileTap={{ scale: 0.98 }}
                     className="w-full md:w-auto px-12 py-5 bg-gold text-bg-primary font-bold uppercase tracking-[0.2em] text-sm hover:bg-gold-light transition-all rounded-full shadow-2xl relative group overflow-hidden"
                   >
@@ -139,7 +148,7 @@ export default function Register() {
             </form>
             
             <p className="mt-12 text-center text-text-muted text-[10px] italic leading-loose">
-              En nous rejoignant, vous acceptez de recevoir nos communications stratégiques et nos offres exclusives destinées à la croissance des PME africaines.
+              En nous rejoignant, vous acceptez de recevoir nos communications stratégiques et nos offres exclusives destinées à la croissance des entreprises africaines.
             </p>
           </div>
         </AnimatedSection>

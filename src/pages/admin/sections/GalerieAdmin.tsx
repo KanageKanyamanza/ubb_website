@@ -1,6 +1,7 @@
 // src/pages/admin/sections/GalerieAdmin.tsx
 import React, { useState } from "react";
 import { useNews, NewsImage } from "../../../context/NewsContext";
+import { CATEGORIES } from "../../../data/news";
 import { Plus, Edit2, Eye, EyeOff, Trash2, GripVertical, X, Image as ImageIcon, Calendar as CalendarIcon, Check } from "lucide-react";
 
 export default function GalerieAdmin() {
@@ -15,6 +16,7 @@ export default function GalerieAdmin() {
   const [url, setUrl] = useState("");
   const [caption, setCaption] = useState("");
   const [date, setDate] = useState("");
+  const [category, setCategory] = useState("Webinaire");
   const [visible, setVisible] = useState(true);
 
   const openModal = (image?: NewsImage) => {
@@ -23,12 +25,14 @@ export default function GalerieAdmin() {
       setUrl(image.url);
       setCaption(image.caption);
       setDate(image.date);
+      setCategory(image.category || "Webinaire");
       setVisible(image.visible);
     } else {
       setEditingImage(null);
       setUrl("");
       setCaption("");
       setDate(new Date().toISOString().split("T")[0]);
+      setCategory("Webinaire");
       setVisible(true);
     }
     setIsModalOpen(true);
@@ -38,9 +42,9 @@ export default function GalerieAdmin() {
     if (!url) return;
     
     if (editingImage) {
-      updateImage(editingImage.id, { url, caption, date, visible });
+      updateImage(editingImage.id, { url, caption, date, visible, category });
     } else {
-      addImage({ url, caption, date, visible });
+      addImage({ url, caption, date, visible, category });
     }
     setIsModalOpen(false);
   };
@@ -259,6 +263,19 @@ export default function GalerieAdmin() {
                     className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm"
                     placeholder="Webinaire Mai 2026..."
                   />
+                </div>
+
+                <div>
+                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">Catégorie</label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm"
+                  >
+                    {CATEGORIES.filter(c => c !== "Tous").map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">

@@ -1,773 +1,601 @@
-import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
-import { ArrowRight, CheckCircle, Database, Layout, TrendingUp } from "lucide-react";
+import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
-import { Link } from "react-router-dom";
-
-const heroImages = [
-  "/images/hero-1.png",
-  "/images/hero-2.png",
-  "/images/hero-3.png"
-];
+import { Lock, ArrowRight, CheckCircle, Database, TrendingUp, Briefcase, Activity, BookOpen } from "lucide-react";
+import { useSEO } from "../hooks/useSEO";
 
 export default function Home() {
-  const [currentImage, setCurrentImage] = useState(0);
+  useSEO({
+    title: "Accélérateur de Croissance pour Entreprises Africaines",
+    description: "Ubuntu Business Builders (UBB) accompagne les entreprises africaines francophones dans leur structuration et leur croissance. Augmentez vos revenus de 30% en 90 jours grâce à nos solutions vitalCHECK, HARVESTS 2.0 et nos conseils stratégiques sur-mesure.",
+    keywords: "croissance entreprise, afrique francophone, vitalcheck, harvests, conseil strategique, structuration d'affaires, ubuntu business, developpement commercial",
+    ogImage: "https://d1yei2z3i6k35z.cloudfront.net/10694324/6943262fb4eee_WhatsAppImage2025-11-20at15.08.2711.jpeg"
+  });
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % heroImages.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, []);
+  const triggerChat = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent('ubb-trigger-chat'));
+  };
 
   return (
-    <div className="flex flex-col w-full">
-      {/* ── Hero Section ─────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <div className="flex flex-col w-full min-h-screen">
 
-        {/* Background Slideshow (Sliding effect) */}
-        <div className="absolute inset-0 z-0 overflow-hidden bg-bg-primary">
-          {/* Fallback static background to avoid void during transitions */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: `url(${heroImages[0]})` }}
-          />
-
-          <AnimatePresence initial={false}>
-            {heroImages.length > 0 && (
-              <motion.div
-                key={currentImage}
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "-100%" }}
-                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${heroImages[currentImage % heroImages.length]})` }}
-              />
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Multi-layer overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/80 via-bg-primary/60 to-bg-primary/95" />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg-primary/50 via-transparent to-bg-primary/50" />
-
-        {/* Gold radial glow */}
-        <div className="absolute inset-0 gold-glow opacity-50" />
-
-        {/* Animated grain texture */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+      {/* ── SECTION 1 — HERO ──────────────────────────────────────── */}
+      <section id="hero" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-bg-primary">
+        <div className="absolute inset-0 bg-bg-primary" />
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url('https://d1yei2z3i6k35z.cloudfront.net/10694324/6943262fb4eee_WhatsAppImage2025-11-20at15.08.2711.jpeg')`
           }}
         />
+        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 gold-glow opacity-30" />
 
-        {/* Decorative gold lines */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-
-
-        {/* ── Hero Content ─────────────────────────── */}
-        <div className="relative max-w-5xl mx-auto px-6 text-center pt-28 pb-20">
-
-
-
-          {/* Main title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="text-5xl sm:text-7xl md:text-8xl font-serif font-bold leading-[1.08] mb-6"
-          >
-            <span className="text-text-primary">Ubuntu</span>
-            <br />
-            <span className="text-gold-gradient">Business Builders</span>
-          </motion.h1>
-
-          {/* Divider */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-8"
-          >
-            <GoldDivider className="mx-auto" />
-          </motion.div>
-
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xl md:text-2xl italic font-serif mb-6"
-            style={{
-              color: "#F0EDE8",
-              textShadow: "0 0 30px rgba(201,151,58,0.4), 0 2px 8px rgba(0,0,0,0.8)",
-            }}
-          >
-            Partenaire pour la croissance des PME Africaines
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.65 }}
-            className="max-w-2xl mx-auto text-text-secondary md:text-lg leading-relaxed mb-12"
-          >
-            Nous aidons les PME africaines à croître durablement grâce à des systèmes sur mesure,
-            un leadership transformatif et la philosophie Ubuntu.
-          </motion.p>
-
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <a
-              href="#nos-offres"
-              className="group relative overflow-hidden px-8 py-4 font-bold uppercase tracking-widest text-sm text-bg-primary rounded-full transition-all duration-300 hover:shadow-[0_0_28px_rgba(201,151,58,0.5)] hover:scale-105 active:scale-95 flex items-center gap-2"
-              style={{ background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)" }}
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6 mt-16">
+          <AnimatedSection>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-text-primary leading-[1.1] mb-6"
             >
-              Découvrir nos services
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <Link
-              to="/inscription"
-              className="px-8 py-4 font-bold uppercase tracking-widest text-sm text-gold border border-gold/50 rounded-full hover:bg-gold/10 hover:border-gold transition-all duration-300 hover:scale-105 active:scale-95"
+              Augmentez vos revenus <br />
+              <span className="text-gold-gradient italic font-normal">de 30% en 90 jours.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-xl md:text-3xl italic font-serif text-gold mb-8"
             >
-              Rejoindre UBB
-            </Link>
-          </motion.div>
+              Ou nous travaillons jusqu'à ce que vous y arriviez.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.65 }}
+              className="max-w-2xl mx-auto text-text-secondary md:text-[15px] font-sans leading-relaxed mb-12"
+            >
+              Nous aidons les entreprises africaines à structurer leur
+              croissance, renforcer leurs opérations et augmenter leurs
+              revenus — grâce au conseil, aux outils SaaS et aux ressources
+              de formation.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.8 }}
+              className="flex flex-wrap justify-center gap-4"
+            >
+              <a
+                href="https://www.growthubb.space/cc60d593"
+                target="_blank"
+                rel="noreferrer"
+                className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
+              >
+                Démarrer mon diagnostic <ArrowRight className="inline w-4 h-4 ml-1" />
+              </a>
+              <a
+                href="https://www.checkmyenterprise.com/pricing"
+                target="_blank"
+                rel="noreferrer"
+                className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-sm hover:bg-gold/10 transition-all rounded-full hover:scale-105 active:scale-95"
+              >
+                Découvrir vitalCHECK
+              </a>
+            </motion.div>
+          </AnimatedSection>
         </div>
-
-
 
         {/* Scroll indicator */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-text-muted text-[9px] uppercase tracking-[0.35em]">Scroll</span>
-          <div className="w-px h-10 bg-gradient-to-b from-gold/60 to-transparent" />
+          <span className="text-[9px] uppercase tracking-[0.3em] text-gold/60">Découvrir</span>
+          <div className="w-px h-12 bg-gradient-to-b from-gold/60 to-transparent" />
         </motion.div>
       </section>
 
-      {/* ── Vision & Mission ─────────────────────────────────── */}
-      <section className="py-28 bg-bg-secondary relative overflow-hidden">
-
-        {/* Decorative background blur */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-gold/4 blur-3xl pointer-events-none" />
-
+      {/* ── SECTION 2 — BANDE DE RÉASSURANCE ────────────────────────── */}
+      <section id="stats" className="py-12 border-y border-border-subtle" style={{ backgroundColor: "#131313" }}>
         <div className="max-w-7xl mx-auto px-6">
-
-          {/* Section label */}
-          <AnimatedSection>
-            <div className="flex items-center gap-4 mb-16">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/30" />
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium">Notre Identité</span>
-              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/30" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border-subtle">
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">+30%</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">de croissance des ventes en 90 jours</span>
             </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-            {/* Image col */}
-            <AnimatedSection>
-              <div className="relative">
-                {/* Gold frame offset */}
-                <div className="absolute -top-4 -left-4 w-full h-full border border-gold/25 rounded-sm pointer-events-none z-0" />
-
-                <div className="relative z-10 overflow-hidden rounded-sm border border-border-subtle group shadow-2xl">
-                  <img
-                    src="https://d1yei2z3i6k35z.cloudfront.net/10694324/692304542b118_photo2.jpg"
-                    alt="Ubuntu Vision"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  {/* Gold overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/60 via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gold/8 mix-blend-overlay" />
-
-                  {/* Corner badge */}
-                  <div className="absolute bottom-5 left-5 px-4 py-2 backdrop-blur-sm rounded-sm border border-gold/30"
-                    style={{ background: "rgba(13,13,13,0.75)" }}
-                  >
-                    <p className="text-gold text-xs uppercase tracking-widest font-medium">Ubuntu Business Builders</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Text col */}
-            <div className="flex flex-col gap-10">
-
-              {/* Vision card */}
-              <AnimatedSection delay={0.2}>
-                <div className="relative pl-6 border-l-2 border-gold group">
-                  <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-gold" />
-                  <span className="text-gold text-[10px] uppercase tracking-[0.3em] font-medium block mb-3">
-                    01 — Vision
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-serif text-text-primary italic mb-5 leading-snug">
-                    Notre Vision
-                  </h2>
-                  <blockquote className="text-lg text-text-secondary leading-relaxed font-light italic border-none p-0 m-0"
-                    style={{ textShadow: "none" }}
-                  >
-                    « Devenir le conseiller et partenaire de confiance des PME africaines, en les accompagnant vers une réussite entrepreneuriale durable et significative. »
-                  </blockquote>
-                </div>
-              </AnimatedSection>
-
-              {/* Separator */}
-              <AnimatedSection delay={0.3}>
-                <div className="flex items-center gap-3">
-                  <div className="h-px flex-1 bg-border-subtle" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold/50" />
-                  <div className="h-px flex-1 bg-border-subtle" />
-                </div>
-              </AnimatedSection>
-
-              {/* Mission card */}
-              <AnimatedSection delay={0.4}>
-                <div className="relative pl-6 border-l-2 border-gold/50 group hover:border-gold transition-colors duration-300">
-                  <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-gold/50 group-hover:bg-gold transition-colors duration-300" />
-                  <span className="text-gold/70 text-[10px] uppercase tracking-[0.3em] font-medium block mb-3 group-hover:text-gold transition-colors">
-                    02 — Mission
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-serif text-text-primary italic mb-5 leading-snug">
-                    Notre Mission
-                  </h2>
-                  <blockquote className="text-lg text-text-secondary leading-relaxed font-light italic">
-                    « Soutenir durablement les PME africaines pour un succès et un impact durables en Afrique et dans le monde. »
-                  </blockquote>
-                </div>
-              </AnimatedSection>
-
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">3 ans</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">d'expérience terrain en Afrique</span>
+            </div>
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">2 SaaS</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">vitalCHECK & HARVESTS 2.0</span>
+            </div>
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">Ubuntu</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">philosophie au cœur de chaque mission</span>
             </div>
           </div>
         </div>
       </section>
 
-
-      {/* ── Nos Offres ──────────────────────────────────────────── */}
-      <section id="nos-offres" className="py-28 bg-bg-primary relative overflow-hidden">
-
-        {/* Background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold/4 blur-3xl rounded-full pointer-events-none" />
-
+      {/* ── SECTION 3 — PROBLÈME CLIENT ───────────────────────────── */}
+      <section id="probleme" className="py-24 md:py-32 bg-bg-primary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-
-          {/* Header */}
-          <AnimatedSection>
-            <div className="text-center mb-20">
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium block mb-4">Ce que nous faisons</span>
-              <h2 className="text-5xl md:text-6xl font-serif italic text-text-primary mb-6">Nos Offres</h2>
-              <GoldDivider className="mx-auto" />
-              <p className="mt-6 max-w-xl mx-auto text-text-secondary leading-relaxed">
-                Un accompagnement en trois étapes pour transformer durablement votre entreprise.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                num: "01",
-                title: "Diagnostic complet",
-                desc: "Évaluation de votre marketing, de vos processus internes, de votre gestion financière et de vos opportunités de croissance.",
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/6758345179a83_Gemini_Generated_Image_tj4ogetj4ogetj4o.jpeg",
-                href: "https://www.checkmyenterprise.com/pricing",
-              },
-              {
-                num: "02",
-                title: "Conseils personnalisés",
-                desc: "Nos analyses nous aident à élaborer un plan d'action sur mesure adapté à vos enjeux spécifiques.",
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/67579180c9f8a_Screenshot_20241210_003614_Gallery.jpg",
-                href: "https://www.growthubb.space/cc60d593",
-              },
-              {
-                num: "03",
-                title: "Exécution",
-                desc: "Nous vous accompagnons dans la mise en œuvre de notre plan d'action et assurons le suivi de son impact.",
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/6757919f2c880_Screenshot_20241210_003225_Gallery.jpg",
-                href: "https://www.growthubb.space/6705e281",
-              },
-            ].map((offre, idx) => (
-              <AnimatedSection key={idx} delay={idx * 0.12} className="h-full">
-                <div className="group relative h-full flex flex-col overflow-hidden rounded-xl border border-border-subtle bg-bg-card hover:border-gold/40 transition-all duration-500 shadow-lg hover:shadow-[0_8px_40px_rgba(201,151,58,0.12)]">
-
-                  {/* Image */}
-                  <div className="relative aspect-video overflow-hidden">
-                    <img
-                      src={offre.image}
-                      alt={offre.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-bg-card/30 to-transparent" />
-
-                    {/* Number badge */}
-                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full border border-gold/40 bg-bg-primary/80 backdrop-blur-sm flex items-center justify-center">
-                      <span className="text-gold font-serif font-bold text-sm">{offre.num}</span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col flex-1 p-7">
-                    {/* Gold accent line */}
-                    <div className="w-8 h-0.5 bg-gold mb-5 group-hover:w-16 transition-all duration-300" />
-
-                    <h3 className="text-2xl font-serif text-text-primary italic mb-3 group-hover:text-gold transition-colors duration-300">
-                      {offre.title}
-                    </h3>
-                    <p className="text-text-secondary leading-relaxed flex-1 text-sm">
-                      {offre.desc}
-                    </p>
-
-                    {/* CTA */}
-                    <a
-                      href={offre.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-6 inline-flex items-center gap-2 text-sm text-gold/70 hover:text-gold transition-colors group/link font-medium"
-                    >
-                      En savoir plus
-                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                    </a>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── Critères PME ─────────────────────────────────────────── */}
-      <section className="py-28 bg-bg-secondary relative overflow-hidden">
-
-        {/* Decorative background */}
-        <div className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,151,58,0.5) 40px, rgba(201,151,58,0.5) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,151,58,0.5) 40px, rgba(201,151,58,0.5) 41px)"
-          }}
-        />
-        <div className="absolute -bottom-32 right-0 w-80 h-80 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 relative">
-
-          {/* Header */}
-          <AnimatedSection>
-            <div className="text-center mb-20">
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium block mb-4">Nos Critères d'Éligibilité</span>
-              <h2 className="text-5xl md:text-6xl font-serif italic text-text-primary mb-6">
-                Un Service Destiné aux<br />PME en Afrique
-              </h2>
-              <GoldDivider className="mx-auto" />
-              <p className="mt-6 max-w-xl mx-auto text-text-secondary leading-relaxed">
-                Nous accompagnons les entreprises qui répondent aux critères suivants.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          {/* Criteria cards — horizontal layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                num: "01",
-                title: "Ancienneté & Localisation",
-                text: "Opérationnelles depuis au moins 3 ans et implantées dans des centres urbains africains.",
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/6757964ae55ac_Screenshot_20241210_003012_Gallery.jpg",
-              },
-              {
-                num: "02",
-                title: "Enregistrement légal",
-                text: "Répertoriées dans les registres commerciaux et fiscaux de leur pays d'exercice.",
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/675834c0d05b8_Screenshot_20241210_003140_Gallery.jpg",
-              },
-              {
-                num: "03",
-                title: "Défis structurels",
-                text: "Confrontées à des difficultés majeures dans leurs différents départements et cherchant à se transformer.",
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/675819bfabf56_Screenshot_20241210_003851_Gallery.jpg",
-              },
-            ].map((c, idx) => (
-              <AnimatedSection key={idx} delay={idx * 0.15}>
-                <div className="group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-card hover:border-gold/40 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(201,151,58,0.1)]">
-
-                  {/* Image strip */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-bg-card/50 to-transparent" />
-
-                    {/* Number */}
-                    <div className="absolute bottom-4 left-5">
-                      <span
-                        className="font-serif font-bold text-5xl leading-none"
-                        style={{
-                          WebkitTextStroke: "1px rgba(201,151,58,0.6)",
-                          color: "transparent",
-                        }}
-                      >
-                        {c.num}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Body */}
-                  <div className="px-6 pb-7 pt-5">
-                    {/* Gold line */}
-                    <div className="w-8 h-0.5 bg-gold mb-4 group-hover:w-14 transition-all duration-300" />
-
-                    <h3 className="text-xl font-serif text-text-primary italic mb-3 group-hover:text-gold transition-colors duration-300">
-                      {c.title}
-                    </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                      {c.text}
-                    </p>
-
-                    {/* Check badge */}
-                    <div className="mt-5 inline-flex items-center gap-2 text-xs text-gold/70 font-medium">
-                      <CheckCircle className="w-3.5 h-3.5" />
-                      Critère requis
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ── Méthodologie ─────────────────────────────────────────── */}
-      <section className="py-28 bg-bg-primary overflow-hidden relative">
-
-        {/* Decorative glow */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gold/4 blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          {/* Header */}
-          <AnimatedSection>
-            <div className="text-center mb-20">
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium block mb-4">Notre Approche</span>
-              <h2 className="text-5xl md:text-6xl font-serif italic text-text-primary mb-6">Notre Méthodologie</h2>
-              <GoldDivider className="mx-auto" />
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-
-            {/* Timeline steps */}
-            <div className="order-2 lg:order-1 relative">
-              {/* Vertical connector line */}
-              <div className="absolute left-5 top-6 bottom-6 w-px bg-gradient-to-b from-gold/60 via-gold/30 to-transparent pointer-events-none" />
-
-              <div className="space-y-2">
-                {[
-                  {
-                    icon: <Database className="w-5 h-5" />,
-                    title: "Analyse de la donnée",
-                    sub: "Étude approfondie de vos documents internes pour comprendre la réalité de votre entreprise.",
-                    num: "01",
-                  },
-                  {
-                    icon: <CheckCircle className="w-5 h-5" />,
-                    title: "Entretiens",
-                    sub: "Échanges avec vos équipes dirigeantes pour mieux comprendre vos enjeux et ambitions.",
-                    num: "02",
-                  },
-                  {
-                    icon: <Layout className="w-5 h-5" />,
-                    title: "Reporting",
-                    sub: "Production de rapports clairs et concis présentant nos analyses et recommandations stratégiques.",
-                    num: "03",
-                  },
-                  {
-                    icon: <TrendingUp className="w-5 h-5" />,
-                    title: "Accompagnement opérationnel",
-                    sub: "Suivi de l'avancement des actions et ajustements à travers des réunions régulières.",
-                    num: "04",
-                  },
-                ].map((step, idx) => (
-                  <AnimatedSection key={idx} delay={idx * 0.12}>
-                    <div className="flex gap-6 group relative py-5 pl-14 pr-4">
-                      {/* Step number dot on timeline */}
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex-shrink-0 rounded-full border-2 border-gold/40 bg-bg-primary flex items-center justify-center text-gold group-hover:border-gold group-hover:bg-gold group-hover:text-bg-primary transition-all duration-300 z-10">
-                        {step.icon}
-                      </div>
-
-                      {/* Card */}
-                      <div className="flex-1 bg-bg-card border border-border-subtle rounded-xl p-5 group-hover:border-gold/30 group-hover:shadow-[0_4px_24px_rgba(201,151,58,0.08)] transition-all duration-300">
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-gold/50 text-xs font-mono">{step.num}</span>
-                          <h4 className="text-lg font-serif text-text-primary group-hover:text-gold transition-colors duration-200">
-                            {step.title}
-                          </h4>
-                        </div>
-                        <p className="text-text-secondary text-sm leading-relaxed">{step.sub}</p>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-                ))}
-              </div>
-            </div>
-
-            {/* Image */}
-            <AnimatedSection className="order-1 lg:order-2">
-              <div className="relative">
-                {/* Gold frame offset */}
-                <div className="absolute -top-5 -right-5 w-full h-full border border-gold/25 rounded-xl pointer-events-none z-0" />
-
-                <div className="relative z-10 overflow-hidden rounded-xl border border-border-subtle shadow-2xl group">
-                  <img
-                    src="https://d1yei2z3i6k35z.cloudfront.net/10694324/692106ab93242_WhatsAppImage2025-11-20at15.08.28.jpeg"
-                    alt="Notre Méthodologie"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/50 via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gold/6 mix-blend-overlay" />
-
-                  {/* Floating label */}
-                  <div className="absolute bottom-6 right-6 px-4 py-2 rounded-lg border border-gold/30 backdrop-blur-sm"
-                    style={{ background: "rgba(13,13,13,0.8)" }}
-                  >
-                    <p className="text-gold text-xs uppercase tracking-widest font-medium">4 étapes clés</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── Message du CEO / Manifeste ───────────────────────────── */}
-      <section className="py-32 md:py-40 bg-bg-secondary relative overflow-hidden">
-
-        {/* Background elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/4 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold/3 blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 relative">
-
-          {/* Section label */}
-          <AnimatedSection>
-            <div className="flex items-center gap-4 mb-20">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/30" />
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium">Le Mot du Directeur</span>
-              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/30" />
-            </div>
-          </AnimatedSection>
-
-          <div className="flex justify-center">
-            <div className="max-w-4xl">
-              <AnimatedSection>
-                <h3 className="text-gold text-sm font-bold uppercase tracking-[0.3em] mb-4">Message de Vision</h3>
-                <h2 className="text-4xl md:text-6xl font-serif text-text-primary mb-12 italic leading-tight">
-                  Le Mot du <span className="text-gold-gradient not-italic">Directeur</span>
-                </h2>
-
-                {/* Giant decorative quote */}
-                <div
-                  className="font-serif text-[120px] leading-none text-gold/10 select-none mb-[-40px] ml-[-10px]"
-                  aria-hidden="true"
-                >
-                  "
-                </div>
-
-                <h2 className="text-2xl md:text-4xl font-serif text-text-primary mb-6 leading-tight italic">
-                  La Force Transformatrice de la Rigueur et de la Discipline: Une Expérience Réelle
-                </h2>
-
-                <GoldDivider className="mb-8" />
-
-                <div className="space-y-8 text-text-secondary leading-relaxed font-light">
-                  <p className="text-lg text-text-primary italic">
-                    Il y a quelques années, j'ai eu l'opportunité d'aider une entreprise manufacturière en difficulté en Afrique, spécialisée dans les produits d'hygiène. Mon expertise en conseil d'affaires a été sollicitée par un ami qui connaissait les difficultés de cette entreprise.
-                  </p>
-
-                  <div className="space-y-3">
-                    <h4 className="text-gold font-serif text-xl italic">Un Diagnostic Précis, une Prescription Efficace</h4>
-                    <p>
-                      J'ai passé quinze jours à analyser en profondeur l'entreprise: chiffres, stratégies, et entretiens avec les équipes. L'objectif était d'identifier les obstacles et les leviers de croissance. Un rapport détaillé avec un plan d'action précis a été remis aux dirigeants, qui m'ont confié sa mise en œuvre.
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-gold font-serif text-xl italic">La Magie des Réunions Quotidiennes</h4>
-                    <p>
-                      La transformation a débuté avec des réunions quotidiennes à 10 heures, impliquant tous les managers. Ces réunions de trente minutes étaient axées sur la transparence, la collaboration et l'anticipation. Chaque manager présentait les avancées de la veille, exprimait ses besoins pour faciliter la coordination, et présentait les plans d'action pour la journée à venir.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                    <div className="space-y-3 p-5 border border-gold/20 bg-gold/5 rounded-sm">
-                      <h4 className="text-gold font-serif text-lg italic">Résultats Concrets</h4>
-                      <p className="text-sm">
-                        En trois mois, l'entreprise a atteint des records de ventes, un exploit inédit en onze ans d'existence.
-                      </p>
-                    </div>
-                    <div className="space-y-3 p-5 border border-gold/20 bg-gold/5 rounded-sm">
-                      <h4 className="text-gold font-serif text-lg italic">Un Modèle Exportable</h4>
-                      <p className="text-sm">
-                        Cette expérience a démontré la puissance de la rigueur et de la discipline. Ce modèle peut être appliqué à toute entreprise africaine souhaitant se transformer.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-gold font-serif text-xl italic">Pourquoi l'Afrique?</h4>
-                    <p>
-                      L'Afrique possède un potentiel immense et chaque entreprise mérite d'atteindre son plein potentiel. Mon équipe et moi sommes prêts à relever ce défi avec vous.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Signature */}
-                <div className="mt-12 pt-8 border-t border-border-subtle">
-                  <div>
-                    <p className="font-serif text-2xl text-gold italic leading-none">Ambrose Nzeyimana</p>
-                    <p className="text-text-muted uppercase tracking-widest text-[10px] mt-2 font-medium">CEO & Fondateur · Ubuntu Business Builders</p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Ubuntu & CTA ─────────────────────────────────────────── */}
-      <section className="py-28 bg-bg-primary relative overflow-hidden">
-
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gold/4 blur-3xl rounded-full pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-            {/* Image */}
-            <AnimatedSection>
-              <div className="relative">
-                <div className="absolute -top-5 -left-5 w-full h-full border border-gold/20 rounded-xl pointer-events-none z-0" />
-                <div className="relative z-10 rounded-xl overflow-hidden border border-border-subtle shadow-2xl group">
-                  <img
-                    src="https://d1yei2z3i6k35z.cloudfront.net/6359213/675883ce8eb04_Screenshot_20241210_180201_Chrome.jpg"
-                    alt="Ubuntu Approach"
-                    className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/40 to-transparent" />
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Text + CTA */}
-            <AnimatedSection delay={0.2}>
-              <span className="text-gold text-[11px] uppercase tracking-[0.35em] font-medium block mb-5">Philosophie</span>
-              <h2 className="text-4xl md:text-5xl font-serif text-text-primary mb-6 italic leading-snug">
-                L'esprit d'Ubuntu au cœur de notre approche
-              </h2>
-              <GoldDivider className="mb-7" />
-              <p className="text-text-secondary leading-relaxed mb-10">
-                Nous plaçons l'esprit d'Ubuntu au cœur de notre démarche. En intégrant des systèmes de croissance
-                robustes et une éthique de leadership transformative, nous créons des environnements où l'humain
-                et la performance s'épanouissent de concert.
-              </p>
-
-              {/* Offer card */}
-              <div className="relative rounded-xl overflow-hidden border border-gold/40 p-7 group"
-                style={{ background: "linear-gradient(135deg, rgba(201,151,58,0.08) 0%, rgba(13,13,13,0.95) 100%)" }}
-              >
-                {/* Animated glow */}
-                <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-gold/15 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000 pointer-events-none" />
-
-                <div className="relative z-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 mb-5">
-                    <span className="text-gold text-[10px] uppercase tracking-widest font-bold">Offre Exclusive</span>
-                  </div>
-
-                  <p className="text-text-primary font-serif text-xl mb-2 leading-snug">
-                    Recevez un <span className="text-gold italic">Workbook gratuit</span> :
-                  </p>
-                  <p className="text-gold-light font-bold text-lg mb-7 leading-snug uppercase tracking-wide">
-                    Comment augmenter de 30% vos ventes mensuelles en 90 jours.
-                  </p>
-
-                  <button
-                    className="group/btn inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(201,151,58,0.4)] hover:scale-105 active:scale-95"
-                    style={{ background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)" }}
-                  >
-                    Obtenir le workbook
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-      {/* ── Chatbot Promo Section ───────────────────────────── */}
-      <section className="py-24 bg-bg-secondary border-t border-border-subtle relative overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/5 blur-3xl rounded-full pointer-events-none" />
-        
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <AnimatedSection>
-            {/* Decorative chat icon */}
-            <div className="w-20 h-20 mx-auto mb-8 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center text-4xl shadow-[0_0_40px_rgba(201,151,58,0.1)]">
-              💬
-            </div>
-
+          <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6">
-              Une question sur <span className="text-gold-gradient not-italic">UBB</span> ?
+              Votre entreprise croît, mais quelque chose freine.
+            </h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              La plupart des entreprises africaines établies font face
+              aux mêmes blocages structurels.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            {[
+              {
+                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/6757964ae55ac_Screenshot_20241210_003012_Gallery.jpg",
+                title: "Ventes stagnantes",
+                text: "L'activité existe mais les revenus plafonnent. Les efforts commerciaux ne se traduisent pas en croissance visible."
+              },
+              {
+                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/675834c0d05b8_Screenshot_20241210_003140_Gallery.jpg",
+                title: "Opérations désorganisées",
+                text: "Les équipes travaillent fort, mais sans système clair. L'information se perd, les décisions tardent."
+              },
+              {
+                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/675819bfabf56_Screenshot_20241210_003851_Gallery.jpg",
+                title: "Manque de visibilité financière",
+                text: "Difficile de savoir où va l'argent, ce qui est rentable et quels leviers activer en priorité."
+              }
+            ].map((prob, idx) => (
+              <AnimatedSection key={idx} delay={idx * 0.15} className="h-full">
+                <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden text-center h-full hover:border-gold/30 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(201,151,58,0.1)] flex flex-col group">
+                  <div className="relative h-48 overflow-hidden w-full">
+                    <img 
+                      src={prob.image} 
+                      alt={prob.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+                  </div>
+                  <div className="p-8 flex-grow flex flex-col items-center">
+                    <h3 className="text-2xl font-serif text-gold mb-4">{prob.title}</h3>
+                    <p className="text-text-secondary leading-relaxed text-sm">
+                      {prob.text}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection className="text-center">
+            <GoldDivider className="mx-auto mb-6" />
+            <p className="text-xl font-serif italic text-gold">
+              UBB a conçu une réponse structurée à ces trois défis.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── SECTION 4 — SOLUTION UBB ──────────────────────────────── */}
+      <section id="solution" className="py-24 md:py-32 bg-bg-secondary relative">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-serif text-text-primary mb-6">
+              Une plateforme. Trois leviers de croissance.
+            </h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              Conseil, outils et formation — tout ce dont votre
+              entreprise a besoin pour passer au niveau supérieur.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:items-center">
+            {/* Card 1 */}
+            <AnimatedSection delay={0.1}>
+              <div className="bg-bg-card border border-border-subtle p-8 rounded-2xl relative hover:border-gold/40 transition-all">
+                <span className="absolute top-6 right-6 text-4xl font-serif text-border-subtle opacity-50">01</span>
+                <Briefcase className="w-10 h-10 text-gold mb-6" />
+                <h3 className="text-2xl font-serif text-text-primary mb-4">Conseil Stratégique</h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-8">
+                  Diagnostic complet, plan d'action sur mesure et
+                  accompagnement opérationnel piloté par Ambrose
+                  Nzeyimana et son équipe.
+                </p>
+                <Link to="/team" className="text-gold text-sm font-bold uppercase tracking-widest hover:text-gold-light inline-flex items-center">
+                  En savoir plus <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+            </AnimatedSection>
+
+            {/* Card 2 (Bigger) */}
+            <AnimatedSection delay={0.2}>
+              <div className="bg-bg-primary border border-gold p-10 rounded-2xl relative shadow-[0_0_40px_rgba(201,151,58,0.15)] transform lg:scale-105 z-10">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
+                 Recommandé
+                </div>
+                <span className="absolute top-6 right-6 text-4xl font-serif text-gold/20">02</span>
+                <Activity className="w-10 h-10 text-gold mb-6" />
+                <h3 className="text-2xl font-serif text-text-primary mb-4">Outils SaaS</h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-8">
+                  vitalCHECK diagnostique votre entreprise en
+                  quelques minutes. HARVESTS 2.0 pilote vos
+                  ventes et opérations au quotidien.
+                </p>
+                <div className="flex flex-col gap-3">
+                  <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="w-full text-center px-4 py-3 bg-gold/10 border border-gold text-gold text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-gold hover:text-bg-primary transition-all">
+                    vitalCHECK <ArrowRight className="inline w-3 h-3 ml-1" />
+                  </a>
+                  <a href="https://harvests.site/pricing/" target="_blank" rel="noreferrer" className="w-full text-center px-4 py-3 bg-transparent border border-border-subtle text-text-secondary text-xs font-bold uppercase tracking-widest rounded-lg hover:border-gold hover:text-gold transition-all">
+                    HARVESTS <ArrowRight className="inline w-3 h-3 ml-1" />
+                  </a>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Card 3 */}
+            <AnimatedSection delay={0.3}>
+              <div className="bg-bg-card border border-border-subtle p-8 rounded-2xl relative hover:border-gold/40 transition-all">
+                <span className="absolute top-6 right-6 text-4xl font-serif text-border-subtle opacity-50">03</span>
+                <BookOpen className="w-10 h-10 text-gold mb-6" />
+                <h3 className="text-2xl font-serif text-text-primary mb-4">Ressources & Formation</h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-8">
+                  E-books, podcasts et formations pour renforcer
+                  vos compétences et celles de votre équipe,
+                  à votre rythme.
+                </p>
+                <Link to="/ebooks" className="text-gold text-sm font-bold uppercase tracking-widest hover:text-gold-light inline-flex items-center">
+                  Voir les ressources <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5 — PRODUIT VEDETTE 1 : vitalCHECK ────────────── */}
+      <section id="vitalcheck" className="py-24 md:py-32 bg-bg-primary">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection>
+              <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
+                <img 
+                  src="https://d1yei2z3i6k35z.cloudfront.net/6359213/6758345179a83_Gemini_Generated_Image_tj4ogetj4ogetj4o.jpeg" 
+                  alt="vitalCHECK Diagnostic" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
+              </div>
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.2}>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
+                Outil de diagnostic
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
+                Connaissez-vous vraiment <br className="hidden md:block"/>
+                <span className="not-italic text-gold">les freins de votre entreprise ?</span>
+              </h2>
+              <p className="text-text-secondary text-lg leading-relaxed mb-8">
+                vitalCHECK est notre outil de diagnostic en ligne. En
+                quelques minutes, il identifie les goulots d'étranglement
+                de votre marketing, vos opérations et vos finances —
+                et génère un rapport d'action personnalisé.
+              </p>
+              
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Diagnostic complet en moins de 15 minutes",
+                  "Rapport personnalisé avec recommandations prioritaires",
+                  "Conçu pour les réalités des entreprises africaines"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-text-secondary">
+                    <CheckCircle className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
+                Faire mon diagnostic gratuit <ArrowRight className="w-4 h-4" />
+              </a>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 6 — PRODUIT VEDETTE 2 : HARVESTS 2.0 ──────────── */}
+      <section id="harvests" className="py-24 md:py-32 bg-bg-secondary border-t border-border-subtle">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <AnimatedSection className="order-2 lg:order-1">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
+                Suite logicielle
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
+                Pilotez vos ventes et <br className="hidden md:block"/>
+                <span className="not-italic text-gold">opérations en temps réel.</span>
+              </h2>
+              <p className="text-text-secondary text-lg leading-relaxed mb-8">
+                HARVESTS 2.0 est une suite logicielle de gestion commerciale
+                conçue pour les réalités du marché africain. Suivi des ventes,
+                gestion des équipes, tableaux de bord — tout ce dont votre
+                équipe a besoin pour performer chaque jour.
+              </p>
+              
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Interface adaptée aux marchés africains francophones",
+                  "Suivi commercial et reporting en temps réel",
+                  "Intégration facile avec vos processus existants"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-text-secondary">
+                    <CheckCircle className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <a href="https://harvests.site/pricing/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
+                Découvrir HARVESTS 2.0 <ArrowRight className="w-4 h-4" />
+              </a>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2} className="order-1 lg:order-2">
+              <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
+                <img 
+                  src="https://d1yei2z3i6k35z.cloudfront.net/6359213/67579180c9f8a_Screenshot_20241210_003614_Gallery.jpg" 
+                  alt="HARVESTS 2.0 Logiciel" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
+              </div>
+            </AnimatedSection>
+            
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 7 — ÉTUDE DE CAS CEO ──────────────────────────── */}
+      <section id="etude-de-cas" className="py-24 md:py-32 bg-bg-primary border-y border-border-subtle relative overflow-hidden">
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
+        
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <AnimatedSection className="mb-12">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/30 bg-gold/5 text-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+              📋 Étude de cas réelle
+            </span>
+            <h2 className="text-5xl md:text-7xl font-serif text-text-primary leading-[1.1] mb-12">
+              De zéro à record de ventes. <br/>
+              <span className="italic text-gold">En 90 jours.</span>
             </h2>
 
-            <p className="text-text-secondary text-lg mb-10 leading-relaxed max-w-2xl mx-auto font-light italic">
-              Notre assistant virtuel est disponible 24h/24 pour répondre à toutes vos questions sur nos services, notre équipe et nos ressources pour PME africaines.
+            {/* Results Table */}
+            <div className="grid grid-cols-3 divide-x divide-gold/30 border border-gold/30 rounded-xl bg-gold/5 mb-16 max-w-3xl">
+              <div className="p-6 text-center">
+                <div className="text-3xl font-serif text-gold mb-1">15j</div>
+                <div className="text-xs uppercase tracking-wider text-text-muted">Diagnostic<br/>complet</div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="text-3xl font-serif text-gold mb-1">90j</div>
+                <div className="text-xs uppercase tracking-wider text-text-muted">Résultats<br/>concrets</div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="text-3xl font-serif text-gold mb-1">11 ans</div>
+                <div className="text-xs uppercase tracking-wider text-text-muted">Record<br/>battu</div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection delay={0.2}>
+              <div className="bg-bg-secondary border border-gold/20 p-8 md:p-12 rounded-2xl shadow-xl mb-12 relative overflow-hidden group">
+                <div className="absolute -top-12 -right-12 w-24 h-24 bg-gold/5 rounded-full blur-2xl" />
+                <span className="text-4xl text-gold/20 font-serif absolute top-6 left-6">“</span>
+                <p className="text-text-primary text-xl md:text-2xl font-serif italic leading-relaxed mb-8 pl-6 relative z-10">
+                  Il y a quelques années, j'ai aidé une entreprise manufacturière en difficulté en Afrique. En trois mois, grâce à un diagnostic rigoureux et à la magie des réunions quotidiennes, l'entreprise a atteint des records de ventes — un exploit inédit en 11 ans d'existence.
+                </p>
+                <div className="flex items-center justify-between border-t border-border-subtle/50 pt-6">
+                  <div>
+                    <h4 className="font-serif text-lg text-gold font-bold">Ambrose Nzeyimana</h4>
+                    <p className="text-text-muted text-xs uppercase tracking-widest font-bold">Fondateur & CEO · UBB</p>
+                  </div>
+                  <Link to="/founder" className="text-gold hover:text-gold-light text-xs font-bold uppercase tracking-widest inline-flex items-center gap-1.5 transition-all hover:translate-x-1">
+                    Lire l'histoire complète <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div className="bg-bg-card border border-border-subtle p-6 rounded-xl">
+                  <h4 className="text-gold font-serif text-lg italic mb-2">Un Diagnostic Précis</h4>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    15 jours d'analyse approfondie (chiffres, stratégies, entretiens d'équipes) pour identifier avec exactitude les leviers de performance inexploités.
+                  </p>
+                </div>
+                <div className="bg-bg-card border border-border-subtle p-6 rounded-xl">
+                  <h4 className="text-gold font-serif text-lg italic mb-2">Rigueur & Discipline</h4>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    Mise en place de réunions quotidiennes ultra-courtes (30 min) axées sur la transparence opérationnelle, la collaboration et l'anticipation quotidienne.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-bg-card border border-border-subtle p-8 rounded-xl text-center">
+                <p className="text-lg font-serif italic text-text-primary mb-6">
+                  Votre entreprise peut obtenir les mêmes résultats.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <a href="https://www.growthubb.space/cc60d593" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
+                    Parler à Ambrose <ArrowRight className="w-4 h-4" />
+                  </a>
+                  <Link to="/founder" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border-subtle text-text-secondary font-bold uppercase tracking-widest text-sm rounded-full hover:text-gold hover:border-gold transition-all">
+                    Découvrir son parcours
+                  </Link>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 8 — ÉCOSYSTÈME UBB ────────────────────────────── */}
+      <section id="ecosysteme" className="py-24 bg-bg-secondary text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <AnimatedSection>
+            <h2 className="text-4xl md:text-5xl font-serif text-text-primary mb-6">L'écosystème UBB</h2>
+            <p className="text-text-secondary text-lg mb-16">
+              Conseil, SaaS et formation — une réponse intégrée pour chaque étape de votre croissance.
+            </p>
+            
+            {/* Visual Ecosystem Graphic */}
+            <div className="relative w-full max-w-lg mx-auto aspect-square mb-16 flex items-center justify-center">
+              {/* Lines linking center to outer bubbles */}
+              <svg className="absolute inset-0 w-full h-full text-gold/30" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                <line x1="50" y1="50" x2="50" y2="15" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
+                <line x1="50" y1="50" x2="20" y2="75" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
+                <line x1="50" y1="50" x2="80" y2="75" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
+              </svg>
+              
+              {/* Center */}
+              <div className="absolute z-10 w-24 h-24 bg-bg-primary border-2 border-gold rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(201,151,58,0.2)]">
+                <span className="font-serif font-bold text-2xl text-gold">UBB</span>
+              </div>
+              
+              {/* Top Bubble - vitalCHECK */}
+              <div className="absolute top-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
+                <Database className="w-5 h-5 text-gold/80 mb-2" />
+                <span className="text-text-primary font-serif text-sm font-bold">vitalCHECK</span>
+                <span className="text-text-muted text-[10px] uppercase tracking-wider">Diagnostiquer</span>
+              </div>
+              
+              {/* Bottom Left Bubble - Conseil */}
+              <div className="absolute bottom-[10%] left-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
+                <Briefcase className="w-5 h-5 text-gold/80 mb-2" />
+                <span className="text-text-primary font-serif text-sm font-bold">Conseil</span>
+                <span className="text-text-muted text-[10px] uppercase tracking-wider">Structurer</span>
+              </div>
+              
+              {/* Bottom Right Bubble - HARVESTS */}
+              <div className="absolute bottom-[10%] right-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
+                <Activity className="w-5 h-5 text-gold/80 mb-2" />
+                <span className="text-text-primary font-serif text-sm font-bold">HARVESTS</span>
+                <span className="text-text-muted text-[10px] uppercase tracking-wider">Piloter</span>
+              </div>
+            </div>
+
+            <p className="text-text-secondary italic font-serif text-xl mb-10">
+              Commencez par un diagnostic vitalCHECK, laissez notre équipe structurer votre plan de croissance, puis pilotez vos résultats avec HARVESTS 2.0.
+            </p>
+            
+            <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
+              Commencer par le diagnostic <ArrowRight className="w-4 h-4" />
+            </a>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── SECTION 9 — APERÇU ÉQUIPE ─────────────────────────────── */}
+
+
+      {/* ── SECTION 10 — RESSOURCES & BLOG ────────────────────────── */}
+      <section id="ressources" className="py-24 bg-bg-secondary border-t border-border-subtle">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif text-text-primary">Ressources pour accélérer votre croissance</h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <AnimatedSection delay={0.1}>
+              <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 flex flex-col md:flex-row gap-6 items-center h-full hover:border-gold/30 transition-colors">
+                <img src="https://d1yei2z3i6k35z.cloudfront.net/10694324/689972c2536ee_COV1.png" alt="E-books UBB" className="w-32 h-auto rounded shadow-lg" />
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-serif text-text-primary mb-3">Pack Ressources Digitales</h3>
+                  <p className="text-text-secondary text-sm mb-4">
+                    E-books, podcasts et formations vidéo pour renforcer vos compétences entrepreneuriales.
+                  </p>
+                  <p className="text-gold font-bold mb-6">À partir de £20</p>
+                  <Link to="/ebooks" className="inline-flex items-center gap-2 px-6 py-2.5 border border-gold text-gold font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold/10 transition-colors">
+                    Accéder aux ressources <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className="bg-gold/10 border border-gold/30 rounded-2xl p-8 flex flex-col justify-center h-full text-center relative overflow-hidden">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gold/20 rounded-full blur-2xl" />
+                <span className="inline-block px-3 py-1 bg-gold text-bg-primary text-[10px] font-bold uppercase tracking-wider rounded-full self-center mb-4">GRATUIT</span>
+                <h3 className="text-2xl font-serif text-gold mb-4">Workbook Offert</h3>
+                <p className="text-text-secondary italic font-serif text-xl mb-8 max-w-sm mx-auto">
+                  "Comment augmenter de 30% vos ventes mensuelles en 90 jours."
+                </p>
+                <a href="https://www.growthubb.space/53f142ca-43a07785" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-bg-primary font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold-light transition-all self-center">
+                  Recevoir le workbook <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 11 — CTA FINAL ────────────────────────────────── */}
+      <section id="contact" className="py-32 relative overflow-hidden bg-[#0A0A0A] border-t border-border-subtle text-center">
+        {/* Background Image overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity"
+          style={{ backgroundImage: `url('https://d1yei2z3i6k35z.cloudfront.net/6359213/675883ce8eb04_Screenshot_20241210_180201_Chrome.jpg')` }}
+        />
+        {/* Radial Gold Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="relative z-10 max-w-3xl mx-auto px-6">
+          <AnimatedSection>
+            <h2 className="text-5xl md:text-7xl font-serif text-text-primary mb-6">
+              Votre entreprise mérite <br/>
+              <span className="italic">de croître.</span>
+            </h2>
+            <p className="text-2xl font-serif italic text-gold mb-8">
+              Commencez par comprendre ce qui la freine.
+            </p>
+            <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-xl mx-auto">
+              Un diagnostic vitalCHECK prend moins de 15 minutes.
+              Notre équipe analyse les résultats et vous contacte
+              sous 48 heures avec un plan d'action personnalisé.
             </p>
 
-            {/* Button that opens the chatbot via CustomEvent */}
-            <button
-              onClick={() => {
-                window.dispatchEvent(new CustomEvent("ubb:open-chat"));
-              }}
-              className="inline-flex items-center gap-4 px-10 py-5 bg-gold-gradient text-bg-primary font-bold text-xs uppercase tracking-[0.2em] hover:shadow-[0_0_30px_rgba(201,151,58,0.4)] transition-all duration-300 rounded-sm group"
-            >
-              <span>Parler à l'assistant</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
+              <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full shadow-[0_0_30px_rgba(201,151,58,0.3)]">
+                Démarrer mon diagnostic gratuit <ArrowRight className="inline w-4 h-4 ml-1" />
+              </a>
+              <a href="tel:+221771970713" className="w-full sm:w-auto px-8 py-4 border border-border-subtle text-text-secondary hover:text-gold hover:border-gold transition-all font-bold uppercase tracking-widest text-sm rounded-full">
+                Nous contacter directement
+              </a>
+            </div>
 
-            {/* Examples of questions */}
-            <div className="mt-12 flex flex-wrap justify-center gap-3">
-              {["C'est quoi UBB ?", "Quels sont vos services ?", "Comment vous contacter ?"]
-                .map((q) => (
-                  <span key={q}
-                    className="text-[10px] uppercase tracking-widest border border-border-subtle text-text-muted px-5 py-2.5 rounded-full hover:border-gold/30 hover:text-gold transition-colors duration-300 cursor-default">
-                    "{q}"
-                  </span>
-                ))}
+            <div className="flex items-center justify-center gap-2 text-text-muted text-sm font-medium">
+              <Lock className="w-4 h-4 text-gold/60" />
+              Aucun engagement. Réponse en 48h.
             </div>
           </AnimatedSection>
         </div>
       </section>
-      
+
     </div>
   );
 }

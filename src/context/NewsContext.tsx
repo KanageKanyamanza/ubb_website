@@ -1,13 +1,7 @@
 // src/context/NewsContext.tsx
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-
-export interface NewsImage {
-  id: string;
-  url: string;
-  caption: string;
-  date: string;
-  visible: boolean;
-}
+import { newsGallery as INITIAL_IMAGES, NewsImage } from "../data/news";
+export type { NewsImage };
 
 export interface StrategicProject {
   id: string;
@@ -40,32 +34,12 @@ interface NewsContextType {
 
 const NewsContext = createContext<NewsContextType | undefined>(undefined);
 
-const INITIAL_IMAGES = [
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/6931991a233b1_2151202441.jpg",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/69a1af37b8ff5_Sanstitre-1E.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/69a0c152b1902_marketing-Récupéré2.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/69a0c0237dbf9_Cédric.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/699f774ba4e58_ramadan-Copie.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/699f7675e1326_affichecareme4.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/699f704906020_webinairet.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/698ece159d728_webinaire1.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/6942d8e7bbc41_webinaire.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/6931ac0b38f8f_UBBaffiche.png",
-  "https://d1yei2z3i6k35z.cloudfront.net/10694324/6932a4a51c24a_Recrutement_d_Ambassadeurs_HARVESTS.png",
-].map((url, idx) => ({
-  id: crypto.randomUUID(),
-  url,
-  caption: `Actualité ${idx + 1}`,
-  date: "2024-05-14",
-  visible: true,
-}));
-
 const INITIAL_PROJECTS: StrategicProject[] = [
   {
     id: crypto.randomUUID(),
     title: "VitalCHECK",
     tagline: "Diagnostic Business à 360°",
-    description: "Une solution d'audit automatisée qui permet aux dirigeants de PME d'identifier instantanément les leviers de performance inexploités et de sécuriser leur croissance.",
+    description: "Une solution d'audit automatisée qui permet aux dirigeants d'entreprises d'identifier instantanément les leviers de performance inexploités et de sécuriser leur croissance.",
     link: "https://www.checkmyenterprise.com/pricing",
     linkLabel: "En savoir plus →",
     visible: true,
@@ -83,7 +57,7 @@ const INITIAL_PROJECTS: StrategicProject[] = [
 
 export const NewsProvider = ({ children }: { children: ReactNode }) => {
   const [data, setData] = useState<NewsData>(() => {
-    const saved = localStorage.getItem("ubb_news_data");
+    const saved = localStorage.getItem("ubb_news_data_v2");
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -95,7 +69,7 @@ export const NewsProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    localStorage.setItem("ubb_news_data", JSON.stringify(data));
+    localStorage.setItem("ubb_news_data_v2", JSON.stringify(data));
   }, [data]);
 
   const addImage = (image: Omit<NewsImage, "id">) => {

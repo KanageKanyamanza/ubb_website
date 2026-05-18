@@ -3,6 +3,7 @@ import React from "react";
 import { Lock, ShieldCheck, Tag } from "lucide-react";
 import { PayPalButton } from "./PayPalButton";
 import { CheckoutFormData } from "../../hooks/useCheckoutForm";
+import { PACK_PRICE } from "../../utils/currency";
 
 interface OrderSummaryProps {
   formData: CheckoutFormData;
@@ -40,7 +41,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
             <h3 className="text-text-primary font-bold text-sm leading-tight mb-1">Pack Ressources Digitales UBB</h3>
             <p className="text-text-muted text-[10px] uppercase tracking-widest leading-relaxed">E-books + Podcasts + Cours vidéos</p>
           </div>
-          <span className="text-text-primary font-bold text-sm">£ 20,00</span>
+          <span className="text-text-primary font-bold text-sm">{PACK_PRICE.display}</span>
         </div>
 
         <div className="h-px bg-border-subtle" />
@@ -50,14 +51,19 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
             <Tag className="w-3.5 h-3.5" />
             <span className="text-xs">Coupon de réduction</span>
           </div>
-          <span className="text-xs">– £ 0,00</span>
+          <span className="text-xs">– 0,00 €</span>
         </div>
 
         <div className="h-px bg-border-subtle" />
 
-        <div className="flex justify-between items-center">
-          <span className="text-text-primary font-bold uppercase tracking-widest text-xs">Total</span>
-          <span className="text-gold font-bold text-xl">£ 20,00</span>
+        <div className="flex justify-between items-start">
+          <span className="text-text-primary font-bold uppercase tracking-widest text-xs mt-2">Total</span>
+          <div className="text-right">
+            <span className="text-3xl font-serif text-gold">{PACK_PRICE.display}</span>
+            <span className="text-xs text-text-muted block mt-1">
+              {PACK_PRICE.displayCFA} · Traité en GBP via PayPal
+            </span>
+          </div>
         </div>
       </div>
 
