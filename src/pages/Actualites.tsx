@@ -289,9 +289,7 @@ export default function Actualites() {
               Webinaires, nouvelles fonctionnalités, études de cas — rejoignez la communauté UBB.
             </p>
             <a 
-              href="https://www.growthubb.space/53f142ca-43a07785" 
-              target="_blank" 
-              rel="noreferrer" 
+              href="/workbook" 
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105"
             >
               S'inscrire <ArrowRight className="w-4 h-4" />

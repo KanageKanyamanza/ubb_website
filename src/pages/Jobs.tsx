@@ -77,18 +77,14 @@ export default function Jobs() {
 
               <div className="flex flex-col sm:flex-row gap-6">
                 <a
-                  href="https://www.growthubb.space/61331515"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/postuler"
                   className="px-10 py-5 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(201,151,58,0.4)] transition-all flex items-center justify-center gap-3 rounded-sm group"
                 >
                   Rôle & Responsabilités
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
-                  href="https://www.growthubb.space/b2c8b283"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/postuler"
                   className="px-10 py-5 bg-bg-primary border border-gold/40 text-gold font-bold uppercase tracking-widest text-xs hover:bg-gold/10 hover:border-gold transition-all flex items-center justify-center gap-3 rounded-sm"
                 >
                   Apports & Rémunération
@@ -187,9 +183,7 @@ export default function Jobs() {
               
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-full px-8">
                 <a 
-                  href="https://www.growthubb.space/b2c8b283" 
-                  target="_blank" 
-                  rel="noreferrer"
+                  href="/postuler" 
                   className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/20 transition-all"
                 >
                   Consulter la documentation détaillée
@@ -213,9 +207,7 @@ export default function Jobs() {
               Le prochain chapitre de la croissance africaine s'écrit avec vous. <br /> Posez votre candidature pour devenir le représentant UBB dans votre pays.
             </p>
             <a
-              href="https://www.growthubb.space/61331515"
-              target="_blank"
-              rel="noreferrer"
+              href="/postuler"
               className="inline-flex items-center gap-4 px-12 py-6 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_30px_rgba(201,151,58,0.5)] transition-all rounded-sm group"
             >
               Postuler Maintenant

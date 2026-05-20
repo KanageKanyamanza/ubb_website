@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
@@ -10,7 +11,7 @@ export default function Home() {
     title: "Accélérateur de Croissance pour Entreprises Africaines",
     description: "Ubuntu Business Builders (UBB) accompagne les entreprises africaines francophones dans leur structuration et leur croissance. Augmentez vos revenus de 30% en 90 jours grâce à nos solutions vitalCHECK, HARVESTS 2.0 et nos conseils stratégiques sur-mesure.",
     keywords: "croissance entreprise, afrique francophone, vitalcheck, harvests, conseil strategique, structuration d'affaires, ubuntu business, developpement commercial",
-    ogImage: "https://d1yei2z3i6k35z.cloudfront.net/10694324/6943262fb4eee_WhatsAppImage2025-11-20at15.08.2711.jpeg"
+    ogImage: "/images/imagereal2.jpeg"
   });
 
   const triggerChat = (e: React.MouseEvent) => {
@@ -21,88 +22,8 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full min-h-screen">
 
-      {/* ── SECTION 1 — HERO ──────────────────────────────────────── */}
-      <section id="hero" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-bg-primary">
-        <div className="absolute inset-0 bg-bg-primary" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: `url('https://d1yei2z3i6k35z.cloudfront.net/10694324/6943262fb4eee_WhatsAppImage2025-11-20at15.08.2711.jpeg')`
-          }}
-        />
-        <div className="absolute inset-0 bg-black/75" />
-        <div className="absolute inset-0 gold-glow opacity-30" />
-
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6 mt-16">
-          <AnimatedSection>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-text-primary leading-[1.1] mb-6"
-            >
-              Augmentez vos revenus <br />
-              <span className="text-gold-gradient italic font-normal">de 30% en 90 jours.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-xl md:text-3xl italic font-serif text-gold mb-8"
-            >
-              Ou nous travaillons jusqu'à ce que vous y arriviez.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.65 }}
-              className="max-w-2xl mx-auto text-text-secondary md:text-[15px] font-sans leading-relaxed mb-12"
-            >
-              Nous aidons les entreprises africaines à structurer leur
-              croissance, renforcer leurs opérations et augmenter leurs
-              revenus — grâce au conseil, aux outils SaaS et aux ressources
-              de formation.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
-              className="flex flex-wrap justify-center gap-4"
-            >
-              <a
-                href="https://www.growthubb.space/cc60d593"
-                target="_blank"
-                rel="noreferrer"
-                className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
-              >
-                Démarrer mon diagnostic <ArrowRight className="inline w-4 h-4 ml-1" />
-              </a>
-              <a
-                href="https://www.checkmyenterprise.com/pricing"
-                target="_blank"
-                rel="noreferrer"
-                className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-sm hover:bg-gold/10 transition-all rounded-full hover:scale-105 active:scale-95"
-              >
-                Découvrir vitalCHECK
-              </a>
-            </motion.div>
-          </AnimatedSection>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span className="text-[9px] uppercase tracking-[0.3em] text-gold/60">Découvrir</span>
-          <div className="w-px h-12 bg-gradient-to-b from-gold/60 to-transparent" />
-        </motion.div>
-      </section>
+      {/* ── SECTION 1 — HERO (Slider) ─────────────────────────────────── */}
+      <HeroSlider />
 
       {/* ── SECTION 2 — BANDE DE RÉASSURANCE ────────────────────────── */}
       <section id="stats" className="py-12 border-y border-border-subtle" style={{ backgroundColor: "#131313" }}>
@@ -113,8 +34,8 @@ export default function Home() {
               <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">de croissance des ventes en 90 jours</span>
             </div>
             <div className="flex flex-col items-center text-center px-4">
-              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">3 ans</span>
-              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">d'expérience terrain en Afrique</span>
+              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">2 Piliers</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">Jeunesse éduquée &amp; Entreprises africaines</span>
             </div>
             <div className="flex flex-col items-center text-center px-4">
               <span className="font-serif text-4xl md:text-5xl text-gold mb-2">2 SaaS</span>
@@ -144,17 +65,17 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             {[
               {
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/6757964ae55ac_Screenshot_20241210_003012_Gallery.jpg",
+                image: "/images/agriculteurs-en-afrique.jpg",
                 title: "Ventes stagnantes",
                 text: "L'activité existe mais les revenus plafonnent. Les efforts commerciaux ne se traduisent pas en croissance visible."
               },
               {
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/675834c0d05b8_Screenshot_20241210_003140_Gallery.jpg",
+                image: "/images/Reunion-Afrique-numerique.jpg",
                 title: "Opérations désorganisées",
                 text: "Les équipes travaillent fort, mais sans système clair. L'information se perd, les décisions tardent."
               },
               {
-                image: "https://d1yei2z3i6k35z.cloudfront.net/6359213/675819bfabf56_Screenshot_20241210_003851_Gallery.jpg",
+                image: "/images/vitrine.png",
                 title: "Manque de visibilité financière",
                 text: "Difficile de savoir où va l'argent, ce qui est rentable et quels leviers activer en priorité."
               }
@@ -274,7 +195,7 @@ export default function Home() {
             <AnimatedSection>
               <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
                 <img 
-                  src="https://d1yei2z3i6k35z.cloudfront.net/6359213/6758345179a83_Gemini_Generated_Image_tj4ogetj4ogetj4o.jpeg" 
+                  src="/images/imagereal1.jpeg" 
                   alt="vitalCHECK Diagnostic" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -359,7 +280,7 @@ export default function Home() {
             <AnimatedSection delay={0.2} className="order-1 lg:order-2">
               <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
                 <img 
-                  src="https://d1yei2z3i6k35z.cloudfront.net/6359213/67579180c9f8a_Screenshot_20241210_003614_Gallery.jpg" 
+                  src="/images/imagereal3.jpeg" 
                   alt="HARVESTS 2.0 Logiciel" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -378,7 +299,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <AnimatedSection className="mb-12">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/30 bg-gold/5 text-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-              📋 Étude de cas réelle
+               Étude de cas réelle
             </span>
             <h2 className="text-5xl md:text-7xl font-serif text-text-primary leading-[1.1] mb-12">
               De zéro à record de ventes. <br/>
@@ -441,7 +362,7 @@ export default function Home() {
                   Votre entreprise peut obtenir les mêmes résultats.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <a href="https://www.growthubb.space/cc60d593" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
+                  <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
                     Parler à Ambrose <ArrowRight className="w-4 h-4" />
                   </a>
                   <Link to="/founder" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border-subtle text-text-secondary font-bold uppercase tracking-widest text-sm rounded-full hover:text-gold hover:border-gold transition-all">
@@ -545,7 +466,7 @@ export default function Home() {
                 <p className="text-text-secondary italic font-serif text-xl mb-8 max-w-sm mx-auto">
                   "Comment augmenter de 30% vos ventes mensuelles en 90 jours."
                 </p>
-                <a href="https://www.growthubb.space/53f142ca-43a07785" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-bg-primary font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold-light transition-all self-center">
+                <a href="/workbook" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-bg-primary font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold-light transition-all self-center">
                   Recevoir le workbook <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -559,7 +480,7 @@ export default function Home() {
         {/* Background Image overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity"
-          style={{ backgroundImage: `url('https://d1yei2z3i6k35z.cloudfront.net/6359213/675883ce8eb04_Screenshot_20241210_180201_Chrome.jpg')` }}
+          style={{ backgroundImage: `url('/images/imagereal4.jpeg')` }}
         />
         {/* Radial Gold Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
@@ -599,3 +520,131 @@ export default function Home() {
     </div>
   );
 }
+
+// ── HeroSlider ────────────────────────────────────────────────────────────────
+const HERO_IMAGES = [
+  "/images/imagereal2.jpeg",
+  "/images/hero3.jpg",
+];
+
+const SLIDE_DURATION = 5000; // ms entre chaque image
+
+function HeroSlider() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % HERO_IMAGES.length);
+    }, SLIDE_DURATION);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section id="hero" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-bg-primary">
+
+      {/* Sliding backgrounds */}
+      {HERO_IMAGES.map((src, i) => (
+        <AnimatePresence key={src}>
+          {current === i && (
+            <motion.div
+              key={`slide-${i}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url('${src}')` }}
+            />
+          )}
+        </AnimatePresence>
+      ))}
+
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-black/70 z-[1]" />
+      <div className="absolute inset-0 gold-glow opacity-25 z-[2]" />
+
+      {/* Content */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-6 mt-16">
+        <AnimatedSection>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-text-primary leading-[1.1] mb-6"
+          >
+            Augmentez vos revenus <br />
+            <span className="text-gold-gradient italic font-normal">de 30% en 90 jours.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-xl md:text-3xl italic font-serif text-white mb-8"
+          >
+            Ou nous travaillons jusqu'à ce que vous y arriviez rapidement.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.65 }}
+            className="max-w-2xl mx-auto text-text-secondary md:text-[15px] font-sans leading-relaxed mb-12"
+          >
+            Nous aidons les entreprises africaines à structurer leur croissance,
+            renforcer leurs opérations et augmenter leurs revenus — grâce au conseil,
+            aux outils SaaS et aux ressources de formation.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <a
+              href="/contact"
+              className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
+            >
+              Démarrer mon diagnostic <ArrowRight className="inline w-4 h-4 ml-1" />
+            </a>
+            <a
+              href="https://www.checkmyenterprise.com/pricing"
+              target="_blank"
+              rel="noreferrer"
+              className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-sm hover:bg-gold/10 transition-all rounded-full hover:scale-105 active:scale-95"
+            >
+              Découvrir vitalCHECK
+            </a>
+          </motion.div>
+        </AnimatedSection>
+      </div>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        {HERO_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`h-[3px] rounded-full transition-all duration-500 ${
+              current === i ? "w-8 bg-gold" : "w-3 bg-white/30 hover:bg-white/50"
+            }`}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+      >
+        <span className="text-[9px] uppercase tracking-[0.3em] text-gold/60">Découvrir</span>
+        <div className="w-px h-5 bg-gradient-to-b from-gold/60 to-transparent" />
+      </motion.div>
+    </section>
+  );
+}
+

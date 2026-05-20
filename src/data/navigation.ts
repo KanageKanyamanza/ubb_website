@@ -7,8 +7,8 @@ export const navigation = {
       dropdown: [
         { name: "vitalCHECK", href: "https://www.checkmyenterprise.com/pricing", external: true },
         { name: "HARVESTS", href: "https://harvests.site/pricing/", external: true },
-        { name: "Diagnostic d'Entreprise", href: "https://www.growthubb.space/cc60d593", external: true },
-        { name: "PARTENARIAT", href: "https://www.growthubb.space/6705e281", external: true },
+        { name: "Diagnostic d'Entreprise", href: "/contact" },
+        { name: "PARTENARIAT", href: "/postuler" },
       ]
     },
     {

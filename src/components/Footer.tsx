@@ -34,8 +34,8 @@ export default function Footer() {
   const services = [
     { label: "vitalCHECK", href: "https://www.checkmyenterprise.com/pricing" },
     { label: "HARVESTS", href: "https://harvests.site/pricing/" },
-    { label: "Diagnostic d'Entreprise", href: "https://www.growthubb.space/cc60d593" },
-    { label: "Partenariat", href: "https://www.growthubb.space/6705e281" },
+    { label: "Diagnostic d'Entreprise", href: "/contact", internal: true },
+    { label: "Partenariat", href: "/postuler", internal: true },
     { label: "Blog", href: "https://harvests.site/blog/" },
   ];
 
@@ -129,15 +129,25 @@ export default function Footer() {
             <ul className="space-y-3">
               {services.map((s) => (
                 <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
-                    {s.label}
-                  </a>
+                  {(s as any).internal ? (
+                    <Link
+                      to={s.href}
+                      className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
+                      {s.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
+                      {s.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

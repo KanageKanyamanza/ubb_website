@@ -9,6 +9,9 @@ import Jobs from "./pages/Jobs";
 import Ebooks from "./pages/Ebooks";
 import Actualites from "./pages/Actualites";
 import Register from "./pages/Register";
+import Workbook from "./pages/Workbook";
+import Postuler from "./pages/Postuler";
+import Contact from "./pages/Contact";
 
 // Admin Imports
 import { AuthProvider } from "./context/AuthContext";
@@ -31,6 +34,7 @@ function ScrollToTop() {
 
 import { Link } from "react-router-dom";
 import ChatWidget from "./components/chatbot/ChatWidget";
+import VitalCheckPopup from "./components/VitalCheckPopup";
 
 // Layout wrapper to conditionally show/hide Navbar and Footer
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -50,6 +54,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
             <Link to="/admin/login" className="text-[10px] text-text-muted hover:text-gold transition-colors tracking-widest uppercase">Admin</Link>
           </div>
           <ChatWidget />
+          <VitalCheckPopup />
         </>
       )}
     </div>
@@ -73,6 +78,9 @@ export default function App() {
                 <Route path="/ebooks" element={<Ebooks />} />
                 <Route path="/actualites" element={<Actualites />} />
                 <Route path="/inscription" element={<Register />} />
+                <Route path="/workbook" element={<Workbook />} />
+                <Route path="/postuler" element={<Postuler />} />
+                <Route path="/contact" element={<Contact />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
