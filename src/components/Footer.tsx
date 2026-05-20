@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { navigation } from "../data/navigation";
 import { Phone, Mail, MapPin, ArrowRight, Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 // TikTok SVG (absent de lucide-react)
 const TikTokIcon = () => (
@@ -20,7 +21,23 @@ const socialIcons: Record<string, React.ReactNode> = {
 
 
 export default function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
+
+  const getTranslationKey = (label: string) => {
+    switch (label) {
+      case "Accueil": return "nav.home";
+      case "UBB Team": return "nav.team";
+      case "Jobs & Careers": return "nav.careers";
+      case "E-books": return "nav.ebooks";
+      case "Actualités": return "nav.actualites";
+      case "S'inscrire": return "nav.register";
+      case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
+      case "Partenariat": return "nav.applyPartner";
+      case "Blog": return "nav.blog";
+      default: return "";
+    }
+  };
 
   const navLinks = [
     { label: "Accueil", to: "/" },
@@ -71,8 +88,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-text-secondary text-sm leading-relaxed max-w-sm mb-8">
-              Cabinet de conseil panafricain aidant les entreprises africaines à croître durablement
-              grâce à la philosophie Ubuntu, la rigueur et des systèmes de croissance sur mesure.
+              {t("footer.brandDesc")}
             </p>
 
             {/* Legal info */}
@@ -103,20 +119,23 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="font-serif text-base text-gold italic mb-6 flex items-center gap-2">
               <span className="w-4 h-px bg-gold/50 inline-block" />
-              Navigation
+              {t("footer.navigation")}
             </h4>
             <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                const linkKey = getTranslationKey(link.label);
+                return (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
+                      {linkKey ? t(linkKey) : link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -124,32 +143,36 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h4 className="font-serif text-base text-gold italic mb-6 flex items-center gap-2">
               <span className="w-4 h-px bg-gold/50 inline-block" />
-              Services
+              {t("footer.services")}
             </h4>
             <ul className="space-y-3">
-              {services.map((s) => (
-                <li key={s.label}>
-                  {(s as any).internal ? (
-                    <Link
-                      to={s.href}
-                      className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
-                      {s.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
-                      {s.label}
-                    </a>
-                  )}
-                </li>
-              ))}
+              {services.map((s) => {
+                const sKey = getTranslationKey(s.label);
+                const sName = sKey ? t(sKey) : s.label;
+                return (
+                  <li key={s.label}>
+                    {(s as any).internal ? (
+                      <Link
+                        to={s.href}
+                        className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                      >
+                        <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
+                        {sName}
+                      </Link>
+                    ) : (
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                      >
+                        <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
+                        {sName}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -157,7 +180,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h4 className="font-serif text-base text-gold italic mb-6 flex items-center gap-2">
               <span className="w-4 h-px bg-gold/50 inline-block" />
-              Contact
+              {t("footer.contact")}
             </h4>
             <ul className="space-y-4 text-sm text-text-secondary">
               <li className="flex items-start gap-3">
@@ -185,7 +208,7 @@ export default function Footer() {
               className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-bg-primary px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(201,151,58,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 group"
               style={{ background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)" }}
             >
-              Rejoindre UBB
+              {t("footer.joinUbb")}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -194,16 +217,16 @@ export default function Footer() {
         {/* ── Bottom bar ──────────────────────────────── */}
         <div className="pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-text-muted text-xs">
-            © {year} Ubuntu Business Builders · Tous droits réservés
+            © {year} Ubuntu Business Builders · {t("common.copyright")}
           </p>
           <div className="flex items-center gap-6 text-text-muted text-xs">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-gold/60 inline-block" />
-              Professionnel
+              {t("common.professional")}
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-gold/60 inline-block" />
-              Panafricain
+              {t("common.panafrican")}
             </span>
           </div>
         </div>

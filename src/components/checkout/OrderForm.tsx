@@ -2,6 +2,7 @@
 import React from "react";
 import { Mail, ChevronDown } from "lucide-react";
 import { CheckoutFormData, CheckoutFormErrors } from "../../hooks/useCheckoutForm";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface OrderFormProps {
   formData: CheckoutFormData;
@@ -20,6 +21,8 @@ export const OrderForm: React.FC<OrderFormProps> = ({
   handleBlur,
   countries,
 }) => {
+  const { t } = useLanguage();
+
   const inputClass = (name: keyof CheckoutFormErrors) => `
     w-full bg-bg-card border 
     ${touched[name] && errors[name] ? "border-red-500" : "border-border-subtle"}
@@ -30,14 +33,30 @@ export const OrderForm: React.FC<OrderFormProps> = ({
 
   const labelClass = "block text-text-secondary text-xs uppercase tracking-widest mb-2 font-medium";
 
+  // Translate validation error messages dynamically
+  const getErrorMessage = (name: keyof CheckoutFormErrors): string | undefined => {
+    const err = errors[name];
+    if (!err) return undefined;
+    
+    // Check if error is one of standard messages and map to translated keys if available
+    if (err === "Le prénom est obligatoire") return t("postuler.form.prenom") + " " + (t("contact.form.required") || "obligatoire");
+    if (err === "Le nom est obligatoire") return t("postuler.form.nom") + " " + (t("contact.form.required") || "obligatoire");
+    if (err === "L'email est obligatoire") return t("postuler.form.email") + " " + (t("contact.form.required") || "obligatoire");
+    if (err === "This field is required") return t("contact.form.required") || "Requis";
+    if (err === "Minimum 2 caractères") return t("postuler.form.minChars") || "Minimum 2 caractères";
+    if (err === "Format email invalide") return t("postuler.form.invalidEmail") || "Format email invalide";
+    
+    return err;
+  };
+
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-serif text-text-primary italic mb-8">Informations de commande</h2>
+      <h2 className="text-2xl font-serif text-text-primary italic mb-8">{t("checkout.title")}</h2>
 
       {/* Ligne 1 : Prénom + Nom */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="firstName" className={labelClass}>Prénom</label>
+          <label htmlFor="firstName" className={labelClass}>{t("checkout.firstName")}</label>
           <input
             type="text"
             id="firstName"
@@ -46,14 +65,14 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputClass("firstName")}
-            placeholder="Votre prénom"
+            placeholder={t("checkout.firstNamePlaceholder")}
           />
           {touched.firstName && errors.firstName && (
-            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{errors.firstName}</p>
+            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{getErrorMessage("firstName")}</p>
           )}
         </div>
         <div>
-          <label htmlFor="lastName" className={labelClass}>Nom</label>
+          <label htmlFor="lastName" className={labelClass}>{t("checkout.lastName")}</label>
           <input
             type="text"
             id="lastName"
@@ -62,17 +81,17 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputClass("lastName")}
-            placeholder="Votre nom"
+            placeholder={t("checkout.lastNamePlaceholder")}
           />
           {touched.lastName && errors.lastName && (
-            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{errors.lastName}</p>
+            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{getErrorMessage("lastName")}</p>
           )}
         </div>
       </div>
 
       {/* Ligne 2 : Email */}
       <div>
-        <label htmlFor="email" className={labelClass}>Adresse email</label>
+        <label htmlFor="email" className={labelClass}>{t("checkout.email")}</label>
         <div className="relative">
           <input
             type="email"
@@ -82,19 +101,19 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputClass("email")}
-            placeholder="adresse@exemple.com"
+            placeholder={t("checkout.emailPlaceholder")}
           />
           <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
         </div>
         {touched.email && errors.email && (
-          <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{errors.email}</p>
+          <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{getErrorMessage("email")}</p>
         )}
       </div>
 
       {/* Ligne 3 : Ville + Code postal */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="city" className={labelClass}>Ville</label>
+          <label htmlFor="city" className={labelClass}>{t("checkout.city")}</label>
           <input
             type="text"
             id="city"
@@ -103,14 +122,14 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputClass("city")}
-            placeholder="Ex: Dakar"
+            placeholder={t("checkout.cityPlaceholder")}
           />
           {touched.city && errors.city && (
-            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{errors.city}</p>
+            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{getErrorMessage("city")}</p>
           )}
         </div>
         <div>
-          <label htmlFor="zipCode" className={labelClass}>Code postal</label>
+          <label htmlFor="zipCode" className={labelClass}>{t("checkout.zipCode")}</label>
           <input
             type="text"
             id="zipCode"
@@ -119,17 +138,17 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputClass("zipCode")}
-            placeholder="Ex: 10000"
+            placeholder={t("checkout.zipCodePlaceholder")}
           />
           {touched.zipCode && errors.zipCode && (
-            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{errors.zipCode}</p>
+            <p className="text-red-400 text-[10px] mt-1 uppercase tracking-wider">{getErrorMessage("zipCode")}</p>
           )}
         </div>
       </div>
 
       {/* Ligne 4 : Pays */}
       <div>
-        <label htmlFor="country" className={labelClass}>Pays</label>
+        <label htmlFor="country" className={labelClass}>{t("checkout.country")}</label>
         <div className="relative">
           <select
             id="country"
@@ -141,7 +160,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({
           >
             {countries.map((country) => (
               <option key={country.code} value={country.code} className="bg-bg-card">
-                {country.name}
+                {t(`countries.${country.code.toLowerCase()}`) || country.name}
               </option>
             ))}
           </select>

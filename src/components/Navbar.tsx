@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ChevronDown, Phone, Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Facebook, Linkedin, Instagram, Youtube, Globe } from "lucide-react";
 import { navigation } from "../data/navigation";
+import { useLanguage } from "../context/LanguageContext";
 
 // TikTok SVG (absent de lucide-react)
 const TikTokIcon = () => (
@@ -20,10 +21,28 @@ const socialIcons: Record<string, React.ReactNode> = {
 };
 
 export default function Navbar() {
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+
+  const getTranslationKey = (name: string) => {
+    switch (name) {
+      case "Accueil": return "nav.home";
+      case "UBB Team": return "nav.team";
+      case "Services": return "nav.services";
+      case "Jobs & Careers": return "nav.careers";
+      case "E-books": return "nav.ebooks";
+      case "Blog": return "nav.blog";
+      case "Contact": return "nav.contact";
+      case "Actualités": return "nav.actualites";
+      case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
+      case "PARTENARIAT": return "nav.applyPartner";
+      case "Partenaire Local": return "nav.partner";
+      default: return "";
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,86 +149,115 @@ export default function Navbar() {
 
           {/* ── Desktop Navigation ─────────────────────────────── */}
           <div className="hidden lg:flex items-center gap-1">
-            {mainLinks.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => setActiveDropdown(item.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                {item.dropdown ? (
-                  <button
-                    className={`group flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                      activeDropdown === item.name
-                        ? "text-gold bg-gold/10"
-                        : "text-text-secondary hover:text-text-primary hover:bg-white/5"
-                    }`}
-                  >
-                    {item.name}
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        activeDropdown === item.name ? "rotate-180 text-gold" : ""
+            {mainLinks.map((item) => {
+              const itemKey = getTranslationKey(item.name);
+              const itemName = itemKey ? t(itemKey) : item.name;
+              return (
+                <div
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown(item.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  {item.dropdown ? (
+                    <button
+                      className={`group flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                        activeDropdown === item.name
+                          ? "text-gold bg-gold/10"
+                          : "text-text-secondary hover:text-text-primary hover:bg-white/5"
                       }`}
-                    />
-                  </button>
-                ) : (
-                  <Link
-                    to={item.href || "#"}
-                    target={item.external ? "_blank" : undefined}
-                    className={`relative block px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                      location.pathname === item.href
-                        ? "text-gold bg-gold/10"
-                        : "text-text-secondary hover:text-text-primary hover:bg-white/5"
-                    }`}
-                  >
-                    {item.name}
-                    {location.pathname === item.href && (
-                      <motion.span
-                        layoutId="active-pill"
-                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold"
-                      />
-                    )}
-                  </Link>
-                )}
-
-                {/* Dropdown */}
-                <AnimatePresence>
-                  {item.dropdown && activeDropdown === item.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                      transition={{ duration: 0.18, ease: "easeOut" }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-58 min-w-max"
                     >
-                      {/* Arrow */}
-                      <div className="mx-auto w-3 h-1.5 overflow-hidden flex justify-center mb-0.5">
-                        <div className="w-3 h-3 rotate-45 bg-bg-card border-t border-l border-border-subtle translate-y-1.5" />
-                      </div>
-                      <div className="bg-bg-card border border-border-subtle shadow-2xl rounded-xl p-1.5 overflow-hidden">
-                        {item.dropdown.map((sub, i) => (
-                          <motion.a
-                            key={sub.name}
-                            href={sub.href}
-                            target={sub.href.startsWith("http") ? "_blank" : undefined}
-                            rel="noreferrer"
-                            initial={{ opacity: 0, x: -6 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.05 }}
-                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-gold hover:bg-gold/8 rounded-lg transition-all duration-150 group"
-                          >
-                            <span className="w-1 h-1 rounded-full bg-gold/40 group-hover:bg-gold transition-colors" />
-                            {sub.name}
-                          </motion.a>
-                        ))}
-                      </div>
-                    </motion.div>
+                      {itemName}
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          activeDropdown === item.name ? "rotate-180 text-gold" : ""
+                        }`}
+                      />
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.href || "#"}
+                      target={item.external ? "_blank" : undefined}
+                      className={`relative block px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                        location.pathname === item.href
+                          ? "text-gold bg-gold/10"
+                          : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                      }`}
+                    >
+                      {itemName}
+                      {location.pathname === item.href && (
+                        <motion.span
+                          layoutId="active-pill"
+                          className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold"
+                        />
+                      )}
+                    </Link>
                   )}
-                </AnimatePresence>
-              </div>
-            ))}
 
+                  {/* Dropdown */}
+                  <AnimatePresence>
+                    {item.dropdown && activeDropdown === item.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                        transition={{ duration: 0.18, ease: "easeOut" }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-58 min-w-max"
+                      >
+                        {/* Arrow */}
+                        <div className="mx-auto w-3 h-1.5 overflow-hidden flex justify-center mb-0.5">
+                          <div className="w-3 h-3 rotate-45 bg-bg-card border-t border-l border-border-subtle translate-y-1.5" />
+                        </div>
+                        <div className="bg-bg-card border border-border-subtle shadow-2xl rounded-xl p-1.5 overflow-hidden">
+                          {item.dropdown.map((sub, i) => {
+                            const subKey = getTranslationKey(sub.name);
+                            return (
+                              <motion.a
+                                key={sub.name}
+                                href={sub.href}
+                                target={sub.href.startsWith("http") ? "_blank" : undefined}
+                                rel="noreferrer"
+                                initial={{ opacity: 0, x: -6 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.05 }}
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-gold hover:bg-gold/8 rounded-lg transition-all duration-150 group"
+                              >
+                                <span className="w-1 h-1 rounded-full bg-gold/40 group-hover:bg-gold transition-colors" />
+                                {subKey ? t(subKey) : sub.name}
+                              </motion.a>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
 
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1 mx-4 border-r border-l border-white/10 px-4 h-6">
+              <button
+                onClick={() => setLanguage("fr")}
+                className={`text-[10px] font-bold tracking-wider px-2 py-0.5 rounded transition-all duration-300 cursor-pointer ${
+                  language === "fr"
+                    ? "text-gold bg-gold/15"
+                    : "text-text-muted hover:text-text-primary"
+                }`}
+              >
+                FR
+              </button>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`text-[10px] font-bold tracking-wider px-2 py-0.5 rounded transition-all duration-300 cursor-pointer ${
+                  language === "en"
+                    ? "text-gold bg-gold/15"
+                    : "text-text-muted hover:text-text-primary"
+                }`}
+              >
+                EN
+              </button>
+            </div>
 
             {/* CTA */}
             <Link
@@ -219,7 +267,7 @@ export default function Navbar() {
                 background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)",
               }}
             >
-              <span className="relative z-10">S'inscrire</span>
+              <span className="relative z-10">{t("nav.register")}</span>
               {/* Shimmer */}
               <span
                 className="absolute inset-0 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"
@@ -298,69 +346,78 @@ export default function Navbar() {
 
               {/* Nav Links */}
               <div className="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-1">
-                {mainLinks.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06, duration: 0.25 }}
-                  >
-                    {item.dropdown ? (
-                      <div>
-                        <button
-                          onClick={() =>
-                            setActiveDropdown(activeDropdown === item.name ? null : item.name)
-                          }
-                          className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-gold hover:bg-gold/8 transition-all"
+                {mainLinks.map((item, i) => {
+                  const itemKey = getTranslationKey(item.name);
+                  const itemName = itemKey ? t(itemKey) : item.name;
+                  return (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.06, duration: 0.25 }}
+                    >
+                      {item.dropdown ? (
+                        <div>
+                          <button
+                            onClick={() =>
+                              setActiveDropdown(activeDropdown === item.name ? null : item.name)
+                            }
+                            className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-gold hover:bg-gold/8 transition-all"
+                          >
+                            {itemName}
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform duration-200 ${
+                                activeDropdown === item.name ? "rotate-180 text-gold" : ""
+                              }`}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {activeDropdown === item.name && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="ml-4 mt-1 flex flex-col gap-0.5 pl-4 border-l border-gold/20">
+                                  {item.dropdown.map((sub) => {
+                                    const subKey = getTranslationKey(sub.name);
+                                    return (
+                                      <a
+                                        key={sub.name}
+                                        href={sub.href}
+                                        target={sub.href.startsWith("http") ? "_blank" : undefined}
+                                        rel="noreferrer"
+                                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-text-secondary hover:text-gold transition-colors rounded-lg hover:bg-gold/5"
+                                        onClick={() => setIsOpen(false)}
+                                      >
+                                        <span className="w-1 h-1 rounded-full bg-gold/40" />
+                                        {subKey ? t(subKey) : sub.name}
+                                      </a>
+                                    );
+                                  })}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          to={item.href || "#"}
+                          onClick={() => setIsOpen(false)}
+                          className={`flex items-center px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                            location.pathname === item.href
+                              ? "text-gold bg-gold/10"
+                              : "text-text-secondary hover:text-gold hover:bg-gold/8"
+                          }`}
                         >
-                          {item.name}
-                          <ChevronDown
-                            className={`w-4 h-4 transition-transform duration-200 ${
-                              activeDropdown === item.name ? "rotate-180 text-gold" : ""
-                            }`}
-                          />
-                        </button>
-                        <AnimatePresence>
-                          {activeDropdown === item.name && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="ml-4 mt-1 flex flex-col gap-0.5 pl-4 border-l border-gold/20">
-                                {item.dropdown.map((sub) => (
-                                  <a
-                                    key={sub.name}
-                                    href={sub.href}
-                                    target={sub.href.startsWith("http") ? "_blank" : undefined}
-                                    rel="noreferrer"
-                                    className="flex items-center gap-2 px-3 py-2.5 text-sm text-text-secondary hover:text-gold transition-colors rounded-lg hover:bg-gold/5"
-                                  >
-                                    <span className="w-1 h-1 rounded-full bg-gold/40" />
-                                    {sub.name}
-                                  </a>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        to={item.href || "#"}
-                        className={`flex items-center px-4 py-3 rounded-xl text-base font-medium transition-all ${
-                          location.pathname === item.href
-                            ? "text-gold bg-gold/10"
-                            : "text-text-secondary hover:text-gold hover:bg-gold/8"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </motion.div>
-                ))}
+                          {itemName}
+                        </Link>
+                      )}
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Drawer Footer */}
@@ -395,15 +452,39 @@ export default function Navbar() {
                   ))}
                 </div>
 
+                {/* Language Switcher Mobile */}
+                <div className="flex items-center gap-2 border-t border-b border-border-subtle py-3 justify-center">
+                  <span className="text-xs text-text-muted mr-2 flex items-center gap-1">
+                    <Globe className="w-3 h-3 text-gold" /> Langue:
+                  </span>
+                  <button
+                    onClick={() => { setLanguage("fr"); setIsOpen(false); }}
+                    className={`text-xs font-bold tracking-wider px-3 py-1 rounded transition-all ${
+                      language === "fr" ? "text-gold bg-gold/15" : "text-text-muted"
+                    }`}
+                  >
+                    Français
+                  </button>
+                  <button
+                    onClick={() => { setLanguage("en"); setIsOpen(false); }}
+                    className={`text-xs font-bold tracking-wider px-3 py-1 rounded transition-all ${
+                      language === "en" ? "text-gold bg-gold/15" : "text-text-muted"
+                    }`}
+                  >
+                    English
+                  </button>
+                </div>
+
                 {/* CTA */}
                 <Link
                   to="/inscription"
+                  onClick={() => setIsOpen(false)}
                   className="text-center py-3.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full"
                   style={{
                     background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)",
                   }}
                 >
-                  S'inscrire
+                  {t("nav.register")}
                 </Link>
               </div>
             </motion.div>

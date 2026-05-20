@@ -5,11 +5,14 @@ import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 import { Lock, ArrowRight, CheckCircle, Database, TrendingUp, Briefcase, Activity, BookOpen } from "lucide-react";
 import { useSEO } from "../hooks/useSEO";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Home() {
+  const { t, language } = useLanguage();
+
   useSEO({
-    title: "Accélérateur de Croissance pour Entreprises Africaines",
-    description: "Ubuntu Business Builders (UBB) accompagne les entreprises africaines francophones dans leur structuration et leur croissance. Augmentez vos revenus de 30% en 90 jours grâce à nos solutions vitalCHECK, HARVESTS 2.0 et nos conseils stratégiques sur-mesure.",
+    title: t("home.seoTitle"),
+    description: t("home.seoDesc"),
     keywords: "croissance entreprise, afrique francophone, vitalcheck, harvests, conseil strategique, structuration d'affaires, ubuntu business, developpement commercial",
     ogImage: "/images/imagereal2.jpeg"
   });
@@ -31,19 +34,19 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border-subtle">
             <div className="flex flex-col items-center text-center px-4">
               <span className="font-serif text-4xl md:text-5xl text-gold mb-2">+30%</span>
-              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">de croissance des ventes en 90 jours</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">{t("home.stats.salesGrowth")}</span>
             </div>
             <div className="flex flex-col items-center text-center px-4">
-              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">2 Piliers</span>
-              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">Jeunesse éduquée &amp; Entreprises africaines</span>
+              <span className="font-serif text-4xl md:text-5xl text-gold mb-2">{language === "fr" ? "2 Piliers" : "2 Pillars"}</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">{t("home.stats.pillars")}</span>
             </div>
             <div className="flex flex-col items-center text-center px-4">
               <span className="font-serif text-4xl md:text-5xl text-gold mb-2">2 SaaS</span>
-              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">vitalCHECK & HARVESTS 2.0</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">{t("home.stats.saas")}</span>
             </div>
             <div className="flex flex-col items-center text-center px-4">
               <span className="font-serif text-4xl md:text-5xl text-gold mb-2">Ubuntu</span>
-              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">philosophie au cœur de chaque mission</span>
+              <span className="font-sans text-[12px] uppercase tracking-wide text-text-muted">{t("home.stats.philosophy")}</span>
             </div>
           </div>
         </div>
@@ -54,11 +57,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6">
-              Votre entreprise croît, mais quelque chose freine.
+              {t("home.problem.title")}
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              La plupart des entreprises africaines établies font face
-              aux mêmes blocages structurels.
+              {t("home.problem.subtitle")}
             </p>
           </AnimatedSection>
 
@@ -66,18 +68,18 @@ export default function Home() {
             {[
               {
                 image: "/images/agriculteurs-en-afrique.jpg",
-                title: "Ventes stagnantes",
-                text: "L'activité existe mais les revenus plafonnent. Les efforts commerciaux ne se traduisent pas en croissance visible."
+                title: t("home.problem.card1Title"),
+                text: t("home.problem.card1Text")
               },
               {
                 image: "/images/Reunion-Afrique-numerique.jpg",
-                title: "Opérations désorganisées",
-                text: "Les équipes travaillent fort, mais sans système clair. L'information se perd, les décisions tardent."
+                title: t("home.problem.card2Title"),
+                text: t("home.problem.card2Text")
               },
               {
                 image: "/images/vitrine.png",
-                title: "Manque de visibilité financière",
-                text: "Difficile de savoir où va l'argent, ce qui est rentable et quels leviers activer en priorité."
+                title: t("home.problem.card3Title"),
+                text: t("home.problem.card3Text")
               }
             ].map((prob, idx) => (
               <AnimatedSection key={idx} delay={idx * 0.15} className="h-full">
@@ -104,7 +106,7 @@ export default function Home() {
           <AnimatedSection className="text-center">
             <GoldDivider className="mx-auto mb-6" />
             <p className="text-xl font-serif italic text-gold">
-              UBB a conçu une réponse structurée à ces trois défis.
+              {t("home.problem.dividerText")}
             </p>
           </AnimatedSection>
         </div>
@@ -117,11 +119,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-serif text-text-primary mb-6">
-              Une plateforme. Trois leviers de croissance.
+              {t("home.solution.title")}
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Conseil, outils et formation — tout ce dont votre
-              entreprise a besoin pour passer au niveau supérieur.
+              {t("home.solution.subtitle")}
             </p>
           </AnimatedSection>
 
@@ -131,14 +132,12 @@ export default function Home() {
               <div className="bg-bg-card border border-border-subtle p-8 rounded-2xl relative hover:border-gold/40 transition-all">
                 <span className="absolute top-6 right-6 text-4xl font-serif text-border-subtle opacity-50">01</span>
                 <Briefcase className="w-10 h-10 text-gold mb-6" />
-                <h3 className="text-2xl font-serif text-text-primary mb-4">Conseil Stratégique</h3>
+                <h3 className="text-2xl font-serif text-text-primary mb-4">{t("home.solution.card1Title")}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed mb-8">
-                  Diagnostic complet, plan d'action sur mesure et
-                  accompagnement opérationnel piloté par Ambrose
-                  Nzeyimana et son équipe.
+                  {t("home.solution.card1Text")}
                 </p>
                 <Link to="/team" className="text-gold text-sm font-bold uppercase tracking-widest hover:text-gold-light inline-flex items-center">
-                  En savoir plus <ArrowRight className="w-4 h-4 ml-1" />
+                  {t("common.readMore")} <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             </AnimatedSection>
@@ -147,15 +146,13 @@ export default function Home() {
             <AnimatedSection delay={0.2}>
               <div className="bg-bg-primary border border-gold p-10 rounded-2xl relative shadow-[0_0_40px_rgba(201,151,58,0.15)] transform lg:scale-105 z-10">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
-                 Recommandé
+                  {t("common.recommended")}
                 </div>
                 <span className="absolute top-6 right-6 text-4xl font-serif text-gold/20">02</span>
                 <Activity className="w-10 h-10 text-gold mb-6" />
-                <h3 className="text-2xl font-serif text-text-primary mb-4">Outils SaaS</h3>
+                <h3 className="text-2xl font-serif text-text-primary mb-4">{t("home.solution.card2Title")}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed mb-8">
-                  vitalCHECK diagnostique votre entreprise en
-                  quelques minutes. HARVESTS 2.0 pilote vos
-                  ventes et opérations au quotidien.
+                  {t("home.solution.card2Text")}
                 </p>
                 <div className="flex flex-col gap-3">
                   <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="w-full text-center px-4 py-3 bg-gold/10 border border-gold text-gold text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-gold hover:text-bg-primary transition-all">
@@ -173,14 +170,12 @@ export default function Home() {
               <div className="bg-bg-card border border-border-subtle p-8 rounded-2xl relative hover:border-gold/40 transition-all">
                 <span className="absolute top-6 right-6 text-4xl font-serif text-border-subtle opacity-50">03</span>
                 <BookOpen className="w-10 h-10 text-gold mb-6" />
-                <h3 className="text-2xl font-serif text-text-primary mb-4">Ressources & Formation</h3>
+                <h3 className="text-2xl font-serif text-text-primary mb-4">{t("home.solution.card3Title")}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed mb-8">
-                  E-books, podcasts et formations pour renforcer
-                  vos compétences et celles de votre équipe,
-                  à votre rythme.
+                  {t("home.solution.card3Text")}
                 </p>
                 <Link to="/ebooks" className="text-gold text-sm font-bold uppercase tracking-widest hover:text-gold-light inline-flex items-center">
-                  Voir les ressources <ArrowRight className="w-4 h-4 ml-1" />
+                  {t("home.solution.card3Cta")} <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             </AnimatedSection>
@@ -205,24 +200,21 @@ export default function Home() {
             
             <AnimatedSection delay={0.2}>
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
-                Outil de diagnostic
+                {t("home.vitalcheck.tag")}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
-                Connaissez-vous vraiment <br className="hidden md:block"/>
-                <span className="not-italic text-gold">les freins de votre entreprise ?</span>
+                {t("home.vitalcheck.titleLine1")} <br className="hidden md:block"/>
+                <span className="not-italic text-gold">{t("home.vitalcheck.titleLine2")}</span>
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed mb-8">
-                vitalCHECK est notre outil de diagnostic en ligne. En
-                quelques minutes, il identifie les goulots d'étranglement
-                de votre marketing, vos opérations et vos finances —
-                et génère un rapport d'action personnalisé.
+                {t("home.vitalcheck.desc")}
               </p>
               
               <ul className="space-y-4 mb-10">
                 {[
-                  "Diagnostic complet en moins de 15 minutes",
-                  "Rapport personnalisé avec recommandations prioritaires",
-                  "Conçu pour les réalités des entreprises africaines"
+                  t("home.vitalcheck.bullet1"),
+                  t("home.vitalcheck.bullet2"),
+                  t("home.vitalcheck.bullet3")
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-text-secondary">
                     <CheckCircle className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
@@ -232,7 +224,7 @@ export default function Home() {
               </ul>
               
               <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
-                Faire mon diagnostic gratuit <ArrowRight className="w-4 h-4" />
+                {t("home.vitalcheck.cta")} <ArrowRight className="w-4 h-4" />
               </a>
             </AnimatedSection>
           </div>
@@ -246,24 +238,21 @@ export default function Home() {
             
             <AnimatedSection className="order-2 lg:order-1">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
-                Suite logicielle
+                {t("home.harvests.tag")}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
-                Pilotez vos ventes et <br className="hidden md:block"/>
-                <span className="not-italic text-gold">opérations en temps réel.</span>
+                {t("home.harvests.titleLine1")} <br className="hidden md:block"/>
+                <span className="not-italic text-gold">{t("home.harvests.titleLine2")}</span>
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed mb-8">
-                HARVESTS 2.0 est une suite logicielle de gestion commerciale
-                conçue pour les réalités du marché africain. Suivi des ventes,
-                gestion des équipes, tableaux de bord — tout ce dont votre
-                équipe a besoin pour performer chaque jour.
+                {t("home.harvests.desc")}
               </p>
               
               <ul className="space-y-4 mb-10">
                 {[
-                  "Interface adaptée aux marchés africains francophones",
-                  "Suivi commercial et reporting en temps réel",
-                  "Intégration facile avec vos processus existants"
+                  t("home.harvests.bullet1"),
+                  t("home.harvests.bullet2"),
+                  t("home.harvests.bullet3")
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-text-secondary">
                     <CheckCircle className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
@@ -273,7 +262,7 @@ export default function Home() {
               </ul>
               
               <a href="https://harvests.site/pricing/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
-                Découvrir HARVESTS 2.0 <ArrowRight className="w-4 h-4" />
+                {t("home.harvests.cta")} <ArrowRight className="w-4 h-4" />
               </a>
             </AnimatedSection>
 
@@ -299,26 +288,32 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <AnimatedSection className="mb-12">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/30 bg-gold/5 text-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-               Étude de cas réelle
+              {t("home.caseStudy.tag")}
             </span>
             <h2 className="text-5xl md:text-7xl font-serif text-text-primary leading-[1.1] mb-12">
-              De zéro à record de ventes. <br/>
-              <span className="italic text-gold">En 90 jours.</span>
+              {t("home.caseStudy.titleLine1")} <br/>
+              <span className="italic text-gold">{t("home.caseStudy.titleLine2")}</span>
             </h2>
 
             {/* Results Table */}
             <div className="grid grid-cols-3 divide-x divide-gold/30 border border-gold/30 rounded-xl bg-gold/5 mb-16 max-w-3xl">
               <div className="p-6 text-center">
                 <div className="text-3xl font-serif text-gold mb-1">15j</div>
-                <div className="text-xs uppercase tracking-wider text-text-muted">Diagnostic<br/>complet</div>
+                <div className="text-xs uppercase tracking-wider text-text-muted">
+                  {t("home.caseStudy.metric1Title")}
+                </div>
               </div>
               <div className="p-6 text-center">
                 <div className="text-3xl font-serif text-gold mb-1">90j</div>
-                <div className="text-xs uppercase tracking-wider text-text-muted">Résultats<br/>concrets</div>
+                <div className="text-xs uppercase tracking-wider text-text-muted">
+                  {t("home.caseStudy.metric2Title")}
+                </div>
               </div>
               <div className="p-6 text-center">
                 <div className="text-3xl font-serif text-gold mb-1">11 ans</div>
-                <div className="text-xs uppercase tracking-wider text-text-muted">Record<br/>battu</div>
+                <div className="text-xs uppercase tracking-wider text-text-muted">
+                  {t("home.caseStudy.metric3Title")}
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -329,44 +324,44 @@ export default function Home() {
                 <div className="absolute -top-12 -right-12 w-24 h-24 bg-gold/5 rounded-full blur-2xl" />
                 <span className="text-4xl text-gold/20 font-serif absolute top-6 left-6">“</span>
                 <p className="text-text-primary text-xl md:text-2xl font-serif italic leading-relaxed mb-8 pl-6 relative z-10">
-                  Il y a quelques années, j'ai aidé une entreprise manufacturière en difficulté en Afrique. En trois mois, grâce à un diagnostic rigoureux et à la magie des réunions quotidiennes, l'entreprise a atteint des records de ventes — un exploit inédit en 11 ans d'existence.
+                  {t("home.caseStudy.quote")}
                 </p>
                 <div className="flex items-center justify-between border-t border-border-subtle/50 pt-6">
                   <div>
-                    <h4 className="font-serif text-lg text-gold font-bold">Ambrose Nzeyimana</h4>
-                    <p className="text-text-muted text-xs uppercase tracking-widest font-bold">Fondateur & CEO · UBB</p>
+                    <h4 className="font-serif text-lg text-gold font-bold">{t("home.caseStudy.quoteAuthor")}</h4>
+                    <p className="text-text-muted text-xs uppercase tracking-widest font-bold">{t("home.caseStudy.quoteRole")}</p>
                   </div>
                   <Link to="/founder" className="text-gold hover:text-gold-light text-xs font-bold uppercase tracking-widest inline-flex items-center gap-1.5 transition-all hover:translate-x-1">
-                    Lire l'histoire complète <ArrowRight className="w-3.5 h-3.5" />
+                    {t("home.caseStudy.quoteCta")} <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div className="bg-bg-card border border-border-subtle p-6 rounded-xl">
-                  <h4 className="text-gold font-serif text-lg italic mb-2">Un Diagnostic Précis</h4>
+                  <h4 className="text-gold font-serif text-lg italic mb-2">{t("home.caseStudy.detail1Title")}</h4>
                   <p className="text-text-secondary text-sm leading-relaxed">
-                    15 jours d'analyse approfondie (chiffres, stratégies, entretiens d'équipes) pour identifier avec exactitude les leviers de performance inexploités.
+                    {t("home.caseStudy.detail1Text")}
                   </p>
                 </div>
                 <div className="bg-bg-card border border-border-subtle p-6 rounded-xl">
-                  <h4 className="text-gold font-serif text-lg italic mb-2">Rigueur & Discipline</h4>
+                  <h4 className="text-gold font-serif text-lg italic mb-2">{t("home.caseStudy.detail2Title")}</h4>
                   <p className="text-text-secondary text-sm leading-relaxed">
-                    Mise en place de réunions quotidiennes ultra-courtes (30 min) axées sur la transparence opérationnelle, la collaboration et l'anticipation quotidienne.
+                    {t("home.caseStudy.detail2Text")}
                   </p>
                 </div>
               </div>
 
               <div className="bg-bg-card border border-border-subtle p-8 rounded-xl text-center">
                 <p className="text-lg font-serif italic text-text-primary mb-6">
-                  Votre entreprise peut obtenir les mêmes résultats.
+                  {t("home.caseStudy.ctaTitle")}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
-                    Parler à Ambrose <ArrowRight className="w-4 h-4" />
+                    {t("home.caseStudy.ctaPrimary")} <ArrowRight className="w-4 h-4" />
                   </a>
                   <Link to="/founder" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border-subtle text-text-secondary font-bold uppercase tracking-widest text-sm rounded-full hover:text-gold hover:border-gold transition-all">
-                    Découvrir son parcours
+                    {t("home.caseStudy.ctaSecondary")}
                   </Link>
                 </div>
               </div>
@@ -379,9 +374,9 @@ export default function Home() {
       <section id="ecosysteme" className="py-24 bg-bg-secondary text-center">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl font-serif text-text-primary mb-6">L'écosystème UBB</h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-text-primary mb-6">{t("home.ecosystem.title")}</h2>
             <p className="text-text-secondary text-lg mb-16">
-              Conseil, SaaS et formation — une réponse intégrée pour chaque étape de votre croissance.
+              {t("home.ecosystem.subtitle")}
             </p>
             
             {/* Visual Ecosystem Graphic */}
@@ -402,30 +397,30 @@ export default function Home() {
               <div className="absolute top-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
                 <Database className="w-5 h-5 text-gold/80 mb-2" />
                 <span className="text-text-primary font-serif text-sm font-bold">vitalCHECK</span>
-                <span className="text-text-muted text-[10px] uppercase tracking-wider">Diagnostiquer</span>
+                <span className="text-text-muted text-[10px] uppercase tracking-wider">{t("home.ecosystem.bubble1")}</span>
               </div>
               
               {/* Bottom Left Bubble - Conseil */}
               <div className="absolute bottom-[10%] left-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
                 <Briefcase className="w-5 h-5 text-gold/80 mb-2" />
-                <span className="text-text-primary font-serif text-sm font-bold">Conseil</span>
-                <span className="text-text-muted text-[10px] uppercase tracking-wider">Structurer</span>
+                <span className="text-text-primary font-serif text-sm font-bold">{language === "fr" ? "Conseil" : "Consulting"}</span>
+                <span className="text-text-muted text-[10px] uppercase tracking-wider">{t("home.ecosystem.bubble2")}</span>
               </div>
               
               {/* Bottom Right Bubble - HARVESTS */}
               <div className="absolute bottom-[10%] right-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
                 <Activity className="w-5 h-5 text-gold/80 mb-2" />
                 <span className="text-text-primary font-serif text-sm font-bold">HARVESTS</span>
-                <span className="text-text-muted text-[10px] uppercase tracking-wider">Piloter</span>
+                <span className="text-text-muted text-[10px] uppercase tracking-wider">{t("home.ecosystem.bubble3")}</span>
               </div>
             </div>
 
             <p className="text-text-secondary italic font-serif text-xl mb-10">
-              Commencez par un diagnostic vitalCHECK, laissez notre équipe structurer votre plan de croissance, puis pilotez vos résultats avec HARVESTS 2.0.
+              {t("home.ecosystem.summary")}
             </p>
             
             <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
-              Commencer par le diagnostic <ArrowRight className="w-4 h-4" />
+              {t("home.ecosystem.cta")} <ArrowRight className="w-4 h-4" />
             </a>
           </AnimatedSection>
         </div>
@@ -438,7 +433,7 @@ export default function Home() {
       <section id="ressources" className="py-24 bg-bg-secondary border-t border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif text-text-primary">Ressources pour accélérer votre croissance</h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-text-primary">{t("home.resources.title")}</h2>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -446,13 +441,13 @@ export default function Home() {
               <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 flex flex-col md:flex-row gap-6 items-center h-full hover:border-gold/30 transition-colors">
                 <img src="https://d1yei2z3i6k35z.cloudfront.net/10694324/689972c2536ee_COV1.png" alt="E-books UBB" className="w-32 h-auto rounded shadow-lg" />
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-serif text-text-primary mb-3">Pack Ressources Digitales</h3>
+                  <h3 className="text-2xl font-serif text-text-primary mb-3">{t("home.resources.packTitle")}</h3>
                   <p className="text-text-secondary text-sm mb-4">
-                    E-books, podcasts et formations vidéo pour renforcer vos compétences entrepreneuriales.
+                    {t("home.resources.packDesc")}
                   </p>
-                  <p className="text-gold font-bold mb-6">À partir de £20</p>
+                  <p className="text-gold font-bold mb-6">{language === "fr" ? "À partir de £20" : "From £20"}</p>
                   <Link to="/ebooks" className="inline-flex items-center gap-2 px-6 py-2.5 border border-gold text-gold font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold/10 transition-colors">
-                    Accéder aux ressources <ArrowRight className="w-3.5 h-3.5" />
+                    {t("home.resources.packCta")} <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -461,13 +456,13 @@ export default function Home() {
             <AnimatedSection delay={0.2}>
               <div className="bg-gold/10 border border-gold/30 rounded-2xl p-8 flex flex-col justify-center h-full text-center relative overflow-hidden">
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-gold/20 rounded-full blur-2xl" />
-                <span className="inline-block px-3 py-1 bg-gold text-bg-primary text-[10px] font-bold uppercase tracking-wider rounded-full self-center mb-4">GRATUIT</span>
-                <h3 className="text-2xl font-serif text-gold mb-4">Workbook Offert</h3>
+                <span className="inline-block px-3 py-1 bg-gold text-bg-primary text-[10px] font-bold uppercase tracking-wider rounded-full self-center mb-4">{t("common.free")}</span>
+                <h3 className="text-2xl font-serif text-gold mb-4">{t("home.resources.workbookTitle")}</h3>
                 <p className="text-text-secondary italic font-serif text-xl mb-8 max-w-sm mx-auto">
-                  "Comment augmenter de 30% vos ventes mensuelles en 90 jours."
+                  {t("home.resources.workbookDesc")}
                 </p>
                 <a href="/workbook" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-bg-primary font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold-light transition-all self-center">
-                  Recevoir le workbook <ArrowRight className="w-3.5 h-3.5" />
+                  {t("home.resources.workbookCta")} <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
             </AnimatedSection>
@@ -488,30 +483,28 @@ export default function Home() {
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <AnimatedSection>
             <h2 className="text-5xl md:text-7xl font-serif text-text-primary mb-6">
-              Votre entreprise mérite <br/>
-              <span className="italic">de croître.</span>
+              {t("home.finalCta.titleLine1")} <br/>
+              <span className="italic">{t("home.finalCta.titleLine2")}</span>
             </h2>
             <p className="text-2xl font-serif italic text-gold mb-8">
-              Commencez par comprendre ce qui la freine.
+              {t("home.finalCta.italicText")}
             </p>
             <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-xl mx-auto">
-              Un diagnostic vitalCHECK prend moins de 15 minutes.
-              Notre équipe analyse les résultats et vous contacte
-              sous 48 heures avec un plan d'action personnalisé.
+              {t("home.finalCta.desc")}
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
               <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full shadow-[0_0_30px_rgba(201,151,58,0.3)]">
-                Démarrer mon diagnostic gratuit <ArrowRight className="inline w-4 h-4 ml-1" />
+                {t("home.finalCta.ctaPrimary")} <ArrowRight className="inline w-4 h-4 ml-1" />
               </a>
               <a href="tel:+221771970713" className="w-full sm:w-auto px-8 py-4 border border-border-subtle text-text-secondary hover:text-gold hover:border-gold transition-all font-bold uppercase tracking-widest text-sm rounded-full">
-                Nous contacter directement
+                {t("home.finalCta.ctaSecondary")}
               </a>
             </div>
 
             <div className="flex items-center justify-center gap-2 text-text-muted text-sm font-medium">
               <Lock className="w-4 h-4 text-gold/60" />
-              Aucun engagement. Réponse en 48h.
+              {t("home.finalCta.disclaimer")}
             </div>
           </AnimatedSection>
         </div>
@@ -530,6 +523,7 @@ const HERO_IMAGES = [
 const SLIDE_DURATION = 5000; // ms entre chaque image
 
 function HeroSlider() {
+  const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -572,8 +566,8 @@ function HeroSlider() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-text-primary leading-[1.1] mb-6"
           >
-            Augmentez vos revenus <br />
-            <span className="text-gold-gradient italic font-normal">de 30% en 90 jours.</span>
+            {t("home.hero.titleLine1")} <br />
+            <span className="text-gold-gradient italic font-normal">{t("home.hero.titleLine2")}</span>
           </motion.h1>
 
           <motion.p
@@ -582,7 +576,7 @@ function HeroSlider() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-xl md:text-3xl italic font-serif text-white mb-8"
           >
-            Ou nous travaillons jusqu'à ce que vous y arriviez rapidement.
+            {t("home.hero.subtitle")}
           </motion.p>
 
           <motion.p
@@ -591,9 +585,7 @@ function HeroSlider() {
             transition={{ duration: 0.8, delay: 0.65 }}
             className="max-w-2xl mx-auto text-text-secondary md:text-[15px] font-sans leading-relaxed mb-12"
           >
-            Nous aidons les entreprises africaines à structurer leur croissance,
-            renforcer leurs opérations et augmenter leurs revenus — grâce au conseil,
-            aux outils SaaS et aux ressources de formation.
+            {t("home.hero.desc")}
           </motion.p>
 
           <motion.div
@@ -606,7 +598,7 @@ function HeroSlider() {
               href="/contact"
               className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
             >
-              Démarrer mon diagnostic <ArrowRight className="inline w-4 h-4 ml-1" />
+              {t("home.hero.ctaDiagnostic")} <ArrowRight className="inline w-4 h-4 ml-1" />
             </a>
             <a
               href="https://www.checkmyenterprise.com/pricing"
@@ -614,7 +606,7 @@ function HeroSlider() {
               rel="noreferrer"
               className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-sm hover:bg-gold/10 transition-all rounded-full hover:scale-105 active:scale-95"
             >
-              Découvrir vitalCHECK
+              {t("home.hero.ctaVitalCheck")}
             </a>
           </motion.div>
         </AnimatedSection>
@@ -641,7 +633,7 @@ function HeroSlider() {
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
-        <span className="text-[9px] uppercase tracking-[0.3em] text-gold/60">Découvrir</span>
+        <span className="text-[9px] uppercase tracking-[0.3em] text-gold/60">{t("home.hero.discover")}</span>
         <div className="w-px h-5 bg-gradient-to-b from-gold/60 to-transparent" />
       </motion.div>
     </section>

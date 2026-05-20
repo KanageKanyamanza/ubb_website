@@ -11,6 +11,11 @@ DROP TABLE IF EXISTS team_members;
 DROP TABLE IF EXISTS news_gallery;
 DROP TABLE IF EXISTS strategic_projects;
 DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS contact_messages;
+DROP TABLE IF EXISTS partner_applications;
+DROP TABLE IF EXISTS community_members;
+DROP TABLE IF EXISTS ebook_orders;
+DROP TABLE IF EXISTS workbook_downloads;
 
 -- 3. Create the 'admins' table
 CREATE TABLE admins (
@@ -53,6 +58,71 @@ CREATE TABLE strategic_projects (
     link TEXT NOT NULL,
     linkLabel VARCHAR(100) NOT NULL DEFAULT 'En savoir plus →',
     visible TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- 7. Create the 'contact_messages' table (from Contact.tsx)
+CREATE TABLE contact_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50),
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 8. Create the 'partner_applications' table (from Postuler.tsx)
+CREATE TABLE partner_applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    linkedin_url VARCHAR(255),
+    motivation TEXT NOT NULL,
+    status ENUM('pending', 'reviewed', 'accepted', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 9. Create the 'community_members' table (from Register.tsx)
+CREATE TABLE community_members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    company_name VARCHAR(255),
+    industry VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 10. Create the 'ebook_orders' table (from Ebooks.tsx & useCheckoutForm.ts)
+CREATE TABLE ebook_orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    zip_code VARCHAR(50) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    paypal_order_id VARCHAR(100) UNIQUE,
+    paypal_payer_id VARCHAR(100),
+    amount DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(10) DEFAULT 'GBP',
+    status VARCHAR(50) DEFAULT 'completed',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 11. Create the 'workbook_downloads' table (from Workbook.tsx)
+CREATE TABLE workbook_downloads (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50),
+    country VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

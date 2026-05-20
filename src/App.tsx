@@ -20,6 +20,7 @@ import { TeamProvider } from "./context/TeamContext";
 import { ProtectedRoute } from "./components/admin/ProtectedRoute";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import { LanguageProvider } from "./context/LanguageContext";
 
 // Component to handle scroll to top on route change
 function ScrollToTop() {
@@ -63,39 +64,41 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <NewsProvider>
-        <TeamProvider>
-          <Router>
-            <ScrollToTop />
-            <AppLayout>
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<Home />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/founder" element={<Founder />} />
-                <Route path="/jobs" element={<Jobs />} />
-                <Route path="/ebooks" element={<Ebooks />} />
-                <Route path="/actualites" element={<Actualites />} />
-                <Route path="/inscription" element={<Register />} />
-                <Route path="/workbook" element={<Workbook />} />
-                <Route path="/postuler" element={<Postuler />} />
-                <Route path="/contact" element={<Contact />} />
-                
-                {/* Admin Routes */}
-                <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/dashboard" element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                } />
-              </Routes>
-            </AppLayout>
-          </Router>
-        </TeamProvider>
-      </NewsProvider>
-    </AuthProvider>
+    <LanguageProvider>
+      <AuthProvider>
+        <NewsProvider>
+          <TeamProvider>
+            <Router>
+              <ScrollToTop />
+              <AppLayout>
+                <Routes>
+                  {/* Public Routes */}
+                  <Route path="/" element={<Home />} />
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/founder" element={<Founder />} />
+                  <Route path="/jobs" element={<Jobs />} />
+                  <Route path="/ebooks" element={<Ebooks />} />
+                  <Route path="/actualites" element={<Actualites />} />
+                  <Route path="/inscription" element={<Register />} />
+                  <Route path="/workbook" element={<Workbook />} />
+                  <Route path="/postuler" element={<Postuler />} />
+                  <Route path="/contact" element={<Contact />} />
+                  
+                  {/* Admin Routes */}
+                  <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
+                  <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route path="/admin/dashboard" element={
+                    <ProtectedRoute>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  } />
+                </Routes>
+              </AppLayout>
+            </Router>
+          </TeamProvider>
+        </NewsProvider>
+      </AuthProvider>
+    </LanguageProvider>
   );
 }
 

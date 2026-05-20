@@ -1,8 +1,9 @@
 // src/components/checkout/CheckoutSuccess.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle2, ArrowRight, Package } from "lucide-react";
+import { CheckCircle2, Package } from "lucide-react";
 import { CheckoutFormData } from "../../hooks/useCheckoutForm";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface CheckoutSuccessProps {
   details: any;
@@ -16,6 +17,7 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
   onReset,
 }) => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="bg-bg-card border border-border-subtle p-10 md:p-16 rounded-sm text-center max-w-2xl mx-auto shadow-2xl relative overflow-hidden">
@@ -28,39 +30,38 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
         </div>
       </div>
 
-      <h2 className="text-4xl font-serif text-text-primary italic mb-4">Paiement confirmé !</h2>
+      <h2 className="text-4xl font-serif text-text-primary italic mb-4">{t("checkout.successTitle")}</h2>
       <p className="text-text-secondary text-lg mb-10 italic">
-        Merci {formData.firstName}, votre commande a bien été reçue.
+        {t("checkout.successDesc").replace("{name}", formData.firstName)}
       </p>
 
       <div className="bg-bg-primary/50 border border-border-subtle rounded-sm p-8 text-left mb-10 space-y-4">
         <div className="flex justify-between items-center border-b border-border-subtle pb-4">
-          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Commande</span>
+          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">{t("checkout.orderLabel")}</span>
           <span className="text-sm text-text-primary font-medium flex items-center gap-2">
             <Package className="w-4 h-4 text-gold" />
-            Pack Ressources Digitales UBB
+            {t("checkout.packTitle")}
           </span>
         </div>
         <div className="flex justify-between items-center border-b border-border-subtle pb-4">
-          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Montant</span>
+          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">{t("checkout.amountLabel")}</span>
           <div className="text-right">
             <span className="text-sm text-gold font-bold">23,50 €</span>
-            <span className="text-[10px] text-text-muted block mt-1">(traité en livres sterling via PayPal)</span>
+            <span className="text-[10px] text-text-muted block mt-1">{t("checkout.processedInGbp")}</span>
           </div>
         </div>
         <div className="flex justify-between items-center border-b border-border-subtle pb-4">
-          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Email de livraison</span>
+          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">{t("checkout.deliveryEmailLabel")}</span>
           <span className="text-sm text-text-secondary">{formData.email}</span>
         </div>
         <div className="flex justify-between items-center pt-2">
-          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">ID Transaction</span>
+          <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">{t("checkout.transactionIdLabel")}</span>
           <span className="text-[10px] font-mono text-text-muted">{details.id}</span>
         </div>
       </div>
 
       <p className="text-text-muted text-sm leading-relaxed mb-12">
-        Vous recevrez vos ressources à l'adresse <span className="text-text-secondary font-medium">{formData.email}</span> dans les prochaines minutes.<br />
-        Pensez à vérifier vos courriers indésirables (spams).
+        {t("checkout.successDeliveryHelp").replace("{email}", formData.email)}
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
@@ -68,13 +69,13 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
           onClick={() => navigate("/")}
           className="flex-1 py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(201,151,58,0.3)] transition-all flex items-center justify-center gap-2"
         >
-          Retour à l'accueil
+          {t("checkout.homeCta")}
         </button>
         <button
           onClick={() => navigate("/actualites")}
           className="flex-1 py-4 bg-bg-primary border border-border-subtle text-text-muted font-bold uppercase tracking-widest text-xs hover:text-gold hover:border-gold transition-all"
         >
-          Voir nos actualités
+          {t("checkout.newsCta")}
         </button>
       </div>
 
@@ -82,7 +83,7 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
         onClick={onReset}
         className="mt-8 text-[10px] text-text-muted hover:text-gold transition-colors uppercase tracking-widest"
       >
-        Effectuer une nouvelle commande
+        {t("checkout.newOrderCta")}
       </button>
     </div>
   );

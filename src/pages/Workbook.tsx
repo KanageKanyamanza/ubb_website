@@ -5,11 +5,14 @@ import { ArrowRight, CheckCircle, BookOpen, TrendingUp, Clock, Star } from "luci
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 import { useSEO } from "../hooks/useSEO";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Workbook() {
+  const { t } = useLanguage();
+
   useSEO({
-    title: "Workbook Gratuit — Augmentez vos ventes de 30% en 90 jours | UBB",
-    description: "Recevez gratuitement le workbook UBB : 'Comment augmenter de 30% vos ventes mensuelles en 90 jours'. Méthode éprouvée pour les entreprises africaines.",
+    title: t("workbook.seoTitle"),
+    description: t("workbook.seoDesc"),
     keywords: "workbook gratuit, croissance ventes, 90 jours, entreprises africaines, ubuntu business builders",
   });
 
@@ -24,7 +27,6 @@ export default function Workbook() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
@@ -32,9 +34,28 @@ export default function Workbook() {
   };
 
   const pays = [
-    "Sénégal", "Côte d'Ivoire", "Cameroun", "Mali", "Burkina Faso",
-    "RDC", "Congo", "Togo", "Bénin", "Guinée", "Niger", "Mauritanie",
-    "Gabon", "Tchad", "Madagascar", "Autre pays africain", "Autre"
+    "Botswana", "Burkina Faso", "Cameroun", "Congo Brazzaville",
+    "Égypte", "Éthiopie", "Gabon", "Ghana", "Guinée Conakry",
+    "Côte d'Ivoire", "Kenya", "Madagascar", "Mali",
+    "Namibie", "Sénégal", "Afrique du Sud", "Zambie", "Zimbabwe"
+  ];
+
+  const benefitItems = [
+    {
+      icon: <TrendingUp className="w-5 h-5 text-gold" />,
+      title: t("workbook.left.item1Title"),
+      desc: t("workbook.left.item1Desc")
+    },
+    {
+      icon: <CheckCircle className="w-5 h-5 text-gold" />,
+      title: t("workbook.left.item2Title"),
+      desc: t("workbook.left.item2Desc")
+    },
+    {
+      icon: <Clock className="w-5 h-5 text-gold" />,
+      title: t("workbook.left.item3Title"),
+      desc: t("workbook.left.item3Desc")
+    },
   ];
 
   return (
@@ -48,14 +69,14 @@ export default function Workbook() {
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <AnimatedSection>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/40 bg-gold/10 text-gold text-[11px] font-bold uppercase tracking-[0.3em] mb-8">
-              <Star className="w-3 h-3 fill-gold" /> 100% Gratuit
+              <Star className="w-3 h-3 fill-gold" /> {t("workbook.hero.tag")}
             </span>
             <h1 className="text-5xl md:text-7xl font-serif text-text-primary leading-[1.1] mb-6">
-              Augmentez vos ventes<br />
-              <span className="italic text-gold">de 30% en 90 jours.</span>
+              {t("workbook.hero.titleLine1")}<br />
+              <span className="italic text-gold">{t("workbook.hero.titleLine2")}</span>
             </h1>
             <p className="text-xl md:text-2xl font-serif italic text-text-secondary max-w-2xl mx-auto mb-8">
-              Le workbook opérationnel conçu pour les entreprises africaines qui veulent croître rapidement.
+              {t("workbook.hero.desc")}
             </p>
             <GoldDivider className="mx-auto" />
           </AnimatedSection>
@@ -77,21 +98,17 @@ export default function Workbook() {
                     <BookOpen className="w-8 h-8 text-gold" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-serif text-text-primary font-bold">Workbook UBB</h2>
-                    <p className="text-text-muted text-sm">Guide opérationnel · PDF Premium</p>
+                    <h2 className="text-xl font-serif text-text-primary font-bold">{t("workbook.left.cardTitle")}</h2>
+                    <p className="text-text-muted text-sm">{t("workbook.left.cardTag")}</p>
                   </div>
                 </div>
 
                 <p className="text-text-secondary leading-relaxed mb-10">
-                  Ce workbook concentre les méthodes qu'Ambrose Nzeyimana et son équipe utilisent pour aider des entreprises africaines à battre leurs propres records de ventes en seulement 90 jours.
+                  {t("workbook.left.cardIntro")}
                 </p>
 
                 <div className="space-y-5 mb-10">
-                  {[
-                    { icon: <TrendingUp className="w-5 h-5 text-gold" />, title: "La méthode des 90 jours", desc: "Un cadre structuré, semaine par semaine, pour générer des résultats mesurables." },
-                    { icon: <CheckCircle className="w-5 h-5 text-gold" />, title: "Exercices pratiques", desc: "Des templates et check-lists directement applicables à votre contexte africain." },
-                    { icon: <Clock className="w-5 h-5 text-gold" />, title: "Applicable immédiatement", desc: "Pas de théorie creuse. Des actions concrètes que vous pouvez commencer dès aujourd'hui." },
-                  ].map((item, i) => (
+                  {benefitItems.map((item, i) => (
                     <div key={i} className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl bg-bg-primary border border-border-subtle flex items-center justify-center flex-shrink-0">
                         {item.icon}
@@ -112,9 +129,9 @@ export default function Workbook() {
                       className="w-20 h-auto rounded-lg shadow-lg"
                     />
                     <div>
-                      <p className="text-text-muted text-xs uppercase tracking-widest font-bold">Valeur réelle</p>
-                      <p className="text-gold font-serif text-2xl font-bold">£20</p>
-                      <p className="text-text-secondary text-xs mt-1">Offert gratuitement aujourd'hui</p>
+                      <p className="text-text-muted text-xs uppercase tracking-widest font-bold">{t("workbook.left.valueLabel")}</p>
+                      <p className="text-gold font-serif text-2xl font-bold">{t("workbook.left.valuePrice")}</p>
+                      <p className="text-text-secondary text-xs mt-1">{t("workbook.left.valuePromo")}</p>
                     </div>
                   </div>
                 </div>
@@ -134,13 +151,13 @@ export default function Workbook() {
                   >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
-                    <h3 className="text-2xl font-serif text-text-primary mb-2">Recevez votre workbook</h3>
-                    <p className="text-text-secondary text-sm mb-8">Remplissez le formulaire ci-dessous. Vous recevrez le PDF par email sous 24h.</p>
+                    <h3 className="text-2xl font-serif text-text-primary mb-2">{t("workbook.form.title")}</h3>
+                    <p className="text-text-secondary text-sm mb-8">{t("workbook.form.subtitle")}</p>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">Prénom *</label>
+                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("workbook.form.firstName")}</label>
                           <input
                             type="text"
                             name="prenom"
@@ -152,7 +169,7 @@ export default function Workbook() {
                           />
                         </div>
                         <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">Nom *</label>
+                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("workbook.form.lastName")}</label>
                           <input
                             type="text"
                             name="nom"
@@ -166,7 +183,7 @@ export default function Workbook() {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">Email *</label>
+                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("workbook.form.email")}</label>
                         <input
                           type="email"
                           name="email"
@@ -179,7 +196,7 @@ export default function Workbook() {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">WhatsApp / Téléphone</label>
+                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("workbook.form.phone")}</label>
                         <input
                           type="tel"
                           name="telephone"
@@ -191,7 +208,7 @@ export default function Workbook() {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">Pays *</label>
+                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("workbook.form.country")}</label>
                         <select
                           name="pays"
                           required
@@ -199,7 +216,7 @@ export default function Workbook() {
                           onChange={handleChange}
                           className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm focus:outline-none focus:border-gold/60 transition-colors appearance-none"
                         >
-                          <option value="">Sélectionnez votre pays</option>
+                          <option value="">{t("workbook.form.countryPlaceholder")}</option>
                           {pays.map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
                       </div>
@@ -212,16 +229,14 @@ export default function Workbook() {
                         {loading ? (
                           <>
                             <div className="w-4 h-4 border-2 border-bg-primary/40 border-t-bg-primary rounded-full animate-spin" />
-                            Envoi en cours...
+                            {t("workbook.form.submitting")}
                           </>
                         ) : (
-                          <>Recevoir le Workbook Gratuit <ArrowRight className="w-4 h-4" /></>
+                          <>{t("workbook.form.submit")} <ArrowRight className="w-4 h-4" /></>
                         )}
                       </button>
 
-                      <p className="text-text-muted text-[11px] text-center">
-                        🔒 Vos données sont confidentielles. Aucun spam.
-                      </p>
+                      <p className="text-text-muted text-[11px] text-center">{t("workbook.form.security")}</p>
                     </form>
                   </motion.div>
                 ) : (
@@ -236,20 +251,22 @@ export default function Workbook() {
                       <div className="w-20 h-20 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center mx-auto mb-6">
                         <CheckCircle className="w-10 h-10 text-gold" />
                       </div>
-                      <h3 className="text-3xl font-serif text-text-primary mb-4">Félicitations, {form.prenom} !</h3>
+                      <h3 className="text-3xl font-serif text-text-primary mb-4">
+                        {t("workbook.form.successTitle").replace("{prenom}", form.prenom)}
+                      </h3>
                       <p className="text-text-secondary text-lg leading-relaxed mb-8">
-                        Votre workbook est en route. Vous le recevrez à <span className="text-gold font-semibold">{form.email}</span> dans les prochaines 24 heures.
+                        {t("workbook.form.successDesc")
+                          .replace("{prenom}", form.prenom)
+                          .replace("{email}", form.email)}
                       </p>
-                      <p className="text-text-muted text-sm mb-8">
-                        En attendant, prenez 15 minutes pour faire votre diagnostic vitalCHECK — c'est gratuit.
-                      </p>
+                      <p className="text-text-muted text-sm mb-8">{t("workbook.form.successPromo")}</p>
                       <a
                         href="https://www.checkmyenterprise.com/pricing"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105"
                       >
-                        Faire mon diagnostic <ArrowRight className="w-4 h-4" />
+                        {t("workbook.form.successCta")} <ArrowRight className="w-4 h-4" />
                       </a>
                     </div>
                   </motion.div>

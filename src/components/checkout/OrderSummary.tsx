@@ -4,6 +4,7 @@ import { Lock, ShieldCheck, Tag } from "lucide-react";
 import { PayPalButton } from "./PayPalButton";
 import { CheckoutFormData } from "../../hooks/useCheckoutForm";
 import { PACK_PRICE } from "../../utils/currency";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface OrderSummaryProps {
   formData: CheckoutFormData;
@@ -18,9 +19,11 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
   onPayPalApprove,
   onPayPalError,
 }) => {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-10">
-      <h2 className="text-2xl font-serif text-text-primary italic">Récapitulatif de commande</h2>
+      <h2 className="text-2xl font-serif text-text-primary italic">{t("checkout.summaryTitle")}</h2>
 
       {/* Order Details Card */}
       <div className="bg-bg-primary/40 border border-border-subtle rounded-sm p-6 space-y-6">
@@ -38,8 +41,8 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
              />
           </div>
           <div className="flex-1">
-            <h3 className="text-text-primary font-bold text-sm leading-tight mb-1">Pack Ressources Digitales UBB</h3>
-            <p className="text-text-muted text-[10px] uppercase tracking-widest leading-relaxed">E-books + Podcasts + Cours vidéos</p>
+            <h3 className="text-text-primary font-bold text-sm leading-tight mb-1">{t("checkout.packTitle")}</h3>
+            <p className="text-text-muted text-[10px] uppercase tracking-widest leading-relaxed">{t("checkout.packDesc")}</p>
           </div>
           <span className="text-text-primary font-bold text-sm">{PACK_PRICE.display}</span>
         </div>
@@ -49,7 +52,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
         <div className="flex justify-between items-center text-text-muted">
           <div className="flex items-center gap-2">
             <Tag className="w-3.5 h-3.5" />
-            <span className="text-xs">Coupon de réduction</span>
+            <span className="text-xs">{t("checkout.coupon")}</span>
           </div>
           <span className="text-xs">– 0,00 €</span>
         </div>
@@ -57,11 +60,11 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
         <div className="h-px bg-border-subtle" />
 
         <div className="flex justify-between items-start">
-          <span className="text-text-primary font-bold uppercase tracking-widest text-xs mt-2">Total</span>
+          <span className="text-text-primary font-bold uppercase tracking-widest text-xs mt-2">{t("checkout.total")}</span>
           <div className="text-right">
             <span className="text-3xl font-serif text-gold">{PACK_PRICE.display}</span>
             <span className="text-xs text-text-muted block mt-1">
-              {PACK_PRICE.displayCFA} · Traité en GBP via PayPal
+              {PACK_PRICE.displayCFA} · {t("checkout.processedIn")}
             </span>
           </div>
         </div>
@@ -74,7 +77,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
               <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center border border-gold/20">
                 <Lock className="w-4 h-4 text-gold" />
               </div>
-              <h3 className="text-text-primary font-bold text-sm uppercase tracking-widest">Paiement sécurisé</h3>
+              <h3 className="text-text-primary font-bold text-sm uppercase tracking-widest">{t("checkout.securePayment")}</h3>
            </div>
            <div className="flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full">
               <ShieldCheck className="w-3.5 h-3.5 text-green-400" />
@@ -90,8 +93,8 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
         />
 
         <p className="text-center text-text-muted text-[10px] leading-relaxed max-w-xs mx-auto">
-          En finalisant votre achat, vous acceptez les <br />
-          <a href="#" className="text-gold hover:underline">Conditions d'utilisation</a> & <a href="#" className="text-gold hover:underline">Politique de confidentialité</a> d'UBB.
+          {t("checkout.termsText")}<br />
+          <a href="#" className="text-gold hover:underline">{t("checkout.termsLink")}</a> {t("checkout.and")} <a href="#" className="text-gold hover:underline">{t("checkout.privacyLink")}</a> d'UBB.
         </p>
       </div>
     </div>
