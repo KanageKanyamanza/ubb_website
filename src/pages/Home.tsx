@@ -85,9 +85,9 @@ export default function Home() {
               <AnimatedSection key={idx} delay={idx * 0.15} className="h-full">
                 <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden text-center h-full hover:border-gold/30 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(201,151,58,0.1)] flex flex-col group">
                   <div className="relative h-48 overflow-hidden w-full">
-                    <img 
-                      src={prob.image} 
-                      alt={prob.title} 
+                    <img
+                      src={prob.image}
+                      alt={prob.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
@@ -115,7 +115,7 @@ export default function Home() {
       {/* ── SECTION 4 — SOLUTION UBB ──────────────────────────────── */}
       <section id="solution" className="py-24 md:py-32 bg-bg-secondary relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-serif text-text-primary mb-6">
@@ -189,27 +189,27 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
               <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
-                <img 
-                  src="/images/imagereal1.jpeg" 
-                  alt="vitalCHECK Diagnostic" 
+                <img
+                  src="/images/imagereal1.jpeg"
+                  alt="vitalCHECK Diagnostic"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
               </div>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={0.2}>
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
                 {t("home.vitalcheck.tag")}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
-                {t("home.vitalcheck.titleLine1")} <br className="hidden md:block"/>
+                {t("home.vitalcheck.titleLine1")} <br className="hidden md:block" />
                 <span className="not-italic text-gold">{t("home.vitalcheck.titleLine2")}</span>
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed mb-8">
                 {t("home.vitalcheck.desc")}
               </p>
-              
+
               <ul className="space-y-4 mb-10">
                 {[
                   t("home.vitalcheck.bullet1"),
@@ -222,7 +222,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              
+
               <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
                 {t("home.vitalcheck.cta")} <ArrowRight className="w-4 h-4" />
               </a>
@@ -235,19 +235,19 @@ export default function Home() {
       <section id="harvests" className="py-24 md:py-32 bg-bg-secondary border-t border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
+
             <AnimatedSection className="order-2 lg:order-1">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
                 {t("home.harvests.tag")}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
-                {t("home.harvests.titleLine1")} <br className="hidden md:block"/>
+                {t("home.harvests.titleLine1")} <br className="hidden md:block" />
                 <span className="not-italic text-gold">{t("home.harvests.titleLine2")}</span>
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed mb-8">
                 {t("home.harvests.desc")}
               </p>
-              
+
               <ul className="space-y-4 mb-10">
                 {[
                   t("home.harvests.bullet1"),
@@ -260,7 +260,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              
+
               <a href="https://harvests.site/pricing/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
                 {t("home.harvests.cta")} <ArrowRight className="w-4 h-4" />
               </a>
@@ -268,15 +268,15 @@ export default function Home() {
 
             <AnimatedSection delay={0.2} className="order-1 lg:order-2">
               <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
-                <img 
-                  src="/images/imagereal3.jpeg" 
-                  alt="HARVESTS 2.0 Logiciel" 
+                <img
+                  src="/images/imagereal3.jpeg"
+                  alt="HARVESTS 2.0 Logiciel"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
               </div>
             </AnimatedSection>
-            
+
           </div>
         </div>
       </section>
@@ -284,14 +284,14 @@ export default function Home() {
       {/* ── SECTION 7 — ÉTUDE DE CAS CEO ──────────────────────────── */}
       <section id="etude-de-cas" className="py-24 md:py-32 bg-bg-primary border-y border-border-subtle relative overflow-hidden">
         <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
-        
+
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <AnimatedSection className="mb-12">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/30 bg-gold/5 text-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
               {t("home.caseStudy.tag")}
             </span>
             <h2 className="text-5xl md:text-7xl font-serif text-text-primary leading-[1.1] mb-12">
-              {t("home.caseStudy.titleLine1")} <br/>
+              {t("home.caseStudy.titleLine1")} <br />
               <span className="italic text-gold">{t("home.caseStudy.titleLine2")}</span>
             </h2>
 
@@ -357,9 +357,9 @@ export default function Home() {
                   {t("home.caseStudy.ctaTitle")}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
+                  <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
                     {t("home.caseStudy.ctaPrimary")} <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </Link>
                   <Link to="/founder" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border-subtle text-text-secondary font-bold uppercase tracking-widest text-sm rounded-full hover:text-gold hover:border-gold transition-all">
                     {t("home.caseStudy.ctaSecondary")}
                   </Link>
@@ -378,7 +378,7 @@ export default function Home() {
             <p className="text-text-secondary text-lg mb-16">
               {t("home.ecosystem.subtitle")}
             </p>
-            
+
             {/* Visual Ecosystem Graphic */}
             <div className="relative w-full max-w-lg mx-auto aspect-square mb-16 flex items-center justify-center">
               {/* Lines linking center to outer bubbles */}
@@ -387,26 +387,26 @@ export default function Home() {
                 <line x1="50" y1="50" x2="20" y2="75" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
                 <line x1="50" y1="50" x2="80" y2="75" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
               </svg>
-              
+
               {/* Center */}
               <div className="absolute z-10 w-24 h-24 bg-bg-primary border-2 border-gold rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(201,151,58,0.2)]">
                 <span className="font-serif font-bold text-2xl text-gold">UBB</span>
               </div>
-              
+
               {/* Top Bubble - vitalCHECK */}
               <div className="absolute top-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
                 <Database className="w-5 h-5 text-gold/80 mb-2" />
                 <span className="text-text-primary font-serif text-sm font-bold">vitalCHECK</span>
                 <span className="text-text-muted text-[10px] uppercase tracking-wider">{t("home.ecosystem.bubble1")}</span>
               </div>
-              
+
               {/* Bottom Left Bubble - Conseil */}
               <div className="absolute bottom-[10%] left-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
                 <Briefcase className="w-5 h-5 text-gold/80 mb-2" />
                 <span className="text-text-primary font-serif text-sm font-bold">{language === "fr" ? "Conseil" : "Consulting"}</span>
                 <span className="text-text-muted text-[10px] uppercase tracking-wider">{t("home.ecosystem.bubble2")}</span>
               </div>
-              
+
               {/* Bottom Right Bubble - HARVESTS */}
               <div className="absolute bottom-[10%] right-[5%] z-10 w-32 h-32 bg-bg-card border border-border-subtle rounded-full flex flex-col items-center justify-center shadow-lg">
                 <Activity className="w-5 h-5 text-gold/80 mb-2" />
@@ -418,7 +418,7 @@ export default function Home() {
             <p className="text-text-secondary italic font-serif text-xl mb-10">
               {t("home.ecosystem.summary")}
             </p>
-            
+
             <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105">
               {t("home.ecosystem.cta")} <ArrowRight className="w-4 h-4" />
             </a>
@@ -473,17 +473,17 @@ export default function Home() {
       {/* ── SECTION 11 — CTA FINAL ────────────────────────────────── */}
       <section id="contact" className="py-32 relative overflow-hidden bg-[#0A0A0A] border-t border-border-subtle text-center">
         {/* Background Image overlay */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity"
           style={{ backgroundImage: `url('/images/imagereal4.jpeg')` }}
         />
         {/* Radial Gold Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
-        
+
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <AnimatedSection>
             <h2 className="text-5xl md:text-7xl font-serif text-text-primary mb-6">
-              {t("home.finalCta.titleLine1")} <br/>
+              {t("home.finalCta.titleLine1")} <br />
               <span className="italic">{t("home.finalCta.titleLine2")}</span>
             </h2>
             <p className="text-2xl font-serif italic text-gold mb-8">
@@ -595,7 +595,9 @@ function HeroSlider() {
             className="flex flex-wrap justify-center gap-4"
           >
             <a
-              href="/contact"
+              href="https://www.checkmyenterprise.com/pricing"
+              target="_blank"
+              rel="noreferrer"
               className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
             >
               {t("home.hero.ctaDiagnostic")} <ArrowRight className="inline w-4 h-4 ml-1" />
@@ -618,9 +620,8 @@ function HeroSlider() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-[3px] rounded-full transition-all duration-500 ${
-              current === i ? "w-8 bg-gold" : "w-3 bg-white/30 hover:bg-white/50"
-            }`}
+            className={`h-[3px] rounded-full transition-all duration-500 ${current === i ? "w-8 bg-gold" : "w-3 bg-white/30 hover:bg-white/50"
+              }`}
             aria-label={`Slide ${i + 1}`}
           />
         ))}

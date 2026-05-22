@@ -557,6 +557,48 @@ export const en: typeof fr = {
       ctaSecondary: "Speak to the UBB Team"
     }
   },
+
+  // Top-level checkout alias (copy of `ebooks.checkout`) for components
+  // that call `t('checkout.*')` directly.
+  checkout: {
+    title: "Order Information",
+    firstName: "First Name",
+    firstNamePlaceholder: "Your first name",
+    lastName: "Last Name",
+    lastNamePlaceholder: "Your last name",
+    email: "Email Address",
+    emailPlaceholder: "address@example.com",
+    city: "City",
+    cityPlaceholder: "e.g., London",
+    zipCode: "Postal / Zip Code",
+    zipCodePlaceholder: "e.g., 10000",
+    country: "Country",
+    summaryTitle: "Order Summary",
+    packTitle: "UBB Digital Resources Pack",
+    packDesc: "E-books + Podcasts + Video Courses",
+    coupon: "Discount coupon",
+    total: "Total",
+    processedIn: "Processed in GBP via PayPal",
+    securePayment: "Secure Payment",
+    termsText: "By finalizing your purchase, you agree to UBB's",
+    termsLink: "Terms of Use",
+    privacyLink: "Privacy Policy",
+    and: "and",
+    successTitle: "Payment Confirmed!",
+    successDesc: "Thank you {name}, your order has been successfully received.",
+    successCta: "Back to E-books",
+    errorMsg: "An error occurred during payment. Please try again or contact UBB support.",
+    orderLabel: "Order",
+    amountLabel: "Amount",
+    processedInGbp: "(processed in British Pounds via PayPal)",
+    deliveryEmailLabel: "Delivery Email",
+    transactionIdLabel: "Transaction ID",
+    successDeliveryHelp: "You will receive your resources at {email} within the next few minutes. Please check your spam folder if you do not receive it.",
+    homeCta: "Return to Home",
+    newsCta: "View our news",
+    newOrderCta: "Place a new order"
+  },
+
   workbook: {
     seoTitle: "Free Workbook — Increase Your Sales by 30% in 90 Days | UBB",
     seoDesc: "Get the UBB Workbook for free: 'How to increase your monthly sales by 30% in 90 days'. A proven method for African businesses.",

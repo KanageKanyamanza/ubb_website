@@ -555,6 +555,48 @@ export const fr = {
       ctaSecondary: "Parler à l'équipe UBB"
     }
   },
+
+  // Top-level checkout alias (copie de `ebooks.checkout`) pour les composants
+  // qui appellent `t('checkout.*')` directement.
+  checkout: {
+    title: "Informations de commande",
+    firstName: "Prénom",
+    firstNamePlaceholder: "Votre prénom",
+    lastName: "Nom",
+    lastNamePlaceholder: "Votre nom",
+    email: "Adresse email",
+    emailPlaceholder: "adresse@exemple.com",
+    city: "Ville",
+    cityPlaceholder: "Ex: Dakar",
+    zipCode: "Code postal",
+    zipCodePlaceholder: "Ex: 10000",
+    country: "Pays",
+    summaryTitle: "Récapitulatif de commande",
+    packTitle: "Pack Ressources Digitales UBB",
+    packDesc: "E-books + Podcasts + Cours vidéos",
+    coupon: "Coupon de réduction",
+    total: "Total",
+    processedIn: "Traité en GBP via PayPal",
+    securePayment: "Paiement sécurisé",
+    termsText: "En finalisant votre achat, vous acceptez les",
+    termsLink: "Conditions d'utilisation",
+    privacyLink: "Politique de confidentialité",
+    and: "et",
+    successTitle: "Paiement confirmé !",
+    successDesc: "Merci {name}, votre commande a bien été reçue.",
+    successCta: "Retour aux e-books",
+    errorMsg: "Une erreur est survenue lors du paiement. Veuillez réessayer ou contacter le support UBB.",
+    orderLabel: "Commande",
+    amountLabel: "Montant",
+    processedInGbp: "(traité en livres sterling via PayPal)",
+    deliveryEmailLabel: "Email de livraison",
+    transactionIdLabel: "ID Transaction",
+    successDeliveryHelp: "Vous recevrez vos ressources à l'adresse {email} dans les prochaines minutes. Pensez à vérifier vos courriers indésirables (spams).",
+    homeCta: "Retour à l'accueil",
+    newsCta: "Voir nos actualités",
+    newOrderCta: "Effectuer une nouvelle commande"
+  },
+
   workbook: {
     seoTitle: "Workbook Gratuit — Augmentez vos ventes de 30% en 90 jours | UBB",
     seoDesc: "Recevez gratuitement le workbook UBB : 'Comment augmenter de 30% vos ventes mensuelles en 90 jours'. Méthode éprouvée pour les entreprises africaines.",

@@ -22,11 +22,12 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
   disabled,
 }) => {
   const [payPalReady, setPayPalReady] = useState(false);
+  const apiBase = import.meta.env.VITE_API_BASE || '';
 
   useEffect(() => {
     // Load PayPal SDK dynamically
     const clientID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
-    
+
     if (!clientID) {
       console.error("PayPal Client ID missing in .env");
       return;
@@ -67,26 +68,57 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
         height: 48
       },
 
-      createOrder: (data: any, actions: any) => {
-        return actions.order.create({
-          purchase_units: [{
-            description: "Pack Ressources Digitales UBB — E-books",
-            amount: {
-              currency_code: "GBP",
-              value: "20.00"
-            },
-            custom_id: formData.email, // email acheteur pour livraison
-          }],
-          application_context: {
-            shipping_preference: "NO_SHIPPING" // produit digital
-          }
-        });
+      createOrder: () => {
+        return fetch(`${apiBase}/api/paypal/create-order`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            amount: '20.00',
+            currency: 'GBP',
+            description: 'Pack Ressources Digitales UBB — E-books',
+          }),
+        })
+          .then(async (response) => {
+            const data = await response.json();
+            if (!response.ok) {
+              throw new Error(data?.error || 'Erreur de création de commande PayPal');
+            }
+            return data.orderID;
+          })
+          .catch((err) => {
+            console.error('PayPal createOrder error:', err);
+            onError(err);
+            throw err;
+          });
       },
 
-      onApprove: (data: any, actions: any) => {
-        return actions.order.capture().then((details: any) => {
-          onApprove(details);
-        });
+      onApprove: (data: any) => {
+        return fetch(`${apiBase}/api/paypal/capture-order`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ orderID: data.orderID }),
+        })
+          .then(async (response) => {
+            const captureDetails = await response.json();
+            if (!response.ok) {
+              throw new Error(captureDetails?.error || 'Erreur de capture PayPal');
+            }
+            return captureDetails;
+          })
+          .then((captureDetails) => {
+            onApprove(captureDetails);
+            return captureDetails;
+          })
+          .catch((err) => {
+            console.error('PayPal capture error:', err);
+            onError(err);
+            throw err;
+          });
       },
 
       onError: (err: any) => {
@@ -109,7 +141,7 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
           <span className="text-[10px] text-gold uppercase tracking-[0.2em] font-bold">Chargement PayPal...</span>
         </div>
       )}
-      
+
       {payPalReady && disabled && (
         <div className="mb-6 p-4 bg-gold/5 border border-gold/10 rounded-sm text-center">
           <p className="text-text-muted text-xs italic">
