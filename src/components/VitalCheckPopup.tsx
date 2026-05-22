@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ArrowRight } from "lucide-react";
 
-const POPUP_DELAY_MS = 3000;
+const POPUP_DELAY_MS = 0;
 const POPUP_STORAGE_KEY = "ubb_vitalcheck_popup_shown";
 
 export default function VitalCheckPopup() {
