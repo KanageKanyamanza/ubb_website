@@ -16,5 +16,7 @@ View your app in AI Studio: https://ai.studio/apps/4dde495f-3f32-48b8-99f7-9d2fd
 1. Install dependencies:
    `npm install`
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+3. If you use the PayPal backend, start the API server as well:
+   `cd server && npm install && npm start`
+4. Run the app:
    `npm run dev`

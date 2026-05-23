@@ -79,7 +79,7 @@ export const en: typeof fr = {
       title: "One platform. Three growth levers.",
       subtitle: "Consulting, software tools, and training — everything your business needs to reach the next level.",
       card1Title: "Strategic Consulting",
-      card1Text: "Comprehensive diagnostic, custom action plan, and operational support led by Ambrose Nzeyimana and his team.",
+      card1Text: "Comprehensive diagnostic, custom action plan, and operational support led by UBB's experienced consultants.",
       card2Title: "SaaS Tools",
       card2Text: "vitalCHECK diagnoses your company in minutes. HARVESTS 2.0 manages your sales and operations daily.",
       card3Title: "Resources & Training",

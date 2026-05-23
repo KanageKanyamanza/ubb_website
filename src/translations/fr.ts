@@ -77,7 +77,7 @@ export const fr = {
       title: "Une plateforme. Trois leviers de croissance.",
       subtitle: "Conseil, outils et formation — tout ce dont votre entreprise a besoin pour passer au niveau supérieur.",
       card1Title: "Conseil Stratégique",
-      card1Text: "Diagnostic complet, plan d'action sur mesure et accompagnement opérationnel piloté par Ambrose Nzeyimana et son équipe.",
+      card1Text: "Diagnostic complet, plan d'action sur mesure et accompagnement opérationnel piloté par des consultants expérimentes de UBB.",
       card2Title: "Outils SaaS",
       card2Text: "vitalCHECK diagnostique votre entreprise en quelques minutes. HARVESTS 2.0 pilote vos ventes et opérations au quotidien.",
       card3Title: "Ressources & Formation",

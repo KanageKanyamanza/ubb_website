@@ -22,7 +22,7 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
   disabled,
 }) => {
   const [payPalReady, setPayPalReady] = useState(false);
-  const apiBase = import.meta.env.VITE_API_BASE || '';
+  const apiBase = import.meta.env.VITE_API_BASE || import.meta.env.VITE_API_URL || '';
 
   useEffect(() => {
     // Load PayPal SDK dynamically

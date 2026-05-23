@@ -301,6 +301,15 @@ app.get('*', (req, res) => {
 
 
 // START THE SERVER
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🚀 Serveur Monolithique UBB en cours d'exécution sur le port ${PORT}`);
+});
+
+server.on('error', (error) => {
+  if (error.code === 'EADDRINUSE') {
+    console.error(`❌ Le port ${PORT} est déjà utilisé. Vérifiez qu'aucune autre instance du serveur n'est active ou changez le port dans server/.env.`);
+    process.exit(1);
+  }
+  console.error('❌ Erreur serveur:', error);
+  process.exit(1);
 });
