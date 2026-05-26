@@ -16,7 +16,7 @@ const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
 
 if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
-  console.warn('⚠️ PayPal server configuration is incomplète. Vérifiez server/.env pour PAYPAL_CLIENT_ID et PAYPAL_CLIENT_SECRET.');
+  console.warn('⚠️ PayPal server configuration est incomplète. Vérifiez PAYPAL_CLIENT_ID et PAYPAL_CLIENT_SECRET.');
 }
 
 async function getPayPalAccessToken() {
@@ -48,16 +48,11 @@ async function createPayPalOrder({ email, amount = '20.00', currency = 'GBP', de
     },
     body: JSON.stringify({
       intent: 'CAPTURE',
-      purchase_units: [
-        {
-          description,
-          amount: {
-            currency_code: currency,
-            value: amount,
-          },
-          custom_id: email || undefined,
-        },
-      ],
+      purchase_units: [{
+        description,
+        amount: { currency_code: currency, value: amount },
+        custom_id: email || undefined,
+      }],
       application_context: {
         shipping_preference: 'NO_SHIPPING',
         user_action: 'PAY_NOW',
@@ -69,7 +64,6 @@ async function createPayPalOrder({ email, amount = '20.00', currency = 'GBP', de
   if (!response.ok) {
     throw new Error(`PayPal order creation failed: ${response.status} ${JSON.stringify(data)}`);
   }
-
   return data;
 }
 
@@ -87,23 +81,19 @@ async function capturePayPalOrder(orderID) {
   if (!response.ok) {
     throw new Error(`PayPal capture failed: ${response.status} ${JSON.stringify(data)}`);
   }
-
   return data;
 }
 
-// Enable CORS and JSON parsing
 app.use(cors());
 app.use(express.json());
 
 // ────────────────────────────────────────────────────────────────
-//  API ROUTES : MEMBRES DE L'ÉQUIPE (TEAM MEMBERS)
+//  API ROUTES : MEMBRES DE L'ÉQUIPE
 // ────────────────────────────────────────────────────────────────
 
-// 1. GET ALL TEAM MEMBERS
 app.get('/api/team', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM team_members ORDER BY created_at ASC');
-    // Map rows to parse chips back to an array
+    const { rows } = await pool.query('SELECT * FROM team_members ORDER BY created_at ASC');
     const mapped = rows.map(member => ({
       ...member,
       visible: Boolean(member.visible),
@@ -115,7 +105,6 @@ app.get('/api/team', async (req, res) => {
   }
 });
 
-// 2. CREATE A NEW TEAM MEMBER
 app.post('/api/team', async (req, res) => {
   const { name, title, img, bio, chips, category, visible } = req.body;
   if (!name || !title || !bio) {
@@ -124,11 +113,11 @@ app.post('/api/team', async (req, res) => {
 
   const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now().toString().slice(-4);
   const chipsString = Array.isArray(chips) ? chips.join(', ') : (chips || '');
-  const isVisible = visible !== false ? 1 : 0;
+  const isVisible = visible !== false;
 
   try {
     await pool.query(
-      'INSERT INTO team_members (id, name, title, img, bio, chips, category, visible) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO team_members (id, name, title, img, bio, chips, category, visible) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
       [id, name, title, img, bio, chipsString, category || 'tech', isVisible]
     );
     res.status(201).json({ message: "Membre ajouté avec succès", id });
@@ -137,7 +126,6 @@ app.post('/api/team', async (req, res) => {
   }
 });
 
-// 3. UPDATE AN EXISTING TEAM MEMBER
 app.put('/api/team/:id', async (req, res) => {
   const { id } = req.params;
   const { name, title, img, bio, chips, category, visible } = req.body;
@@ -147,43 +135,40 @@ app.put('/api/team/:id', async (req, res) => {
   }
 
   const chipsString = Array.isArray(chips) ? chips.join(', ') : (chips || '');
-  const isVisible = visible !== false ? 1 : 0;
+  const isVisible = visible !== false;
 
   try {
-    const [result] = await pool.query(
-      'UPDATE team_members SET name = ?, title = ?, img = ?, bio = ?, chips = ?, category = ?, visible = ? WHERE id = ?',
+    const { rowCount } = await pool.query(
+      'UPDATE team_members SET name = $1, title = $2, img = $3, bio = $4, chips = $5, category = $6, visible = $7 WHERE id = $8',
       [name, title, img, bio, chipsString, category, isVisible, id]
     );
 
-    if (result.affectedRows === 0) {
+    if (rowCount === 0) {
       return res.status(404).json({ error: "Membre introuvable" });
     }
-
     res.json({ message: "Membre mis à jour avec succès" });
   } catch (error) {
     res.status(500).json({ error: "Erreur serveur lors de la modification du membre", details: error.message });
   }
 });
 
-// 4. TOGGLE MEMBER VISIBILITY
 app.patch('/api/team/:id/toggle', async (req, res) => {
   const { id } = req.params;
   try {
-    const [rows] = await pool.query('SELECT visible FROM team_members WHERE id = ?', [id]);
+    const { rows } = await pool.query('SELECT visible FROM team_members WHERE id = $1', [id]);
     if (rows.length === 0) {
       return res.status(404).json({ error: "Membre introuvable" });
     }
 
-    const newVisibility = rows[0].visible ? 0 : 1;
-    await pool.query('UPDATE team_members SET visible = ? WHERE id = ?', [newVisibility, id]);
+    const newVisibility = !rows[0].visible;
+    await pool.query('UPDATE team_members SET visible = $1 WHERE id = $2', [newVisibility, id]);
 
-    res.json({ message: "Visibilité mise à jour avec succès", visible: Boolean(newVisibility) });
+    res.json({ message: "Visibilité mise à jour avec succès", visible: newVisibility });
   } catch (error) {
     res.status(500).json({ error: "Erreur serveur lors du changement de visibilité", details: error.message });
   }
 });
 
-// 5. DELETE A TEAM MEMBER
 app.delete('/api/team/:id', async (req, res) => {
   const { id } = req.params;
   if (id === 'ambrose') {
@@ -191,8 +176,8 @@ app.delete('/api/team/:id', async (req, res) => {
   }
 
   try {
-    const [result] = await pool.query('DELETE FROM team_members WHERE id = ?', [id]);
-    if (result.affectedRows === 0) {
+    const { rowCount } = await pool.query('DELETE FROM team_members WHERE id = $1', [id]);
+    if (rowCount === 0) {
       return res.status(404).json({ error: "Membre introuvable" });
     }
     res.json({ message: "Membre supprimé avec succès" });
@@ -201,37 +186,34 @@ app.delete('/api/team/:id', async (req, res) => {
   }
 });
 
-
 // ────────────────────────────────────────────────────────────────
-// 📸 API ROUTES : GALERIE D'ACTUALITÉS (NEWS GALLERY)
+//  API ROUTES : GALERIE D'ACTUALITÉS
 // ────────────────────────────────────────────────────────────────
 
 app.get('/api/news', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM news_gallery ORDER BY created_at DESC');
+    const { rows } = await pool.query('SELECT * FROM news_gallery ORDER BY created_at DESC');
     res.json(rows.map(item => ({ ...item, visible: Boolean(item.visible) })));
   } catch (error) {
     res.status(500).json({ error: "Erreur serveur", details: error.message });
   }
 });
 
-
 // ────────────────────────────────────────────────────────────────
-// 🚀 API ROUTES : PROJETS STRATÉGIQUES (STRATEGIC PROJECTS)
+//  API ROUTES : PROJETS STRATÉGIQUES
 // ────────────────────────────────────────────────────────────────
 
 app.get('/api/projects', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM strategic_projects ORDER BY created_at ASC');
+    const { rows } = await pool.query('SELECT * FROM strategic_projects ORDER BY created_at ASC');
     res.json(rows.map(item => ({ ...item, visible: Boolean(item.visible) })));
   } catch (error) {
     res.status(500).json({ error: "Erreur serveur", details: error.message });
   }
 });
 
-
 // ────────────────────────────────────────────────────────────────
-// 🔐 API ROUTES : ADMIN SECURE AUTH
+//  API ROUTES : ADMIN AUTH
 // ────────────────────────────────────────────────────────────────
 
 app.post('/api/admin/login', async (req, res) => {
@@ -241,7 +223,7 @@ app.post('/api/admin/login', async (req, res) => {
   }
 
   try {
-    const [rows] = await pool.query('SELECT * FROM admins WHERE username = ?', [username]);
+    const { rows } = await pool.query('SELECT * FROM admins WHERE username = $1', [username]);
     if (rows.length === 0) {
       return res.status(401).json({ error: "Identifiants invalides" });
     }
@@ -256,10 +238,14 @@ app.post('/api/admin/login', async (req, res) => {
   }
 });
 
+// ────────────────────────────────────────────────────────────────
+//  API ROUTES : PAYPAL
+// ────────────────────────────────────────────────────────────────
+
 app.post('/api/paypal/create-order', async (req, res) => {
   const { email, amount, currency, description } = req.body;
   if (!email) {
-    return res.status(400).json({ error: 'L’email client est requis pour créer la commande PayPal.' });
+    return res.status(400).json({ error: "L'email client est requis pour créer la commande PayPal." });
   }
 
   try {
@@ -274,7 +260,7 @@ app.post('/api/paypal/create-order', async (req, res) => {
 app.post('/api/paypal/capture-order', async (req, res) => {
   const { orderID } = req.body;
   if (!orderID) {
-    return res.status(400).json({ error: 'L’ID de commande PayPal est requis pour la capture.' });
+    return res.status(400).json({ error: "L'ID de commande PayPal est requis pour la capture." });
   }
 
   try {
@@ -286,30 +272,28 @@ app.post('/api/paypal/capture-order', async (req, res) => {
   }
 });
 
-
 // ────────────────────────────────────────────────────────────────
-// 📦 SERVIR LES FICHIERS STATIQUES DU FRONT-END (MONOLITHE)
+//  DÉMARRAGE LOCAL UNIQUEMENT (pas exécuté sur Vercel)
 // ────────────────────────────────────────────────────────────────
 
-// On sert le répertoire de compilation du front-end React ('dist')
-app.use(express.static(path.join(__dirname, '../dist')));
+if (require.main === module) {
+  app.use(express.static(path.join(__dirname, '../dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+  });
 
-// Toutes les autres requêtes non-API sont redirigées vers l'application React
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
+  const server = app.listen(PORT, () => {
+    console.log(`🚀 Serveur Monolithique UBB en cours d'exécution sur le port ${PORT}`);
+  });
 
-
-// START THE SERVER
-const server = app.listen(PORT, () => {
-  console.log(`🚀 Serveur Monolithique UBB en cours d'exécution sur le port ${PORT}`);
-});
-
-server.on('error', (error) => {
-  if (error.code === 'EADDRINUSE') {
-    console.error(`❌ Le port ${PORT} est déjà utilisé. Vérifiez qu'aucune autre instance du serveur n'est active ou changez le port dans server/.env.`);
+  server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE') {
+      console.error(`❌ Le port ${PORT} est déjà utilisé.`);
+      process.exit(1);
+    }
+    console.error('❌ Erreur serveur:', error);
     process.exit(1);
-  }
-  console.error('❌ Erreur serveur:', error);
-  process.exit(1);
-});
+  });
+}
+
+module.exports = app;

@@ -67,17 +67,18 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             {[
               {
-                image: "/images/agriculteurs-en-afrique.jpg",
+
+                image: "/images/1_Ventes%20stagnantes.png",
                 title: t("home.problem.card1Title"),
                 text: t("home.problem.card1Text")
               },
               {
-                image: "/images/Reunion-Afrique-numerique.jpg",
+                image: "/images/2_Op%C3%A9rations%20d%C3%A9sorganis%C3%A9es.png",
                 title: t("home.problem.card2Title"),
                 text: t("home.problem.card2Text")
               },
               {
-                image: "/images/vitrine.png",
+                image: "/images/3_Manque de visibilité financière.png",
                 title: t("home.problem.card3Title"),
                 text: t("home.problem.card3Text")
               }
@@ -89,6 +90,7 @@ export default function Home() {
                       src={prob.image}
                       alt={prob.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      style={prob.image === "/images/1_Ventes%20stagnantes.png" ? { objectPosition: "center 20%" } : undefined}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
                   </div>
@@ -601,14 +603,6 @@ function HeroSlider() {
               className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
             >
               {t("home.hero.ctaDiagnostic")} <ArrowRight className="inline w-4 h-4 ml-1" />
-            </a>
-            <a
-              href="https://www.checkmyenterprise.com/pricing"
-              target="_blank"
-              rel="noreferrer"
-              className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-sm hover:bg-gold/10 transition-all rounded-full hover:scale-105 active:scale-95"
-            >
-              {t("home.hero.ctaVitalCheck")}
             </a>
           </motion.div>
         </AnimatedSection>
