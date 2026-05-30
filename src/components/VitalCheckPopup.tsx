@@ -1,6 +1,4 @@
-// src/components/VitalCheckPopup.tsx
-// 👉 Pour changer l'image : remplacez la valeur de POPUP_IMAGE_SRC
-const POPUP_IMAGE_SRC = ""; // ← Collez ici le lien de votre image
+﻿const POPUP_IMAGE_SRC = "/images/popup-vitalCHECK.jpeg";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -68,7 +66,7 @@ export default function VitalCheckPopup() {
                 />
               ) : (
                 <div className="w-full aspect-[4/3] bg-bg-secondary flex items-center justify-center">
-                  <p className="text-text-muted text-sm italic">Image bientôt disponible</p>
+                  <p className="text-text-muted text-sm italic">Image bientÃ´t disponible</p>
                 </div>
               )}
 
@@ -85,9 +83,9 @@ export default function VitalCheckPopup() {
                     target="_blank"
                     rel="noreferrer"
                     onClick={handleClose}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-gold text-bg-primary font-bold uppercase tracking-widest text-xs rounded-full hover:bg-gold-light transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(201,151,58,0.4)] active:scale-95"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-gold text-bg-primary font-bold uppercase tracking-widest text-xs rounded-full hover:bg-gold-light transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(184,115,51,0.4)] active:scale-95"
                   >
-                    Démarrer <ArrowRight className="w-3.5 h-3.5" />
+                    DÃ©marrer <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                   <button
                     onClick={handleClose}
@@ -104,3 +102,4 @@ export default function VitalCheckPopup() {
     </AnimatePresence>
   );
 }
+

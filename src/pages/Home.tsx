@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+﻿import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimatedSection from "../components/ui/AnimatedSection";
@@ -25,10 +25,10 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full min-h-screen">
 
-      {/* ── SECTION 1 — HERO (Slider) ─────────────────────────────────── */}
+      {/* â”€â”€ SECTION 1 â€” HERO (Slider) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <HeroSlider />
 
-      {/* ── SECTION 2 — BANDE DE RÉASSURANCE ────────────────────────── */}
+      {/* â”€â”€ SECTION 2 â€” BANDE DE RÃ‰ASSURANCE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="stats" className="py-12 border-y border-border-subtle" style={{ backgroundColor: "#131313" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border-subtle">
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3 — PROBLÈME CLIENT ───────────────────────────── */}
+      {/* â”€â”€ SECTION 3 â€” PROBLÃˆME CLIENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="probleme" className="py-24 md:py-32 bg-bg-primary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
@@ -78,13 +78,13 @@ export default function Home() {
                 text: t("home.problem.card2Text")
               },
               {
-                image: "/images/3_Manque de visibilité financière.png",
+                image: "/images/3_Manque de visibilitÃ© financiÃ¨re.png",
                 title: t("home.problem.card3Title"),
                 text: t("home.problem.card3Text")
               }
             ].map((prob, idx) => (
               <AnimatedSection key={idx} delay={idx * 0.15} className="h-full">
-                <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden text-center h-full hover:border-gold/30 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(201,151,58,0.1)] flex flex-col group">
+                <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden text-center h-full hover:border-gold/30 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(184,115,51,0.1)] flex flex-col group">
                   <div className="relative h-48 overflow-hidden w-full">
                     <img
                       src={prob.image}
@@ -114,7 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 4 — SOLUTION UBB ──────────────────────────────── */}
+      {/* â”€â”€ SECTION 4 â€” SOLUTION UBB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="solution" className="py-24 md:py-32 bg-bg-secondary relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 
@@ -146,7 +146,7 @@ export default function Home() {
 
             {/* Card 2 (Bigger) */}
             <AnimatedSection delay={0.2}>
-              <div className="bg-bg-primary border border-gold p-10 rounded-2xl relative shadow-[0_0_40px_rgba(201,151,58,0.15)] transform lg:scale-105 z-10">
+              <div className="bg-bg-primary border border-gold p-10 rounded-2xl relative shadow-[0_0_40px_rgba(184,115,51,0.15)] transform lg:scale-105 z-10">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
                   {t("common.recommended")}
                 </div>
@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 5 — PRODUIT VEDETTE 1 : vitalCHECK ────────────── */}
+      {/* â”€â”€ SECTION 5 â€” PRODUIT VEDETTE 1 : vitalCHECK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="vitalcheck" className="py-24 md:py-32 bg-bg-primary">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -225,7 +225,7 @@ export default function Home() {
                 ))}
               </ul>
 
-              <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
+              <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(184,115,51,0.3)]">
                 {t("home.vitalcheck.cta")} <ArrowRight className="w-4 h-4" />
               </a>
             </AnimatedSection>
@@ -233,7 +233,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 6 — PRODUIT VEDETTE 2 : HARVESTS 2.0 ──────────── */}
+      {/* â”€â”€ SECTION 6 â€” PRODUIT VEDETTE 2 : HARVESTS 2.0 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="harvests" className="py-24 md:py-32 bg-bg-secondary border-t border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -263,7 +263,7 @@ export default function Home() {
                 ))}
               </ul>
 
-              <a href="https://harvests.site/pricing/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(201,151,58,0.3)]">
+              <a href="https://harvests.site/pricing/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-[0_4px_20px_rgba(184,115,51,0.3)]">
                 {t("home.harvests.cta")} <ArrowRight className="w-4 h-4" />
               </a>
             </AnimatedSection>
@@ -283,7 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 7 — ÉTUDE DE CAS CEO ──────────────────────────── */}
+      {/* â”€â”€ SECTION 7 â€” Ã‰TUDE DE CAS CEO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="etude-de-cas" className="py-24 md:py-32 bg-bg-primary border-y border-border-subtle relative overflow-hidden">
         <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 
@@ -324,7 +324,7 @@ export default function Home() {
             <AnimatedSection delay={0.2}>
               <div className="bg-bg-secondary border border-gold/20 p-8 md:p-12 rounded-2xl shadow-xl mb-12 relative overflow-hidden group">
                 <div className="absolute -top-12 -right-12 w-24 h-24 bg-gold/5 rounded-full blur-2xl" />
-                <span className="text-4xl text-gold/20 font-serif absolute top-6 left-6">“</span>
+                <span className="text-4xl text-gold/20 font-serif absolute top-6 left-6">â€œ</span>
                 <p className="text-text-primary text-xl md:text-2xl font-serif italic leading-relaxed mb-8 pl-6 relative z-10">
                   {t("home.caseStudy.quote")}
                 </p>
@@ -372,7 +372,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 8 — ÉCOSYSTÈME UBB ────────────────────────────── */}
+      {/* â”€â”€ SECTION 8 â€” Ã‰COSYSTÃˆME UBB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="ecosysteme" className="py-24 bg-bg-secondary text-center">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection>
@@ -391,7 +391,7 @@ export default function Home() {
               </svg>
 
               {/* Center */}
-              <div className="absolute z-10 w-24 h-24 bg-bg-primary border-2 border-gold rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(201,151,58,0.2)]">
+              <div className="absolute z-10 w-24 h-24 bg-bg-primary border-2 border-gold rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(184,115,51,0.2)]">
                 <span className="font-serif font-bold text-2xl text-gold">UBB</span>
               </div>
 
@@ -428,10 +428,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 9 — APERÇU ÉQUIPE ─────────────────────────────── */}
+      {/* â”€â”€ SECTION 9 â€” APERÃ‡U Ã‰QUIPE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
 
 
-      {/* ── SECTION 10 — RESSOURCES & BLOG ────────────────────────── */}
+      {/* â”€â”€ SECTION 10 â€” RESSOURCES & BLOG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="ressources" className="py-24 bg-bg-secondary border-t border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
@@ -447,7 +447,7 @@ export default function Home() {
                   <p className="text-text-secondary text-sm mb-4">
                     {t("home.resources.packDesc")}
                   </p>
-                  <p className="text-gold font-bold mb-6">{language === "fr" ? "À partir de £20" : "From £20"}</p>
+                  <p className="text-gold font-bold mb-6">{language === "fr" ? "Ã€ partir de Â£20" : "From Â£20"}</p>
                   <Link to="/ebooks" className="inline-flex items-center gap-2 px-6 py-2.5 border border-gold text-gold font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold/10 transition-colors">
                     {t("home.resources.packCta")} <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -472,7 +472,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 11 — CTA FINAL ────────────────────────────────── */}
+      {/* â”€â”€ SECTION 11 â€” CTA FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section id="contact" className="py-32 relative overflow-hidden bg-[#0A0A0A] border-t border-border-subtle text-center">
         {/* Background Image overlay */}
         <div
@@ -496,7 +496,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
-              <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full shadow-[0_0_30px_rgba(201,151,58,0.3)]">
+              <a href="https://www.checkmyenterprise.com/pricing" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full shadow-[0_0_30px_rgba(184,115,51,0.3)]">
                 {t("home.finalCta.ctaPrimary")} <ArrowRight className="inline w-4 h-4 ml-1" />
               </a>
               <a href="tel:+221771970713" className="w-full sm:w-auto px-8 py-4 border border-border-subtle text-text-secondary hover:text-gold hover:border-gold transition-all font-bold uppercase tracking-widest text-sm rounded-full">
@@ -516,7 +516,7 @@ export default function Home() {
   );
 }
 
-// ── HeroSlider ────────────────────────────────────────────────────────────────
+// â”€â”€ HeroSlider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const HERO_IMAGES = [
   "/images/imagereal2.jpeg",
   "/images/hero3.jpg",
@@ -600,7 +600,7 @@ function HeroSlider() {
               href="https://www.checkmyenterprise.com/pricing"
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
+              className="px-8 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-all rounded-full hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)]"
             >
               {t("home.hero.ctaDiagnostic")} <ArrowRight className="inline w-4 h-4 ml-1" />
             </a>
@@ -634,4 +634,5 @@ function HeroSlider() {
     </section>
   );
 }
+
 

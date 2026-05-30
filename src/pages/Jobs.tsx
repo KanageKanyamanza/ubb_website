@@ -1,4 +1,4 @@
-// src/pages/Jobs.tsx
+﻿// src/pages/Jobs.tsx
 import { motion } from "motion/react";
 import { ArrowRight, Briefcase, Globe, Award, ChevronRight, ExternalLink } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
@@ -20,7 +20,7 @@ export default function Jobs() {
   return (
     <div className="flex flex-col w-full bg-bg-primary overflow-hidden">
       
-      {/* ── Hero Section ─────────────────────────────────────────── */}
+      {/* â”€â”€ Hero Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="relative pt-48 pb-32 overflow-hidden border-b border-border-subtle min-h-[70vh] flex items-center">
         {/* Background Image with Overlay */}
         <div 
@@ -57,7 +57,7 @@ export default function Jobs() {
         </div>
       </section>
 
-      {/* ── Main Proposition ─────────────────────────────────────── */}
+      {/* â”€â”€ Main Proposition â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-32 relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -83,7 +83,7 @@ export default function Jobs() {
               <div className="flex flex-col sm:flex-row gap-6">
                 <a
                   href="/postuler"
-                  className="px-10 py-5 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(201,151,58,0.4)] transition-all flex items-center justify-center gap-3 rounded-sm group"
+                  className="px-10 py-5 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(184,115,51,0.4)] transition-all flex items-center justify-center gap-3 rounded-sm group"
                 >
                   {t("jobs.proposition.ctaPrimary")}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -107,7 +107,7 @@ export default function Jobs() {
                 <div className="relative overflow-hidden rounded-sm shadow-2xl z-10 aspect-[4/5] lg:aspect-auto">
                   <img 
                     src="https://d1yei2z3i6k35z.cloudfront.net/10694324/692dd47212f80_1202.jpg" 
-                    alt="Opportunité UBB" 
+                    alt="OpportunitÃ© UBB" 
                     className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
                   />
                   {/* Subtle Overlay */}
@@ -123,11 +123,11 @@ export default function Jobs() {
         </div>
       </section>
 
-      {/* ── Key Benefits ─────────────────────────────────────────── */}
+      {/* â”€â”€ Key Benefits â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-32 bg-bg-secondary relative overflow-hidden">
         {/* Geometric Background */}
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-          style={{ backgroundImage: "radial-gradient(circle, #C9973A 1px, transparent 1px)", backgroundSize: "60px 60px" }}
+          style={{ backgroundImage: "radial-gradient(circle, #B87333 1px, transparent 1px)", backgroundSize: "60px 60px" }}
         />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -168,7 +168,7 @@ export default function Jobs() {
         </div>
       </section>
 
-      {/* ── Compensation Section ─────────────────────────────────── */}
+      {/* â”€â”€ Compensation Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-32 bg-bg-primary relative">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <AnimatedSection>
@@ -181,7 +181,7 @@ export default function Jobs() {
               <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               <img 
                 src="https://d1yei2z3i6k35z.cloudfront.net/10694324/692f0c65e74dd_1831.jpg" 
-                alt="Modèle de Rémunération UBB" 
+                alt="ModÃ¨le de RÃ©munÃ©ration UBB" 
                 className="w-full h-auto transition-transform duration-1000 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/60 via-transparent to-transparent" />
@@ -200,7 +200,7 @@ export default function Jobs() {
         </div>
       </section>
 
-      {/* ── Final Call to Action ─────────────────────────────────── */}
+      {/* â”€â”€ Final Call to Action â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-32 border-t border-border-subtle relative overflow-hidden">
         {/* Background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
@@ -213,7 +213,7 @@ export default function Jobs() {
             </p>
             <a
               href="/postuler"
-              className="inline-flex items-center gap-4 px-12 py-6 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_30px_rgba(201,151,58,0.5)] transition-all rounded-sm group"
+              className="inline-flex items-center gap-4 px-12 py-6 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_30px_rgba(184,115,51,0.5)] transition-all rounded-sm group"
             >
               {t("jobs.cta.cta")}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
@@ -225,5 +225,6 @@ export default function Jobs() {
     </div>
   );
 }
+
 
 

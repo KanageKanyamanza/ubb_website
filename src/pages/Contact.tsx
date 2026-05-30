@@ -1,4 +1,4 @@
-// src/pages/Contact.tsx
+﻿// src/pages/Contact.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, CheckCircle, Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
@@ -66,7 +66,7 @@ export default function Contact() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-bg-primary">
 
-      {/* ── HERO ──────────────────────────────────────────── */}
+      {/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gold/6 blur-[120px] rounded-full pointer-events-none" />
         <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
@@ -86,12 +86,12 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── MAIN CONTENT ──────────────────────────────────── */}
+      {/* â”€â”€ MAIN CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="pb-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
 
-            {/* Left — Contact Info */}
+            {/* Left â€” Contact Info */}
             <AnimatedSection className="lg:col-span-2 lg:sticky lg:top-32">
               <div className="space-y-6">
                 {contactInfo.map((info, i) => (
@@ -129,7 +129,7 @@ export default function Contact() {
               </div>
             </AnimatedSection>
 
-            {/* Right — Form */}
+            {/* Right â€” Form */}
             <AnimatedSection delay={0.2} className="lg:col-span-3">
               <AnimatePresence mode="wait">
                 {!submitted ? (
@@ -184,7 +184,7 @@ export default function Contact() {
                       </div>
 
                       <button type="submit" disabled={loading}
-                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2">
+                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2">
                         {loading ? (
                           <><div className="w-4 h-4 border-2 border-bg-primary/40 border-t-bg-primary rounded-full animate-spin" /> {t("contact.form.submitting")}</>
                         ) : (
@@ -229,3 +229,4 @@ export default function Contact() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-// src/pages/Actualites.tsx
+﻿// src/pages/Actualites.tsx
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useNews } from "../context/NewsContext";
@@ -53,7 +53,7 @@ export default function Actualites() {
   return (
     <div className="flex flex-col w-full min-h-screen">
 
-      {/* ── SECTION 1 — HERO ──────────────────────────────────────── */}
+      {/* â”€â”€ SECTION 1 â€” HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="bg-bg-primary pt-40 pb-20 text-center relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold/5 blur-[100px] rounded-full pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-10">
@@ -72,7 +72,7 @@ export default function Actualites() {
         </div>
       </section>
 
-      {/* ── SECTION 2 — FILTRES CATÉGORIE ───────────────────────────── */}
+      {/* â”€â”€ SECTION 2 â€” FILTRES CATÃ‰GORIE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="bg-bg-secondary border-b border-border-subtle py-4 sticky top-0 z-40 shadow-md">
         <div className="max-w-7xl mx-auto px-6 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-2 min-w-max md:justify-center">
@@ -82,7 +82,7 @@ export default function Actualites() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                   activeCategory === category
-                    ? "bg-gold text-bg-primary shadow-[0_0_15px_rgba(201,151,58,0.4)]"
+                    ? "bg-gold text-bg-primary shadow-[0_0_15px_rgba(184,115,51,0.4)]"
                     : "border border-border-subtle text-text-muted hover:border-gold hover:text-gold bg-bg-primary"
                 }`}
               >
@@ -93,7 +93,7 @@ export default function Actualites() {
         </div>
       </section>
 
-      {/* ── SECTION 3 — GALERIE ENRICHIE ────────────────────────────── */}
+      {/* â”€â”€ SECTION 3 â€” GALERIE ENRICHIE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="bg-bg-primary py-16 min-h-[500px]">
         <div className="max-w-7xl mx-auto px-6">
 
@@ -153,7 +153,7 @@ export default function Actualites() {
         </div>
       </section>
 
-      {/* ── MODAL D'AGRANDISSEMENT ──────────────────────────────────── */}
+      {/* â”€â”€ MODAL D'AGRANDISSEMENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <AnimatePresence>
         {selectedImageIndex !== null && (
           <motion.div
@@ -218,7 +218,7 @@ export default function Actualites() {
         )}
       </AnimatePresence>
 
-      {/* ── SECTION 4 — PROJETS STRATÉGIQUES ────────────────────────── */}
+      {/* â”€â”€ SECTION 4 â€” PROJETS STRATÃ‰GIQUES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="bg-bg-secondary py-24 border-t border-border-subtle">
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
@@ -254,7 +254,7 @@ export default function Actualites() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="bg-[#131313] border border-gold/30 rounded-2xl p-10 h-full flex flex-col relative overflow-hidden group hover:border-gold/50 transition-colors shadow-[0_0_30px_rgba(201,151,58,0.05)]">
+              <div className="bg-[#131313] border border-gold/30 rounded-2xl p-10 h-full flex flex-col relative overflow-hidden group hover:border-gold/50 transition-colors shadow-[0_0_30px_rgba(184,115,51,0.05)]">
                 <div className="absolute top-0 left-0 w-32 h-32 bg-gold/10 blur-3xl rounded-full" />
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-gold text-bg-primary text-[10px] font-bold uppercase tracking-widest rounded-full self-start mb-8">
                   {t("actualites.tools.harvests.badge")}
@@ -282,7 +282,7 @@ export default function Actualites() {
         </div>
       </section>
 
-      {/* ── SECTION 5 — CTA NEWSLETTER ──────────────────────────────── */}
+      {/* â”€â”€ SECTION 5 â€” CTA NEWSLETTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="bg-bg-primary py-20 border-t border-border-subtle text-center">
         <div className="max-w-2xl mx-auto px-6">
           <AnimatedSection>
@@ -301,3 +301,4 @@ export default function Actualites() {
     </div>
   );
 }
+

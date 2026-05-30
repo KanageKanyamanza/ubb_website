@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, ChevronDown, Phone, Facebook, Linkedin, Instagram, Youtube, Globe } from "lucide-react";
@@ -36,7 +36,7 @@ export default function Navbar() {
       case "E-books": return "nav.ebooks";
       case "Blog": return "nav.blog";
       case "Contact": return "nav.contact";
-      case "Actualités": return "nav.actualites";
+      case "ActualitÃ©s": return "nav.actualites";
       case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
       case "PARTENARIAT": return "nav.applyPartner";
       case "Partenaire Local": return "nav.partner";
@@ -71,7 +71,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Top Bar ────────────────────────────────────────────── */}
+      {/* â”€â”€ Top Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
@@ -112,7 +112,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── Main Navbar ─────────────────────────────────────────── */}
+      {/* â”€â”€ Main Navbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <nav
         className={`fixed left-0 w-full z-40 transition-all duration-500 ${
           scrolled
@@ -147,7 +147,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* ── Desktop Navigation ─────────────────────────────── */}
+          {/* â”€â”€ Desktop Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           <div className="hidden lg:flex items-center gap-1">
             {mainLinks.map((item) => {
               const itemKey = getTranslationKey(item.name);
@@ -262,9 +262,9 @@ export default function Navbar() {
             {/* CTA */}
             <Link
               to="/inscription"
-              className="relative overflow-hidden px-6 py-2.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(201,151,58,0.45)] hover:scale-105 active:scale-95"
+              className="relative overflow-hidden px-6 py-2.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(184,115,51,0.45)] hover:scale-105 active:scale-95"
               style={{
-                background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)",
+                background: "linear-gradient(135deg, #D4A574 0%, #B87333 60%, #8B5220 100%)",
               }}
             >
               <span className="relative z-10">{t("nav.register")}</span>
@@ -301,7 +301,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ── Mobile Menu (slide from right) ──────────────────────── */}
+      {/* â”€â”€ Mobile Menu (slide from right) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -463,7 +463,7 @@ export default function Navbar() {
                       language === "fr" ? "text-gold bg-gold/15" : "text-text-muted"
                     }`}
                   >
-                    Français
+                    FranÃ§ais
                   </button>
                   <button
                     onClick={() => { setLanguage("en"); setIsOpen(false); }}
@@ -481,7 +481,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="text-center py-3.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full"
                   style={{
-                    background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)",
+                    background: "linear-gradient(135deg, #D4A574 0%, #B87333 60%, #8B5220 100%)",
                   }}
                 >
                   {t("nav.register")}
@@ -494,3 +494,4 @@ export default function Navbar() {
     </>
   );
 }
+

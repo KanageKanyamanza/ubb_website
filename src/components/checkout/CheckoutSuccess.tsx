@@ -1,4 +1,4 @@
-// src/components/checkout/CheckoutSuccess.tsx
+﻿// src/components/checkout/CheckoutSuccess.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle2, Package } from "lucide-react";
@@ -46,7 +46,7 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
         <div className="flex justify-between items-center border-b border-border-subtle pb-4">
           <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">{t("checkout.amountLabel")}</span>
           <div className="text-right">
-            <span className="text-sm text-gold font-bold">23,50 €</span>
+            <span className="text-sm text-gold font-bold">23,50 â‚¬</span>
             <span className="text-[10px] text-text-muted block mt-1">{t("checkout.processedInGbp")}</span>
           </div>
         </div>
@@ -67,7 +67,7 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
       <div className="flex flex-col sm:flex-row gap-4">
         <button
           onClick={() => navigate("/")}
-          className="flex-1 py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(201,151,58,0.3)] transition-all flex items-center justify-center gap-2"
+          className="flex-1 py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(184,115,51,0.3)] transition-all flex items-center justify-center gap-2"
         >
           {t("checkout.homeCta")}
         </button>
@@ -88,3 +88,4 @@ export const CheckoutSuccess: React.FC<CheckoutSuccessProps> = ({
     </div>
   );
 };
+

@@ -1,4 +1,4 @@
-// src/pages/Postuler.tsx
+﻿// src/pages/Postuler.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, CheckCircle, Globe, Award, Users, Briefcase, ChevronDown } from "lucide-react";
@@ -37,16 +37,16 @@ export default function Postuler() {
   };
 
   const pays = [
-    { value: "Sénégal", label: t("countries.senegal") },
-    { value: "Côte d'Ivoire", label: t("countries.cote_divoire") },
+    { value: "SÃ©nÃ©gal", label: t("countries.senegal") },
+    { value: "CÃ´te d'Ivoire", label: t("countries.cote_divoire") },
     { value: "Cameroun", label: t("countries.cameroun") },
     { value: "Mali", label: t("countries.mali") },
     { value: "Burkina Faso", label: t("countries.burkina_faso") },
     { value: "RDC", label: t("countries.rdc") },
     { value: "Congo", label: t("countries.congo") },
     { value: "Togo", label: t("countries.togo") },
-    { value: "Bénin", label: t("countries.benin") },
-    { value: "Guinée", label: t("countries.guinee") },
+    { value: "BÃ©nin", label: t("countries.benin") },
+    { value: "GuinÃ©e", label: t("countries.guinee") },
     { value: "Niger", label: t("countries.niger") },
     { value: "Mauritanie", label: t("countries.mauritanie") },
     { value: "Gabon", label: t("countries.gabon") },
@@ -72,7 +72,7 @@ export default function Postuler() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-bg-primary">
 
-      {/* ── HERO ──────────────────────────────────────────── */}
+      {/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="relative pt-48 pb-24 overflow-hidden border-b border-border-subtle">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15"
@@ -96,7 +96,7 @@ export default function Postuler() {
         </div>
       </section>
 
-      {/* ── BENEFITS ──────────────────────────────────────── */}
+      {/* â”€â”€ BENEFITS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-20 bg-bg-secondary border-b border-border-subtle">
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection className="text-center mb-14">
@@ -106,7 +106,7 @@ export default function Postuler() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((b, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 h-full hover:border-gold/30 transition-all hover:shadow-[0_8px_30px_rgba(201,151,58,0.08)] group">
+                <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 h-full hover:border-gold/30 transition-all hover:shadow-[0_8px_30px_rgba(184,115,51,0.08)] group">
                   <div className="w-12 h-12 rounded-xl bg-bg-secondary border border-border-subtle flex items-center justify-center mb-6 group-hover:border-gold/40 transition-colors">
                     {b.icon}
                   </div>
@@ -119,7 +119,7 @@ export default function Postuler() {
         </div>
       </section>
 
-      {/* ── FORM + FAQ ────────────────────────────────────── */}
+      {/* â”€â”€ FORM + FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -148,7 +148,7 @@ export default function Postuler() {
                         </div>
                         <div>
                           <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.nom")}</label>
-                          <input type="text" name="nom" required value={form.nom} onChange={handleChange} placeholder="Koné"
+                          <input type="text" name="nom" required value={form.nom} onChange={handleChange} placeholder="KonÃ©"
                             className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
                         </div>
                       </div>
@@ -189,7 +189,7 @@ export default function Postuler() {
                       </div>
 
                       <button type="submit" disabled={loading}
-                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2">
+                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2">
                         {loading ? (
                           <><div className="w-4 h-4 border-2 border-bg-primary/40 border-t-bg-primary rounded-full animate-spin" /> {t("postuler.form.submitting")}</>
                         ) : (
@@ -266,3 +266,4 @@ export default function Postuler() {
     </div>
   );
 }
+

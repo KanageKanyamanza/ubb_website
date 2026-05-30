@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+﻿import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
@@ -19,7 +19,7 @@ export default function Founder() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       
-      {/* ── SECTION 1 — HERO FONDATEUR ────────────────────────────────── */}
+      {/* â”€â”€ SECTION 1 â€” HERO FONDATEUR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="bg-bg-primary pt-32 pb-24 border-b border-border-subtle relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 blur-3xl rounded-full pointer-events-none" />
         
@@ -58,7 +58,7 @@ export default function Founder() {
             </AnimatedSection>
             
             <AnimatedSection delay={0.2} className="lg:col-span-5 h-full">
-              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] border border-border-subtle h-full shadow-[0_0_40px_rgba(201,151,58,0.1)]">
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] border border-border-subtle h-full shadow-[0_0_40px_rgba(184,115,51,0.1)]">
                 <img 
                   src="https://d1yei2z3i6k35z.cloudfront.net/10694324/69f9d5444cd729.29932403_ambroseimage.jpeg" 
                   alt="Ambrose Nzeyimana" 
@@ -72,7 +72,7 @@ export default function Founder() {
         </div>
       </section>
 
-      {/* ── SECTION 2 — BANDE DE CHIFFRES CLÉS ────────────────────────── */}
+      {/* â”€â”€ SECTION 2 â€” BANDE DE CHIFFRES CLÃ‰S â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-12 border-b border-border-subtle" style={{ backgroundColor: "#131313" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border-subtle">
@@ -96,7 +96,7 @@ export default function Founder() {
         </div>
       </section>
 
-      {/* ── SECTION 3 — EXPERTISE ─────────────────────────────────────── */}
+      {/* â”€â”€ SECTION 3 â€” EXPERTISE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 bg-bg-primary">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
@@ -138,7 +138,7 @@ export default function Founder() {
         </div>
       </section>
 
-      {/* ── SECTION 4 — PARCOURS (TIMELINE) ──────────────────────────── */}
+      {/* â”€â”€ SECTION 4 â€” PARCOURS (TIMELINE) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 bg-bg-secondary border-t border-border-subtle relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
@@ -150,7 +150,7 @@ export default function Founder() {
             
             {/* Item 1 */}
             <AnimatedSection className="relative pl-8 md:pl-12">
-              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#C9973A]" />
+              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#B87333]" />
               <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2">{t("founder.timeline.item1Tag")}</div>
               <h3 className="text-2xl font-serif text-text-primary mb-4">{t("founder.timeline.item1Title")}</h3>
               <p className="text-text-secondary leading-relaxed mb-4">
@@ -160,7 +160,7 @@ export default function Founder() {
 
             {/* Item 2 */}
             <AnimatedSection className="relative pl-8 md:pl-12">
-              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#C9973A]" />
+              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#B87333]" />
               <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2">{t("founder.timeline.item2Tag")}</div>
               <h3 className="text-2xl font-serif text-text-primary mb-4">{t("founder.timeline.item2Title")}</h3>
               <p className="text-text-secondary leading-relaxed mb-4">
@@ -170,7 +170,7 @@ export default function Founder() {
 
             {/* Item 3 */}
             <AnimatedSection className="relative pl-8 md:pl-12">
-              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#C9973A]" />
+              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#B87333]" />
               <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2">{t("founder.timeline.item3Tag")}</div>
               <h3 className="text-2xl font-serif text-text-primary mb-4">{t("founder.timeline.item3Title")}</h3>
               <p className="text-text-secondary leading-relaxed">
@@ -180,7 +180,7 @@ export default function Founder() {
 
             {/* Item 4 */}
             <AnimatedSection className="relative pl-8 md:pl-12">
-              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#C9973A]" />
+              <div className="absolute top-0 -left-1.5 w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_#B87333]" />
               <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2">{t("founder.timeline.item4Tag")}</div>
               <h3 className="text-2xl font-serif text-text-primary mb-4">{t("founder.timeline.item4Title")}</h3>
               <p className="text-text-secondary leading-relaxed">
@@ -192,7 +192,7 @@ export default function Founder() {
         </div>
       </section>
 
-      {/* ── SECTION 5 — PHILOSOPHIE UBUNTU ────────────────────────────── */}
+      {/* â”€â”€ SECTION 5 â€” PHILOSOPHIE UBUNTU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-32 bg-bg-primary text-center">
         <div className="max-w-3xl mx-auto px-6">
           <AnimatedSection>
@@ -214,7 +214,7 @@ export default function Founder() {
         </div>
       </section>
 
-      {/* ── SECTION 6 — MESSAGE DU CEO (ÉTUDE DE CAS) ─────────────────── */}
+      {/* â”€â”€ SECTION 6 â€” MESSAGE DU CEO (Ã‰TUDE DE CAS) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 bg-bg-secondary border-t border-border-subtle relative">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection>
@@ -265,7 +265,7 @@ export default function Founder() {
         </div>
       </section>
 
-      {/* ── SECTION 7 — CTA FINAL ─────────────────────────────────────── */}
+      {/* â”€â”€ SECTION 7 â€” CTA FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 bg-[#0A0A0A] border-t border-border-subtle text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/10 blur-[100px] rounded-full pointer-events-none" />
         
@@ -299,3 +299,4 @@ export default function Founder() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-// src/pages/Workbook.tsx
+﻿// src/pages/Workbook.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, CheckCircle, BookOpen, TrendingUp, Clock, Star } from "lucide-react";
@@ -35,9 +35,9 @@ export default function Workbook() {
 
   const pays = [
     "Botswana", "Burkina Faso", "Cameroun", "Congo Brazzaville",
-    "Égypte", "Éthiopie", "Gabon", "Ghana", "Guinée Conakry",
-    "Côte d'Ivoire", "Kenya", "Madagascar", "Mali",
-    "Namibie", "Sénégal", "Afrique du Sud", "Zambie", "Zimbabwe"
+    "Ã‰gypte", "Ã‰thiopie", "Gabon", "Ghana", "GuinÃ©e Conakry",
+    "CÃ´te d'Ivoire", "Kenya", "Madagascar", "Mali",
+    "Namibie", "SÃ©nÃ©gal", "Afrique du Sud", "Zambie", "Zimbabwe"
   ];
 
   const benefitItems = [
@@ -61,7 +61,7 @@ export default function Workbook() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-bg-primary">
 
-      {/* ── HERO ──────────────────────────────────────────── */}
+      {/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/6 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute -top-10 right-0 w-[400px] h-[400px] bg-gold/4 blur-[100px] rounded-full pointer-events-none" />
@@ -83,12 +83,12 @@ export default function Workbook() {
         </div>
       </section>
 
-      {/* ── MAIN CONTENT ──────────────────────────────────── */}
+      {/* â”€â”€ MAIN CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="pb-32 relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-            {/* Left — Benefits */}
+            {/* Left â€” Benefits */}
             <AnimatedSection className="lg:sticky lg:top-32">
               <div className="bg-bg-secondary border border-border-subtle rounded-2xl p-10 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-gold/5 blur-3xl rounded-full" />
@@ -138,7 +138,7 @@ export default function Workbook() {
               </div>
             </AnimatedSection>
 
-            {/* Right — Form */}
+            {/* Right â€” Form */}
             <AnimatedSection delay={0.2}>
               <AnimatePresence mode="wait">
                 {!submitted ? (
@@ -224,7 +224,7 @@ export default function Workbook() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2"
+                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2"
                       >
                         {loading ? (
                           <>
@@ -279,3 +279,4 @@ export default function Workbook() {
     </div>
   );
 }
+

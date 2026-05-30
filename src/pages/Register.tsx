@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+﻿import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
@@ -51,7 +51,7 @@ export default function Register() {
   return (
     <div className="pt-32 flex flex-col w-full min-h-screen items-center justify-center bg-bg-primary relative overflow-hidden">
       
-      {/* ── Background Slideshow (Sliding effect) ─────────────────── */}
+      {/* â”€â”€ Background Slideshow (Sliding effect) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-bg-primary">
         {/* Fallback static background */}
         <div 
@@ -182,7 +182,7 @@ export default function Register() {
 
                    <div className="pt-8 text-center">
                       <motion.button 
-                        whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(201, 151, 58, 0.4)" }}
+                        whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(184,115,51, 0.4)" }}
                         whileTap={{ scale: 0.98 }}
                         disabled={loading}
                         type="submit"
@@ -212,7 +212,7 @@ export default function Register() {
                   </p>
                   <a
                     href="/ebooks"
-                    className="px-10 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-xs rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(201,151,58,0.4)]"
+                    className="px-10 py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-xs rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)]"
                   >
                     {t("register.form.successCta")}
                   </a>
@@ -229,3 +229,4 @@ export default function Register() {
     </div>
   );
 }
+

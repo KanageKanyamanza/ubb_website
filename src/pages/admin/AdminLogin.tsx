@@ -1,4 +1,4 @@
-// src/pages/admin/AdminLogin.tsx
+﻿// src/pages/admin/AdminLogin.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -17,7 +17,7 @@ export default function AdminLogin() {
     if (login(username, password)) {
       navigate("/admin/dashboard");
     } else {
-      setError("Identifiants incorrects. Veuillez réessayer.");
+      setError("Identifiants incorrects. Veuillez rÃ©essayer.");
     }
   };
 
@@ -40,7 +40,7 @@ export default function AdminLogin() {
           <div className="h-px w-24 bg-gold/30 mx-auto mb-6" />
           
           <h2 className="text-xl text-text-primary font-medium tracking-wide">Espace Administrateur</h2>
-          <p className="text-text-muted text-sm mt-2">Accès réservé à l'équipe UBB</p>
+          <p className="text-text-muted text-sm mt-2">AccÃ¨s rÃ©servÃ© Ã  l'Ã©quipe UBB</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-bg-card border border-border-subtle p-8 rounded-sm shadow-2xl">
@@ -75,7 +75,7 @@ export default function AdminLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-bg-primary border border-border-subtle rounded-sm py-3.5 pl-12 pr-12 text-text-primary focus:outline-none focus:border-gold/50 transition-colors"
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                   required
                 />
                 <button
@@ -90,7 +90,7 @@ export default function AdminLogin() {
 
             <button
               type="submit"
-              className="w-full py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(201,151,58,0.3)] transition-all mt-4"
+              className="w-full py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(184,115,51,0.3)] transition-all mt-4"
             >
               Se connecter
             </button>
@@ -98,9 +98,10 @@ export default function AdminLogin() {
         </form>
         
         <p className="text-center mt-8 text-text-muted text-[10px] uppercase tracking-widest">
-          Système de gestion sécurisé &copy; {new Date().getFullYear()} UBB
+          SystÃ¨me de gestion sÃ©curisÃ© &copy; {new Date().getFullYear()} UBB
         </p>
       </div>
     </div>
   );
 }
+

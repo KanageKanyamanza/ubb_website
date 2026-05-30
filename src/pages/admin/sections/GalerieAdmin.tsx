@@ -1,4 +1,4 @@
-// src/pages/admin/sections/GalerieAdmin.tsx
+﻿// src/pages/admin/sections/GalerieAdmin.tsx
 import React, { useState } from "react";
 import { useNews, NewsImage } from "../../../context/NewsContext";
 import { CATEGORIES } from "../../../data/news";
@@ -81,9 +81,9 @@ export default function GalerieAdmin() {
       {/* Header Actions */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-bg-card p-6 border border-border-subtle rounded-sm">
         <div>
-          <h2 className="text-2xl font-serif text-text-primary italic">Galerie Actualités</h2>
+          <h2 className="text-2xl font-serif text-text-primary italic">Galerie ActualitÃ©s</h2>
           <p className="text-text-muted text-sm mt-1">
-            {newsGallery.length} images au total &bull; <span className="text-green-400">{visibleCount} visibles</span> &bull; <span className="text-text-muted">{newsGallery.length - visibleCount} masquées</span>
+            {newsGallery.length} images au total &bull; <span className="text-green-400">{visibleCount} visibles</span> &bull; <span className="text-text-muted">{newsGallery.length - visibleCount} masquÃ©es</span>
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
@@ -93,11 +93,11 @@ export default function GalerieAdmin() {
               isReordering ? "bg-gold text-bg-primary border-gold" : "border-gold/40 text-gold hover:bg-gold/10"
             }`}
           >
-            {isReordering ? "Valider l'ordre" : "Réorganiser"}
+            {isReordering ? "Valider l'ordre" : "RÃ©organiser"}
           </button>
           <button
             onClick={() => openModal()}
-            className="px-6 py-2.5 bg-gold-gradient text-bg-primary rounded-sm text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_15px_rgba(201,151,58,0.3)] transition-all flex items-center gap-2"
+            className="px-6 py-2.5 bg-gold-gradient text-bg-primary rounded-sm text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_15px_rgba(184,115,51,0.3)] transition-all flex items-center gap-2"
           >
             <Plus className="w-4 h-4" />
             Ajouter une image
@@ -124,7 +124,7 @@ export default function GalerieAdmin() {
               {!img.visible && (
                 <div className="absolute inset-0 bg-bg-primary/60 backdrop-blur-[1px] flex items-center justify-center">
                   <div className="px-3 py-1 bg-bg-card border border-text-muted rounded-full text-[10px] text-text-muted uppercase tracking-widest font-bold">
-                    Masquée
+                    MasquÃ©e
                   </div>
                 </div>
               )}
@@ -139,12 +139,12 @@ export default function GalerieAdmin() {
             <div className="p-4 flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-3">
                 <span className={`text-[10px] uppercase tracking-widest font-bold ${img.visible ? "text-green-400" : "text-text-muted"}`}>
-                  {img.visible ? "Visible" : "Masquée"}
+                  {img.visible ? "Visible" : "MasquÃ©e"}
                 </span>
                 <span className="text-[10px] text-text-muted font-mono">{img.date}</span>
               </div>
               <h4 className="text-text-primary text-sm font-serif italic mb-4 line-clamp-1">
-                {img.caption || "Sans légende"}
+                {img.caption || "Sans lÃ©gende"}
               </h4>
               
               <div className="mt-auto pt-4 border-t border-border-subtle flex justify-between items-center">
@@ -197,11 +197,11 @@ export default function GalerieAdmin() {
               {/* Preview */}
               <div className="aspect-video w-full bg-bg-primary border border-border-subtle rounded-sm overflow-hidden relative flex items-center justify-center text-text-muted">
                 {url ? (
-                  <img src={url} alt="Aperçu" className="w-full h-full object-contain" />
+                  <img src={url} alt="AperÃ§u" className="w-full h-full object-contain" />
                 ) : (
                   <div className="flex flex-col items-center gap-3">
                     <ImageIcon className="w-10 h-10 opacity-20" />
-                    <span className="text-xs uppercase tracking-widest">Aperçu de l'image</span>
+                    <span className="text-xs uppercase tracking-widest">AperÃ§u de l'image</span>
                   </div>
                 )}
               </div>
@@ -231,8 +231,8 @@ export default function GalerieAdmin() {
                         <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
                           <Plus className="w-5 h-5 text-gold" />
                         </div>
-                        <span className="text-xs text-text-secondary uppercase tracking-widest font-bold">Sélectionner un fichier local</span>
-                        <p className="text-[10px] text-text-muted">JPG, PNG ou WEBP (max 2Mo recommandé)</p>
+                        <span className="text-xs text-text-secondary uppercase tracking-widest font-bold">SÃ©lectionner un fichier local</span>
+                        <p className="text-[10px] text-text-muted">JPG, PNG ou WEBP (max 2Mo recommandÃ©)</p>
                       </div>
                     </div>
 
@@ -255,7 +255,7 @@ export default function GalerieAdmin() {
                 </div>
                 
                 <div>
-                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">Légende (optionnelle)</label>
+                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">LÃ©gende (optionnelle)</label>
                   <input
                     type="text"
                     value={caption}
@@ -266,7 +266,7 @@ export default function GalerieAdmin() {
                 </div>
 
                 <div>
-                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">Catégorie</label>
+                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">CatÃ©gorie</label>
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
@@ -299,7 +299,7 @@ export default function GalerieAdmin() {
                         visible ? "border-green-500/30 bg-green-500/5 text-green-400" : "border-border-subtle text-text-muted"
                       }`}
                     >
-                      <span className="text-xs uppercase tracking-widest font-bold">{visible ? "Visible" : "Masquée"}</span>
+                      <span className="text-xs uppercase tracking-widest font-bold">{visible ? "Visible" : "MasquÃ©e"}</span>
                       {visible ? <Check className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                     </button>
                   </div>
@@ -317,9 +317,9 @@ export default function GalerieAdmin() {
               <button
                 onClick={handleSave}
                 disabled={!url}
-                className="px-8 py-3 bg-gold-gradient text-bg-primary rounded-sm text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_15px_rgba(201,151,58,0.3)] transition-all disabled:opacity-30"
+                className="px-8 py-3 bg-gold-gradient text-bg-primary rounded-sm text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_15px_rgba(184,115,51,0.3)] transition-all disabled:opacity-30"
               >
-                {editingImage ? "Mettre à jour" : "Enregistrer"}
+                {editingImage ? "Mettre Ã  jour" : "Enregistrer"}
               </button>
             </div>
           </div>
@@ -335,7 +335,7 @@ export default function GalerieAdmin() {
             
             <h3 className="text-2xl font-serif text-text-primary italic mb-4">Confirmer la suppression</h3>
             <p className="text-text-secondary text-sm leading-relaxed mb-10">
-              Êtes-vous sûr de vouloir supprimer cette actualité ? Cette action est irréversible et l'image sera retirée du site.
+              ÃŠtes-vous sÃ»r de vouloir supprimer cette actualitÃ© ? Cette action est irrÃ©versible et l'image sera retirÃ©e du site.
             </p>
 
             <div className="flex gap-4">
@@ -361,3 +361,4 @@ export default function GalerieAdmin() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Link } from "react-router-dom";
 import { navigation } from "../data/navigation";
 import { Phone, Mail, MapPin, ArrowRight, Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
@@ -30,7 +30,7 @@ export default function Footer() {
       case "UBB Team": return "nav.team";
       case "Jobs & Careers": return "nav.careers";
       case "E-books": return "nav.ebooks";
-      case "Actualités": return "nav.actualites";
+      case "ActualitÃ©s": return "nav.actualites";
       case "S'inscrire": return "nav.register";
       case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
       case "Partenariat": return "nav.applyPartner";
@@ -44,7 +44,7 @@ export default function Footer() {
     { label: "UBB Team", to: "/team" },
     { label: "Jobs & Careers", to: "/jobs" },
     { label: "E-books", to: "/ebooks" },
-    { label: "Actualités", to: "/actualites" },
+    { label: "ActualitÃ©s", to: "/actualites" },
     { label: "S'inscrire", to: "/inscription" },
   ];
 
@@ -67,7 +67,7 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
 
-        {/* ── Main grid ─────────────────────────────────── */}
+        {/* â”€â”€ Main grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
 
           {/* Brand col */}
@@ -93,7 +93,7 @@ export default function Footer() {
 
             {/* Legal info */}
             <div className="text-[11px] text-text-muted space-y-1 mb-8 pl-3 border-l border-gold/30">
-              <p className="font-medium text-text-secondary">UBUNTU BUSINESS BUILDERS (UBB) – SARL</p>
+              <p className="font-medium text-text-secondary">UBUNTU BUSINESS BUILDERS (UBB) â€“ SARL</p>
               <p>RCCM : SN.DKR.2026.B.1650</p>
               <p>NINEA : 012753069</p>
             </div>
@@ -198,15 +198,15 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gold/60 mt-0.5 flex-shrink-0" />
-                <span>Dakar, Sénégal — Afrique</span>
+                <span>Dakar, SÃ©nÃ©gal â€” Afrique</span>
               </li>
             </ul>
 
             {/* CTA mini */}
             <Link
               to="/inscription"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-bg-primary px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(201,151,58,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 group"
-              style={{ background: "linear-gradient(135deg, #E8BC6A 0%, #C9973A 60%, #A87B28 100%)" }}
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-bg-primary px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(184,115,51,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 group"
+              style={{ background: "linear-gradient(135deg, #D4A574 0%, #B87333 60%, #8B5220 100%)" }}
             >
               {t("footer.joinUbb")}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -214,10 +214,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── Bottom bar ──────────────────────────────── */}
+        {/* â”€â”€ Bottom bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-text-muted text-xs">
-            © {year} Ubuntu Business Builders · {t("common.copyright")}
+            Â© {year} Ubuntu Business Builders Â· {t("common.copyright")}
           </p>
           <div className="flex items-center gap-6 text-text-muted text-xs">
             <span className="flex items-center gap-1.5">
@@ -234,3 +234,4 @@ export default function Footer() {
     </footer>
   );
 }
+
