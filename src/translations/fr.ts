@@ -28,7 +28,7 @@ export const fr = {
     team: "L'équipe",
     services: "Services",
     careers: "Carrières",
-    ebooks: "E-books",
+    ebooks: "Ressources",
     blog: "Blog",
     contact: "Contact",
     actualites: "Actualités",
@@ -466,6 +466,12 @@ export const fr = {
       desc: "E-books, podcasts et formations vidéo conçus pour les dirigeants d'entreprises africaines qui veulent des résultats concrets, pas des théories génériques.",
       packTitle: "Pack complet",
       cta: "Obtenir le pack"
+    },
+    webinar: {
+      tag: "Contenu Audio & Vidéo",
+      title: "Webinaire UBB",
+      desc: "Regardez notre webinaire exclusif pour aller plus loin dans votre transformation entrepreneuriale.",
+      fallback: "Votre navigateur ne supporte pas la lecture vidéo."
     },
     journey: {
       title: "Votre parcours avec UBB",

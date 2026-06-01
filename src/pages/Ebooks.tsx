@@ -106,13 +106,13 @@ export default function Ebooks() {
         <div className={'max-w-4xl mx-auto px-6'}>
           <AnimatedSection className={'text-center mb-10'}>
             <span className={'text-gold text-xs uppercase tracking-widest font-bold block mb-3'}>
-              Contenu Audio &amp; Video
+              {t("ebooks.webinar.tag")}
             </span>
             <h2 className={'text-3xl md:text-4xl font-serif text-text-primary mb-4'}>
-              Webinaire UBB
+              {t("ebooks.webinar.title")}
             </h2>
             <p className={'text-text-secondary text-lg'}>
-              Regardez notre webinaire exclusif pour aller plus loin dans votre transformation entrepreneuriale.
+              {t("ebooks.webinar.desc")}
             </p>
           </AnimatedSection>
 
@@ -124,7 +124,7 @@ export default function Ebooks() {
                 preload={'metadata'}
               >
                 <source src={'/images/vebinaire.mp4'} type={'video/mp4'} />
-                Votre navigateur ne supporte pas la lecture video.
+                {t("ebooks.webinar.fallback")}
               </video>
             </div>
           </AnimatedSection>

@@ -29,7 +29,7 @@ export default function Footer() {
       case "Accueil": return "nav.home";
       case "UBB Team": return "nav.team";
       case "Jobs & Careers": return "nav.careers";
-      case "E-books": return "nav.ebooks";
+      case "Ressources": return "nav.ebooks";
       case "ActualitÃ©s": return "nav.actualites";
       case "S'inscrire": return "nav.register";
       case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
@@ -43,7 +43,7 @@ export default function Footer() {
     { label: "Accueil", to: "/" },
     { label: "UBB Team", to: "/team" },
     { label: "Jobs & Careers", to: "/jobs" },
-    { label: "E-books", to: "/ebooks" },
+    { label: "Ressources", to: "/ebooks" },
     { label: "ActualitÃ©s", to: "/actualites" },
     { label: "S'inscrire", to: "/inscription" },
   ];

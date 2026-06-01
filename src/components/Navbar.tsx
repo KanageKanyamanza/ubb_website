@@ -33,7 +33,7 @@ export default function Navbar() {
       case "UBB Team": return "nav.team";
       case "Services": return "nav.services";
       case "Jobs & Careers": return "nav.careers";
-      case "E-books": return "nav.ebooks";
+      case "Ressources": return "nav.ebooks";
       case "Blog": return "nav.blog";
       case "Contact": return "nav.contact";
       case "ActualitÃ©s": return "nav.actualites";

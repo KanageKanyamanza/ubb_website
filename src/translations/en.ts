@@ -30,7 +30,7 @@ export const en: typeof fr = {
     team: "The Team",
     services: "Services",
     careers: "Careers",
-    ebooks: "E-books",
+    ebooks: "Resources",
     blog: "Blog",
     contact: "Contact",
     actualites: "News",
@@ -468,6 +468,12 @@ export const en: typeof fr = {
       desc: "E-books, podcasts, and video training designed for African business leaders who want concrete results, not generic theories.",
       packTitle: "Complete Pack",
       cta: "Get the Pack"
+    },
+    webinar: {
+      tag: "Audio & Video Content",
+      title: "UBB Webinar",
+      desc: "Watch our exclusive webinar to take your entrepreneurial transformation even further.",
+      fallback: "Your browser does not support video playback."
     },
     journey: {
       title: "Your Journey with UBB",
