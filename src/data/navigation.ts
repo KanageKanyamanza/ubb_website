@@ -17,7 +17,7 @@ export const navigation = {
         { name: "Partenaire Local", href: "/jobs" },
       ]
     },
-    { name: "E-books", href: "/ebooks" },
+    { name: "Ressources", href: "/ebooks" },
     { name: "Blog", href: "https://harvests.site/blog/", external: true },
     {
       name: "Contact",

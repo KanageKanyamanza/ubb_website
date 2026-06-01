@@ -101,6 +101,36 @@ export default function Ebooks() {
         </div>
       </section>
 
+      {/* SECTION AUDIO / VIDEO */}
+      <section className={'py-20 bg-bg-primary border-b border-border-subtle'}>
+        <div className={'max-w-4xl mx-auto px-6'}>
+          <AnimatedSection className={'text-center mb-10'}>
+            <span className={'text-gold text-xs uppercase tracking-widest font-bold block mb-3'}>
+              Contenu Audio &amp; Video
+            </span>
+            <h2 className={'text-3xl md:text-4xl font-serif text-text-primary mb-4'}>
+              Webinaire UBB
+            </h2>
+            <p className={'text-text-secondary text-lg'}>
+              Regardez notre webinaire exclusif pour aller plus loin dans votre transformation entrepreneuriale.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection>
+            <div className={'rounded-2xl overflow-hidden border border-gold/30 bg-bg-card'}>
+              <video
+                className={'w-full aspect-video'}
+                controls
+                preload={'metadata'}
+              >
+                <source src={'/images/vebinaire.mp4'} type={'video/mp4'} />
+                Votre navigateur ne supporte pas la lecture video.
+              </video>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* â”€â”€ SECTION 2 â€” HIÃ‰RARCHIE UBB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 bg-bg-secondary border-b border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
