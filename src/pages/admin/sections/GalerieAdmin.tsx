@@ -38,18 +38,14 @@ export default function GalerieAdmin() {
     setIsModalOpen(true);
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     if (!url) return;
-    try {
-      if (editingImage) {
-        await updateImage(editingImage.id, { url, caption, date, visible, category });
-      } else {
-        await addImage({ url, caption, date, visible, category });
-      }
-      setIsModalOpen(false);
-    } catch (err) {
-      alert("Erreur lors de l'enregistrement. Vérifiez la connexion au serveur.");
+    if (editingImage) {
+      updateImage(editingImage.id, { url, caption, date, visible, category });
+    } else {
+      addImage({ url, caption, date, visible, category });
     }
+    setIsModalOpen(false);
   };
 
   // Drag & Drop
@@ -160,7 +156,7 @@ export default function GalerieAdmin() {
                     <Edit2 className="w-4 h-4" />
                   </button>
                   <button
-                    onClick={() => toggleVisibility("image", img.id).catch(() => alert("Erreur de connexion au serveur."))}
+                    onClick={() => toggleVisibility("image", img.id)}
                     className={`p-2 transition-all rounded-sm ${img.visible ? "text-text-muted hover:text-white" : "text-gold hover:bg-gold/5"}`}
                     title={img.visible ? "Masquer" : "Afficher"}
                   >
@@ -349,10 +345,8 @@ export default function GalerieAdmin() {
                 Annuler
               </button>
               <button
-                onClick={async () => {
-                  if (itemToDeleteId) {
-                    try { await deleteImage(itemToDeleteId); } catch { alert("Erreur lors de la suppression."); }
-                  }
+                onClick={() => {
+                  if (itemToDeleteId) deleteImage(itemToDeleteId);
                   setIsDeleteModalOpen(false);
                 }}
                 className="flex-1 py-3 bg-red-500 text-white text-xs font-bold uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg shadow-red-500/20"

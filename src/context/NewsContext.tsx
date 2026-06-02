@@ -1,6 +1,6 @@
 // src/context/NewsContext.tsx
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { NewsImage } from "../data/news";
+import { newsGallery as INITIAL_IMAGES, NewsImage } from "../data/news";
 import { API_BASE_URL } from "../config/api";
 export type { NewsImage };
 
@@ -18,70 +18,115 @@ interface NewsContextType {
   newsGallery: NewsImage[];
   projects: StrategicProject[];
   loading: boolean;
-  addImage: (image: Omit<NewsImage, "id">) => Promise<void>;
-  updateImage: (id: string, image: Partial<NewsImage>) => Promise<void>;
-  deleteImage: (id: string) => Promise<void>;
+  addImage: (image: Omit<NewsImage, "id">) => void;
+  updateImage: (id: string, image: Partial<NewsImage>) => void;
+  deleteImage: (id: string) => void;
   reorderImages: (newOrder: NewsImage[]) => void;
-  addProject: (project: Omit<StrategicProject, "id">) => Promise<void>;
-  updateProject: (id: string, project: Partial<StrategicProject>) => Promise<void>;
-  deleteProject: (id: string) => Promise<void>;
-  toggleVisibility: (type: "image" | "project", id: string) => Promise<void>;
+  addProject: (project: Omit<StrategicProject, "id">) => void;
+  updateProject: (id: string, project: Partial<StrategicProject>) => void;
+  deleteProject: (id: string) => void;
+  toggleVisibility: (type: "image" | "project", id: string) => void;
   resetData: () => void;
 }
 
 const NewsContext = createContext<NewsContextType | undefined>(undefined);
 
+const INITIAL_PROJECTS: StrategicProject[] = [
+  {
+    id: "proj-1",
+    title: "VitalCHECK",
+    tagline: "Diagnostic Business à 360°",
+    description: "Une solution d'audit automatisée qui permet aux dirigeants d'entreprises d'identifier instantanément les leviers de performance inexploités et de sécuriser leur croissance.",
+    link: "https://www.checkmyenterprise.com/pricing",
+    linkLabel: "En savoir plus →",
+    visible: true,
+  },
+  {
+    id: "proj-2",
+    title: "HARVESTS 2.0",
+    tagline: "L'Intelligence Commerciale Africaine",
+    description: "Bien plus qu'un CRM, HARVESTS est une suite logicielle intégrée qui automatise votre force de vente et optimise vos cycles de revenus selon les réalités locales.",
+    link: "https://harvests.site/pricing/",
+    linkLabel: "En savoir plus →",
+    visible: true,
+  },
+];
+
 export const NewsProvider = ({ children }: { children: ReactNode }) => {
-  const [newsGallery, setNewsGallery] = useState<NewsImage[]>([]);
-  const [projects, setProjects] = useState<StrategicProject[]>([]);
+  const [newsGallery, setNewsGallery] = useState<NewsImage[]>(INITIAL_IMAGES);
+  const [projects, setProjects] = useState<StrategicProject[]>(INITIAL_PROJECTS);
   const [loading, setLoading] = useState(true);
 
-  // Chargement initial depuis l'API
+  // Chargement initial depuis l'API — fallback localStorage puis données statiques
   useEffect(() => {
     Promise.all([
-      fetch(`${API_BASE_URL}/api/news`).then(r => r.json()),
-      fetch(`${API_BASE_URL}/api/projects`).then(r => r.json()),
+      fetch(`${API_BASE_URL}/api/news`).then(r => { if (!r.ok) throw new Error(r.status.toString()); return r.json(); }),
+      fetch(`${API_BASE_URL}/api/projects`).then(r => { if (!r.ok) throw new Error(r.status.toString()); return r.json(); }),
     ])
       .then(([news, projs]) => {
-        setNewsGallery(Array.isArray(news) ? news : []);
-        setProjects(Array.isArray(projs) ? projs : []);
+        if (Array.isArray(news) && news.length > 0) {
+          setNewsGallery(news);
+          localStorage.setItem("ubb_news_data_v2", JSON.stringify(news));
+        }
+        if (Array.isArray(projs) && projs.length > 0) {
+          setProjects(projs);
+          localStorage.setItem("ubb_projects_data_v2", JSON.stringify(projs));
+        }
       })
-      .catch(() => {
-        setNewsGallery([]);
-        setProjects([]);
+      .catch((err) => {
+        console.warn("API hors-ligne. Utilisation du stockage local.", err);
+        const savedNews = localStorage.getItem("ubb_news_data_v2");
+        const savedProjects = localStorage.getItem("ubb_projects_data_v2");
+        if (savedNews) try { setNewsGallery(JSON.parse(savedNews)); } catch { /* garde INITIAL_IMAGES */ }
+        if (savedProjects) try { setProjects(JSON.parse(savedProjects)); } catch { /* garde INITIAL_PROJECTS */ }
       })
       .finally(() => setLoading(false));
   }, []);
 
+  // Sync localStorage en arrière-plan
+  useEffect(() => {
+    if (newsGallery.length > 0) localStorage.setItem("ubb_news_data_v2", JSON.stringify(newsGallery));
+  }, [newsGallery]);
+  useEffect(() => {
+    if (projects.length > 0) localStorage.setItem("ubb_projects_data_v2", JSON.stringify(projects));
+  }, [projects]);
+
   // ── ACTUALITÉS ──────────────────────────────────────────────────
 
-  const addImage = async (image: Omit<NewsImage, "id">) => {
-    const res = await fetch(`${API_BASE_URL}/api/news`, {
+  const addImage = (image: Omit<NewsImage, "id">) => {
+    fetch(`${API_BASE_URL}/api/news`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(image),
-    });
-    if (!res.ok) throw new Error("Erreur lors de l'ajout de l'actualité");
-    const { id } = await res.json();
-    setNewsGallery(prev => [{ ...image, id }, ...prev]);
+    })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); return r.json(); })
+      .then(({ id }) => {
+        setNewsGallery(prev => [{ ...image, id }, ...prev]);
+      })
+      .catch(err => {
+        console.error("Erreur ajout actualité:", err);
+        setNewsGallery(prev => [{ ...image, id: crypto.randomUUID() }, ...prev]);
+      });
   };
 
-  const updateImage = async (id: string, image: Partial<NewsImage>) => {
+  const updateImage = (id: string, image: Partial<NewsImage>) => {
     const current = newsGallery.find(img => img.id === id);
     if (!current) return;
     const updated = { ...current, ...image };
-    const res = await fetch(`${API_BASE_URL}/api/news/${id}`, {
+    fetch(`${API_BASE_URL}/api/news/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updated),
-    });
-    if (!res.ok) throw new Error("Erreur lors de la mise à jour");
+    })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); })
+      .catch(err => console.error("Erreur mise à jour actualité:", err));
     setNewsGallery(prev => prev.map(img => img.id === id ? updated : img));
   };
 
-  const deleteImage = async (id: string) => {
-    const res = await fetch(`${API_BASE_URL}/api/news/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Erreur lors de la suppression");
+  const deleteImage = (id: string) => {
+    fetch(`${API_BASE_URL}/api/news/${id}`, { method: "DELETE" })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); })
+      .catch(err => console.error("Erreur suppression actualité:", err));
     setNewsGallery(prev => prev.filter(img => img.id !== id));
   };
 
@@ -91,53 +136,68 @@ export const NewsProvider = ({ children }: { children: ReactNode }) => {
 
   // ── PROJETS ─────────────────────────────────────────────────────
 
-  const addProject = async (project: Omit<StrategicProject, "id">) => {
-    const res = await fetch(`${API_BASE_URL}/api/projects`, {
+  const addProject = (project: Omit<StrategicProject, "id">) => {
+    fetch(`${API_BASE_URL}/api/projects`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(project),
-    });
-    if (!res.ok) throw new Error("Erreur lors de l'ajout du projet");
-    const { id } = await res.json();
-    setProjects(prev => [...prev, { ...project, id }]);
+    })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); return r.json(); })
+      .then(({ id }) => {
+        setProjects(prev => [...prev, { ...project, id }]);
+      })
+      .catch(err => {
+        console.error("Erreur ajout projet:", err);
+        setProjects(prev => [...prev, { ...project, id: crypto.randomUUID() }]);
+      });
   };
 
-  const updateProject = async (id: string, project: Partial<StrategicProject>) => {
+  const updateProject = (id: string, project: Partial<StrategicProject>) => {
     const current = projects.find(p => p.id === id);
     if (!current) return;
     const updated = { ...current, ...project };
-    const res = await fetch(`${API_BASE_URL}/api/projects/${id}`, {
+    fetch(`${API_BASE_URL}/api/projects/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updated),
-    });
-    if (!res.ok) throw new Error("Erreur lors de la mise à jour du projet");
+    })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); })
+      .catch(err => console.error("Erreur mise à jour projet:", err));
     setProjects(prev => prev.map(p => p.id === id ? updated : p));
   };
 
-  const deleteProject = async (id: string) => {
-    const res = await fetch(`${API_BASE_URL}/api/projects/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Erreur lors de la suppression du projet");
+  const deleteProject = (id: string) => {
+    fetch(`${API_BASE_URL}/api/projects/${id}`, { method: "DELETE" })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); })
+      .catch(err => console.error("Erreur suppression projet:", err));
     setProjects(prev => prev.filter(p => p.id !== id));
   };
 
-  const toggleVisibility = async (type: "image" | "project", id: string) => {
-    if (type === "image") {
-      const res = await fetch(`${API_BASE_URL}/api/news/${id}/toggle`, { method: "PATCH" });
-      if (!res.ok) throw new Error("Erreur toggle visibilité");
-      const { visible } = await res.json();
-      setNewsGallery(prev => prev.map(img => img.id === id ? { ...img, visible } : img));
-    } else {
-      const res = await fetch(`${API_BASE_URL}/api/projects/${id}/toggle`, { method: "PATCH" });
-      if (!res.ok) throw new Error("Erreur toggle visibilité");
-      const { visible } = await res.json();
-      setProjects(prev => prev.map(p => p.id === id ? { ...p, visible } : p));
-    }
+  const toggleVisibility = (type: "image" | "project", id: string) => {
+    const endpoint = type === "image" ? "news" : "projects";
+    fetch(`${API_BASE_URL}/api/${endpoint}/${id}/toggle`, { method: "PATCH" })
+      .then(r => { if (!r.ok) throw new Error(r.status.toString()); return r.json(); })
+      .then(({ visible }) => {
+        if (type === "image") {
+          setNewsGallery(prev => prev.map(img => img.id === id ? { ...img, visible } : img));
+        } else {
+          setProjects(prev => prev.map(p => p.id === id ? { ...p, visible } : p));
+        }
+      })
+      .catch(err => {
+        console.error("Erreur toggle visibilité:", err);
+        // Fallback local
+        if (type === "image") {
+          setNewsGallery(prev => prev.map(img => img.id === id ? { ...img, visible: !img.visible } : img));
+        } else {
+          setProjects(prev => prev.map(p => p.id === id ? { ...p, visible: !p.visible } : p));
+        }
+      });
   };
 
   const resetData = () => {
-    setNewsGallery([]);
-    setProjects([]);
+    setNewsGallery(INITIAL_IMAGES);
+    setProjects(INITIAL_PROJECTS);
   };
 
   return (
