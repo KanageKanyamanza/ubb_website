@@ -88,6 +88,27 @@ app.use(cors());
 app.use(express.json());
 
 // ────────────────────────────────────────────────────────────────
+//  HEALTH CHECK — diagnostic connexion DB
+// ────────────────────────────────────────────────────────────────
+
+app.get('/api/health', async (req, res) => {
+  const url = process.env.POSTGRES_URL || process.env.DATABASE_URL;
+  if (!url) {
+    return res.status(500).json({
+      status: 'error',
+      message: 'POSTGRES_URL non définie dans les variables d\'environnement Vercel',
+      env: process.env.NODE_ENV || 'unknown'
+    });
+  }
+  try {
+    await pool.query('SELECT 1');
+    res.json({ status: 'ok', db: 'connectée', env: process.env.NODE_ENV || 'unknown' });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
+});
+
+// ────────────────────────────────────────────────────────────────
 //  API ROUTES : MEMBRES DE L'ÉQUIPE
 // ────────────────────────────────────────────────────────────────
 
