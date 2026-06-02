@@ -199,6 +199,61 @@ app.get('/api/news', async (req, res) => {
   }
 });
 
+app.post('/api/news', async (req, res) => {
+  const { url, caption, date, category, visible } = req.body;
+  if (!url) return res.status(400).json({ error: "L'URL de l'image est obligatoire" });
+
+  const id = 'news-' + Date.now();
+  try {
+    await pool.query(
+      'INSERT INTO news_gallery (id, url, caption, date, category, visible) VALUES ($1, $2, $3, $4, $5, $6)',
+      [id, url, caption || '', date || '', category || 'Webinaire', visible !== false]
+    );
+    res.status(201).json({ message: "Actualité ajoutée avec succès", id });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de l'ajout", details: error.message });
+  }
+});
+
+app.put('/api/news/:id', async (req, res) => {
+  const { id } = req.params;
+  const { url, caption, date, category, visible } = req.body;
+  try {
+    const { rowCount } = await pool.query(
+      'UPDATE news_gallery SET url = $1, caption = $2, date = $3, category = $4, visible = $5 WHERE id = $6',
+      [url, caption || '', date || '', category || 'Webinaire', visible !== false, id]
+    );
+    if (rowCount === 0) return res.status(404).json({ error: "Actualité introuvable" });
+    res.json({ message: "Actualité mise à jour avec succès" });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de la mise à jour", details: error.message });
+  }
+});
+
+app.patch('/api/news/:id/toggle', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { rows } = await pool.query('SELECT visible FROM news_gallery WHERE id = $1', [id]);
+    if (rows.length === 0) return res.status(404).json({ error: "Actualité introuvable" });
+    const newVisibility = !rows[0].visible;
+    await pool.query('UPDATE news_gallery SET visible = $1 WHERE id = $2', [newVisibility, id]);
+    res.json({ message: "Visibilité mise à jour", visible: newVisibility });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors du changement de visibilité", details: error.message });
+  }
+});
+
+app.delete('/api/news/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { rowCount } = await pool.query('DELETE FROM news_gallery WHERE id = $1', [id]);
+    if (rowCount === 0) return res.status(404).json({ error: "Actualité introuvable" });
+    res.json({ message: "Actualité supprimée avec succès" });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de la suppression", details: error.message });
+  }
+});
+
 // ────────────────────────────────────────────────────────────────
 //  API ROUTES : PROJETS STRATÉGIQUES
 // ────────────────────────────────────────────────────────────────
@@ -209,6 +264,62 @@ app.get('/api/projects', async (req, res) => {
     res.json(rows.map(item => ({ ...item, visible: Boolean(item.visible) })));
   } catch (error) {
     res.status(500).json({ error: "Erreur serveur", details: error.message });
+  }
+});
+
+app.post('/api/projects', async (req, res) => {
+  const { title, tagline, description, link, linkLabel, visible } = req.body;
+  if (!title || !description || !link) {
+    return res.status(400).json({ error: "Titre, description et lien sont obligatoires" });
+  }
+  const id = 'proj-' + Date.now();
+  try {
+    await pool.query(
+      'INSERT INTO strategic_projects (id, title, tagline, description, link, "linkLabel", visible) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      [id, title, tagline || '', description, link, linkLabel || 'En savoir plus →', visible !== false]
+    );
+    res.status(201).json({ message: "Projet ajouté avec succès", id });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de l'ajout", details: error.message });
+  }
+});
+
+app.put('/api/projects/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, tagline, description, link, linkLabel, visible } = req.body;
+  try {
+    const { rowCount } = await pool.query(
+      'UPDATE strategic_projects SET title = $1, tagline = $2, description = $3, link = $4, "linkLabel" = $5, visible = $6 WHERE id = $7',
+      [title, tagline || '', description, link, linkLabel || 'En savoir plus →', visible !== false, id]
+    );
+    if (rowCount === 0) return res.status(404).json({ error: "Projet introuvable" });
+    res.json({ message: "Projet mis à jour avec succès" });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de la mise à jour", details: error.message });
+  }
+});
+
+app.patch('/api/projects/:id/toggle', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { rows } = await pool.query('SELECT visible FROM strategic_projects WHERE id = $1', [id]);
+    if (rows.length === 0) return res.status(404).json({ error: "Projet introuvable" });
+    const newVisibility = !rows[0].visible;
+    await pool.query('UPDATE strategic_projects SET visible = $1 WHERE id = $2', [newVisibility, id]);
+    res.json({ message: "Visibilité mise à jour", visible: newVisibility });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors du changement de visibilité", details: error.message });
+  }
+});
+
+app.delete('/api/projects/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { rowCount } = await pool.query('DELETE FROM strategic_projects WHERE id = $1', [id]);
+    if (rowCount === 0) return res.status(404).json({ error: "Projet introuvable" });
+    res.json({ message: "Projet supprimé avec succès" });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de la suppression", details: error.message });
   }
 });
 
