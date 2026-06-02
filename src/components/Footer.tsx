@@ -30,7 +30,7 @@ export default function Footer() {
       case "UBB Team": return "nav.team";
       case "Jobs & Careers": return "nav.careers";
       case "Ressources": return "nav.ebooks";
-      case "ActualitÃ©s": return "nav.actualites";
+      case "Actualités": return "nav.actualites";
       case "S'inscrire": return "nav.register";
       case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
       case "Partenariat": return "nav.applyPartner";
@@ -44,7 +44,7 @@ export default function Footer() {
     { label: "UBB Team", to: "/team" },
     { label: "Jobs & Careers", to: "/jobs" },
     { label: "Ressources", to: "/ebooks" },
-    { label: "ActualitÃ©s", to: "/actualites" },
+    { label: "Actualités", to: "/actualites" },
     { label: "S'inscrire", to: "/inscription" },
   ];
 
@@ -57,7 +57,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-bg-secondary border-t border-border-subtle">
+    <footer className="relative overflow-hidden bg-[#141210] border-t border-white/10">
 
       {/* Gold gradient top line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
@@ -67,7 +67,7 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
 
-        {/* â”€â”€ Main grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ── Main grid ─────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
 
           {/* Brand col */}
@@ -82,18 +82,18 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-serif font-bold tracking-wider text-text-primary leading-tight">UBB</span>
-                <span className="text-[8px] font-sans font-light uppercase tracking-[0.2em] text-gold">Ubuntu Business Builders</span>
+                <span className="text-xl font-serif font-bold tracking-wider text-white leading-tight">UBB</span>
+                <span className="text-[8px] font-sans font-bold uppercase tracking-[0.2em] text-white">Ubuntu Business Builders</span>
               </div>
             </Link>
 
-            <p className="text-text-secondary text-sm leading-relaxed max-w-sm mb-8">
+            <p className="text-white/70 text-sm leading-relaxed max-w-sm mb-8">
               {t("footer.brandDesc")}
             </p>
 
             {/* Legal info */}
-            <div className="text-[11px] text-text-muted space-y-1 mb-8 pl-3 border-l border-gold/30">
-              <p className="font-medium text-text-secondary">UBUNTU BUSINESS BUILDERS (UBB) â€“ SARL</p>
+            <div className="text-[11px] text-white/50 space-y-1 mb-8 pl-3 border-l border-gold/30">
+              <p className="font-medium text-white/80">UBUNTU BUSINESS BUILDERS (UBB) – SARL</p>
               <p>RCCM : SN.DKR.2026.B.1650</p>
               <p>NINEA : 012753069</p>
             </div>
@@ -107,7 +107,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   title={social.name}
-                  className="w-11 h-11 rounded-full border border-border-subtle bg-bg-card flex items-center justify-center text-text-muted hover:text-gold hover:border-gold/60 hover:bg-gold/10 hover:scale-110 transition-all duration-200 group"
+                  className="w-11 h-11 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/60 hover:text-gold hover:border-gold/60 hover:bg-gold/10 hover:scale-110 transition-all duration-200 group"
                 >
                   {socialIcons[social.name] ?? <span className="text-xs">{social.name[0]}</span>}
                 </a>
@@ -128,7 +128,7 @@ export default function Footer() {
                   <li key={link.to}>
                     <Link
                       to={link.to}
-                      className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                      className="text-sm text-white/70 hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
                     >
                       <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
                       {linkKey ? t(linkKey) : link.label}
@@ -154,7 +154,7 @@ export default function Footer() {
                     {(s as any).internal ? (
                       <Link
                         to={s.href}
-                        className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                        className="text-sm text-white/70 hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
                       >
                         <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
                         {sName}
@@ -164,7 +164,7 @@ export default function Footer() {
                         href={s.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm text-text-secondary hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
+                        className="text-sm text-white/70 hover:text-gold transition-colors duration-200 flex items-center gap-2 group"
                       >
                         <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-200 inline-block" />
                         {sName}
@@ -182,7 +182,7 @@ export default function Footer() {
               <span className="w-4 h-px bg-gold/50 inline-block" />
               {t("footer.contact")}
             </h4>
-            <ul className="space-y-4 text-sm text-text-secondary">
+            <ul className="space-y-4 text-sm text-white/70">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-gold/60 mt-0.5 flex-shrink-0" />
                 <div>
@@ -192,21 +192,21 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-gold/60 mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@growthubb.space" className="hover:text-gold transition-colors">
+                <a href="mailto:info@growthubb.space" className="hover:text-gold transition-colors text-white/70">
                   info@growthubb.space
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gold/60 mt-0.5 flex-shrink-0" />
-                <span>Dakar, SÃ©nÃ©gal â€” Afrique</span>
+                <span>Dakar, Sénégal — Afrique</span>
               </li>
             </ul>
 
             {/* CTA mini */}
             <Link
               to="/inscription"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-bg-primary px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(184,115,51,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 group"
-              style={{ background: "linear-gradient(135deg, #D4A574 0%, #B87333 60%, #8B5220 100%)" }}
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(160,82,45,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 group"
+              style={{ background: "linear-gradient(135deg, #D08555 0%, #A0522D 60%, #7A3E1E 100%)" }}
             >
               {t("footer.joinUbb")}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -214,12 +214,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* â”€â”€ Bottom bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-        <div className="pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-text-muted text-xs">
-            Â© {year} Ubuntu Business Builders Â· {t("common.copyright")}
+        {/* ── Bottom bar ──────────────────────────────── */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-white/40 text-xs">
+            © {year} Ubuntu Business Builders · {t("common.copyright")}
           </p>
-          <div className="flex items-center gap-6 text-text-muted text-xs">
+          <div className="flex items-center gap-6 text-white/40 text-xs">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-gold/60 inline-block" />
               {t("common.professional")}

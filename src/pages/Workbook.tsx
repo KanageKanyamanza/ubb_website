@@ -35,9 +35,9 @@ export default function Workbook() {
 
   const pays = [
     "Botswana", "Burkina Faso", "Cameroun", "Congo Brazzaville",
-    "Ã‰gypte", "Ã‰thiopie", "Gabon", "Ghana", "GuinÃ©e Conakry",
-    "CÃ´te d'Ivoire", "Kenya", "Madagascar", "Mali",
-    "Namibie", "SÃ©nÃ©gal", "Afrique du Sud", "Zambie", "Zimbabwe"
+    "Égypte", "Éthiopie", "Gabon", "Ghana", "Guinée Conakry",
+    "Côte d'Ivoire", "Kenya", "Madagascar", "Mali",
+    "Namibie", "Sénégal", "Afrique du Sud", "Zambie", "Zimbabwe"
   ];
 
   const benefitItems = [
@@ -61,7 +61,7 @@ export default function Workbook() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-bg-primary">
 
-      {/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── HERO ──────────────────────────────────────────── */}
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/6 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute -top-10 right-0 w-[400px] h-[400px] bg-gold/4 blur-[100px] rounded-full pointer-events-none" />
@@ -83,12 +83,12 @@ export default function Workbook() {
         </div>
       </section>
 
-      {/* â”€â”€ MAIN CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── MAIN CONTENT ──────────────────────────────────── */}
       <section className="pb-32 relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-            {/* Left â€” Benefits */}
+            {/* Left — Benefits */}
             <AnimatedSection className="lg:sticky lg:top-32">
               <div className="bg-bg-secondary border border-border-subtle rounded-2xl p-10 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-gold/5 blur-3xl rounded-full" />
@@ -138,7 +138,7 @@ export default function Workbook() {
               </div>
             </AnimatedSection>
 
-            {/* Right â€” Form */}
+            {/* Right — Form */}
             <AnimatedSection delay={0.2}>
               <AnimatePresence mode="wait">
                 {!submitted ? (

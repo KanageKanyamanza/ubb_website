@@ -15,7 +15,7 @@ export default function ProjectsAdmin() {
   const [tagline, setTagline] = useState("");
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
-  const [linkLabel, setLinkLabel] = useState("En savoir plus â†’");
+  const [linkLabel, setLinkLabel] = useState("En savoir plus →");
   const [visible, setVisible] = useState(true);
 
   const openModal = (project?: StrategicProject) => {
@@ -33,7 +33,7 @@ export default function ProjectsAdmin() {
       setTagline("");
       setDescription("");
       setLink("");
-      setLinkLabel("En savoir plus â†’");
+      setLinkLabel("En savoir plus →");
       setVisible(true);
     }
     setIsModalOpen(true);
@@ -57,9 +57,9 @@ export default function ProjectsAdmin() {
       {/* Header Actions */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-bg-card p-6 border border-border-subtle rounded-sm">
         <div>
-          <h2 className="text-2xl font-serif text-text-primary italic">Projets StratÃ©giques</h2>
+          <h2 className="text-2xl font-serif text-text-primary italic">Projets Stratégiques</h2>
           <p className="text-text-muted text-sm mt-1">
-            GÃ©rez les plateformes et initiatives mises en avant sur le site.
+            Gérez les plateformes et initiatives mises en avant sur le site.
           </p>
         </div>
         <button
@@ -86,7 +86,7 @@ export default function ProjectsAdmin() {
                   <span className={`px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${
                     p.visible ? "border-green-500/30 text-green-400 bg-green-500/5" : "border-text-muted text-text-muted"
                   }`}>
-                    {p.visible ? "Actif" : "MasquÃ©"}
+                    {p.visible ? "Actif" : "Masqué"}
                   </span>
                   <span className="text-gold text-[10px] uppercase tracking-[0.2em] font-bold">{p.tagline}</span>
                 </div>
@@ -180,7 +180,7 @@ export default function ProjectsAdmin() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm resize-none"
-                  placeholder="DÃ©crivez l'impact et la mission du projet..."
+                  placeholder="Décrivez l'impact et la mission du projet..."
                   required
                 />
               </div>
@@ -206,20 +206,20 @@ export default function ProjectsAdmin() {
                     value={linkLabel}
                     onChange={(e) => setLinkLabel(e.target.value)}
                     className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm"
-                    placeholder="En savoir plus â†’"
+                    placeholder="En savoir plus →"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">VisibilitÃ© publique</label>
+                <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">Visibilité publique</label>
                 <button
                   onClick={() => setVisible(!visible)}
                   className={`flex items-center gap-3 px-6 py-3 rounded-sm border transition-all ${
                     visible ? "border-green-500/30 bg-green-500/5 text-green-400" : "border-border-subtle text-text-muted"
                   }`}
                 >
-                  <span className="text-xs uppercase tracking-widest font-bold">{visible ? "AffichÃ© sur le site" : "MasquÃ© pour le public"}</span>
+                  <span className="text-xs uppercase tracking-widest font-bold">{visible ? "Affiché sur le site" : "Masqué pour le public"}</span>
                   {visible ? <Check className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                 </button>
               </div>
@@ -237,7 +237,7 @@ export default function ProjectsAdmin() {
                 disabled={!title || !description || !link}
                 className="px-8 py-3 bg-gold-gradient text-bg-primary rounded-sm text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_15px_rgba(184,115,51,0.3)] transition-all disabled:opacity-30"
               >
-                {editingProject ? "Mettre Ã  jour" : "Enregistrer"}
+                {editingProject ? "Mettre à jour" : "Enregistrer"}
               </button>
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function ProjectsAdmin() {
             
             <h3 className="text-2xl font-serif text-text-primary italic mb-4">Confirmer la suppression</h3>
             <p className="text-text-secondary text-sm leading-relaxed mb-10">
-              ÃŠtes-vous sÃ»r de vouloir supprimer ce projet stratÃ©gique ? Toutes les informations liÃ©es seront dÃ©finitivement effacÃ©es.
+              Êtes-vous sûr de vouloir supprimer ce projet stratégique ? Toutes les informations liées seront définitivement effacées.
             </p>
 
             <div className="flex gap-4">

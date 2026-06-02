@@ -37,16 +37,16 @@ export default function Postuler() {
   };
 
   const pays = [
-    { value: "SÃ©nÃ©gal", label: t("countries.senegal") },
-    { value: "CÃ´te d'Ivoire", label: t("countries.cote_divoire") },
+    { value: "Sénégal", label: t("countries.senegal") },
+    { value: "Côte d'Ivoire", label: t("countries.cote_divoire") },
     { value: "Cameroun", label: t("countries.cameroun") },
     { value: "Mali", label: t("countries.mali") },
     { value: "Burkina Faso", label: t("countries.burkina_faso") },
     { value: "RDC", label: t("countries.rdc") },
     { value: "Congo", label: t("countries.congo") },
     { value: "Togo", label: t("countries.togo") },
-    { value: "BÃ©nin", label: t("countries.benin") },
-    { value: "GuinÃ©e", label: t("countries.guinee") },
+    { value: "Bénin", label: t("countries.benin") },
+    { value: "Guinée", label: t("countries.guinee") },
     { value: "Niger", label: t("countries.niger") },
     { value: "Mauritanie", label: t("countries.mauritanie") },
     { value: "Gabon", label: t("countries.gabon") },
@@ -72,7 +72,7 @@ export default function Postuler() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-bg-primary">
 
-      {/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── HERO ──────────────────────────────────────────── */}
       <section className="relative pt-48 pb-24 overflow-hidden border-b border-border-subtle">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15"
@@ -96,7 +96,7 @@ export default function Postuler() {
         </div>
       </section>
 
-      {/* â”€â”€ BENEFITS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── BENEFITS ──────────────────────────────────────── */}
       <section className="py-20 bg-bg-secondary border-b border-border-subtle">
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection className="text-center mb-14">
@@ -119,7 +119,7 @@ export default function Postuler() {
         </div>
       </section>
 
-      {/* â”€â”€ FORM + FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── FORM + FAQ ────────────────────────────────────── */}
       <section className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -148,7 +148,7 @@ export default function Postuler() {
                         </div>
                         <div>
                           <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.nom")}</label>
-                          <input type="text" name="nom" required value={form.nom} onChange={handleChange} placeholder="KonÃ©"
+                          <input type="text" name="nom" required value={form.nom} onChange={handleChange} placeholder="Koné"
                             className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
                         </div>
                       </div>

@@ -50,10 +50,10 @@ export const en: typeof fr = {
     seoTitle: "Growth Accelerator for African Businesses",
     seoDesc: "Ubuntu Business Builders (UBB) supports  African companies in their structuring and growth. Increase your revenue by 30% in 90 days with our vitalCHECK, HARVESTS 2.0 solutions and custom strategic advice.",
     hero: {
-      titleLine1: "Increase Your Revenue",
-      titleLine2: "by 30% in 90 Days.",
-      subtitle: "Or we work for free until you do it, fast.",
-      desc: "We help African companies structure their growth, strengthen operations, and increase sales — through strategic consulting, SaaS tools, and business training resources.",
+      titleLine1: "Revenue Growth.",
+      titleLine2: "Faster.",
+      subtitle: "",
+      desc: "Get results in 90 days — or we work for free until you do.",
       ctaDiagnostic: "Start my Diagnostic",
       ctaVitalCheck: "Discover vitalCHECK",
       discover: "Discover"

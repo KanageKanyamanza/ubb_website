@@ -102,7 +102,7 @@ export default function Actualites() {
               {filteredNews.map((item, index) => (
                 <AnimatedSection key={item.id} delay={index * 0.05}>
                   <div
-                    className="group cursor-pointer bg-[#1A1A1A] border border-border-subtle rounded-2xl overflow-hidden hover:border-gold/30 transition-all duration-300 shadow-lg hover:shadow-gold/5 flex flex-col h-full"
+                    className="group cursor-pointer bg-bg-card border border-border-subtle rounded-2xl overflow-hidden hover:border-gold/30 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col h-full"
                     onClick={() => setSelectedImageIndex(index)}
                   >
                     {/* Image Box */}
@@ -254,7 +254,7 @@ export default function Actualites() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="bg-[#131313] border border-gold/30 rounded-2xl p-10 h-full flex flex-col relative overflow-hidden group hover:border-gold/50 transition-colors shadow-[0_0_30px_rgba(184,115,51,0.05)]">
+              <div className="bg-bg-secondary border border-gold/30 rounded-2xl p-10 h-full flex flex-col relative overflow-hidden group hover:border-gold/50 transition-colors shadow-[0_0_30px_rgba(160,82,45,0.08)]">
                 <div className="absolute top-0 left-0 w-32 h-32 bg-gold/10 blur-3xl rounded-full" />
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-gold text-bg-primary text-[10px] font-bold uppercase tracking-widest rounded-full self-start mb-8">
                   {t("actualites.tools.harvests.badge")}

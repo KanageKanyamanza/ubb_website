@@ -25,11 +25,11 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full min-h-screen">
 
-      {/* â”€â”€ SECTION 1 â€” HERO (Slider) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 1 — HERO (Slider) ─────────────────────────────────── */}
       <HeroSlider />
 
-      {/* â”€â”€ SECTION 2 â€” BANDE DE RÃ‰ASSURANCE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <section id="stats" className="py-12 border-y border-border-subtle" style={{ backgroundColor: "#131313" }}>
+      {/* ── SECTION 2 — BANDE DE RÉASSURANCE ────────────────────────── */}
+      <section id="stats" className="py-12 border-y border-border-subtle bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border-subtle">
             <div className="flex flex-col items-center text-center px-4">
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3 â€” PROBLÃˆME CLIENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 3 — PROBLÈME CLIENT ───────────────────────────── */}
       <section id="probleme" className="py-24 md:py-32 bg-bg-primary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
@@ -78,13 +78,13 @@ export default function Home() {
                 text: t("home.problem.card2Text")
               },
               {
-                image: "/images/3_Manque de visibilitÃ© financiÃ¨re.png",
+                image: "/images/3_Manque de visibilité financière.png",
                 title: t("home.problem.card3Title"),
                 text: t("home.problem.card3Text")
               }
             ].map((prob, idx) => (
               <AnimatedSection key={idx} delay={idx * 0.15} className="h-full">
-                <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden text-center h-full hover:border-gold/30 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(184,115,51,0.1)] flex flex-col group">
+                <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden text-center h-full shadow-[0_4px_20px_rgba(0,0,0,0.09)] hover:border-gold/30 hover:shadow-[0_8px_40px_rgba(160,82,45,0.15)] transition-all duration-300 flex flex-col group">
                   <div className="relative h-48 overflow-hidden w-full">
                     <img
                       src={prob.image}
@@ -114,9 +114,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 4 â€” SOLUTION UBB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 4 — SOLUTION UBB ──────────────────────────────── */}
       <section id="solution" className="py-24 md:py-32 bg-bg-secondary relative">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue/10 blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection className="text-center mb-20">
@@ -185,12 +185,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 5 â€” PRODUIT VEDETTE 1 : vitalCHECK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 5 — PRODUIT VEDETTE 1 : vitalCHECK ────────────── */}
       <section id="vitalcheck" className="py-24 md:py-32 bg-bg-primary">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
-              <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
+              <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-[0_8px_40px_rgba(0,0,0,0.14)] group">
                 <img
                   src="/images/imagereal1.jpeg"
                   alt="vitalCHECK Diagnostic"
@@ -233,13 +233,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 6 â€” PRODUIT VEDETTE 2 : HARVESTS 2.0 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 6 — PRODUIT VEDETTE 2 : HARVESTS 2.0 ──────────── */}
       <section id="harvests" className="py-24 md:py-32 bg-bg-secondary border-t border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             <AnimatedSection className="order-2 lg:order-1">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest mb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-blue/40 bg-blue/10 text-blue-trust text-xs font-bold uppercase tracking-widest mb-6" style={{borderWidth:'1px',borderStyle:'solid'}}>
                 {t("home.harvests.tag")}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif italic text-text-primary mb-6 leading-tight">
@@ -269,7 +269,7 @@ export default function Home() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2} className="order-1 lg:order-2">
-              <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-2xl group">
+              <div className="relative rounded-2xl overflow-hidden border border-border-subtle aspect-[4/3] shadow-[0_8px_40px_rgba(0,0,0,0.14)] group">
                 <img
                   src="/images/imagereal3.jpeg"
                   alt="HARVESTS 2.0 Logiciel"
@@ -283,7 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 7 â€” Ã‰TUDE DE CAS CEO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 7 — ÉTUDE DE CAS CEO ──────────────────────────── */}
       <section id="etude-de-cas" className="py-24 md:py-32 bg-bg-primary border-y border-border-subtle relative overflow-hidden">
         <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 
@@ -324,7 +324,7 @@ export default function Home() {
             <AnimatedSection delay={0.2}>
               <div className="bg-bg-secondary border border-gold/20 p-8 md:p-12 rounded-2xl shadow-xl mb-12 relative overflow-hidden group">
                 <div className="absolute -top-12 -right-12 w-24 h-24 bg-gold/5 rounded-full blur-2xl" />
-                <span className="text-4xl text-gold/20 font-serif absolute top-6 left-6">â€œ</span>
+                <span className="text-4xl text-gold/20 font-serif absolute top-6 left-6">"</span>
                 <p className="text-text-primary text-xl md:text-2xl font-serif italic leading-relaxed mb-8 pl-6 relative z-10">
                   {t("home.caseStudy.quote")}
                 </p>
@@ -372,7 +372,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 8 â€” Ã‰COSYSTÃˆME UBB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 8 — ÉCOSYSTÈME UBB ────────────────────────────── */}
       <section id="ecosysteme" className="py-24 bg-bg-secondary text-center">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection>
@@ -428,10 +428,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 9 â€” APERÃ‡U Ã‰QUIPE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 9 — APERÇU ÉQUIPE ─────────────────────────────── */}
 
 
-      {/* â”€â”€ SECTION 10 â€” RESSOURCES & BLOG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 10 — RESSOURCES & BLOG ────────────────────────── */}
       <section id="ressources" className="py-24 bg-bg-secondary border-t border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
@@ -447,7 +447,7 @@ export default function Home() {
                   <p className="text-text-secondary text-sm mb-4">
                     {t("home.resources.packDesc")}
                   </p>
-                  <p className="text-gold font-bold mb-6">{language === "fr" ? "Ã€ partir de Â£20" : "From Â£20"}</p>
+                  <p className="text-gold font-bold mb-6">{language === "fr" ? "À partir de £20" : "From £20"}</p>
                   <Link to="/ebooks" className="inline-flex items-center gap-2 px-6 py-2.5 border border-gold text-gold font-bold uppercase tracking-wider text-xs rounded-full hover:bg-gold/10 transition-colors">
                     {t("home.resources.packCta")} <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -472,15 +472,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 11 â€” CTA FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <section id="contact" className="py-32 relative overflow-hidden bg-[#0A0A0A] border-t border-border-subtle text-center">
+      {/* ── SECTION 11 — CTA FINAL ────────────────────────────────── */}
+      <section id="contact" className="py-32 relative overflow-hidden bg-bg-secondary border-t border-border-subtle text-center">
         {/* Background Image overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity"
           style={{ backgroundImage: `url('/images/imagereal4.jpeg')` }}
         />
-        {/* Radial Gold Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
+        {/* Radial Bleu + Or Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-gold/8 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <AnimatedSection>
@@ -516,7 +517,7 @@ export default function Home() {
   );
 }
 
-// â”€â”€ HeroSlider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HeroSlider ────────────────────────────────────────────────────────────────
 const HERO_IMAGES = [
   "/images/imagereal2.jpeg",
   "/images/hero3.jpg",
@@ -566,26 +567,17 @@ function HeroSlider() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-text-primary leading-[1.1] mb-6"
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-white leading-[1.1] mb-6"
           >
             {t("home.hero.titleLine1")} <br />
             <span className="text-gold-gradient italic font-normal">{t("home.hero.titleLine2")}</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xl md:text-3xl italic font-serif text-white mb-8"
-          >
-            {t("home.hero.subtitle")}
-          </motion.p>
-
-          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.65 }}
-            className="max-w-2xl mx-auto text-text-secondary md:text-[15px] font-sans leading-relaxed mb-12"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-2xl mx-auto text-white/80 md:text-lg font-sans leading-relaxed mb-12"
           >
             {t("home.hero.desc")}
           </motion.p>

@@ -48,10 +48,10 @@ export const fr = {
     seoTitle: "Accélérateur de croissance pour entreprises africaines",
     seoDesc: "Ubuntu Business Builders (UBB) accompagne les entreprises africaines dans leur structuration et leur croissance. Augmentez vos revenus de 30% en 90 jours grâce à nos solutions vitalCHECK, HARVESTS 2.0 et nos conseils stratégiques sur-mesure.",
     hero: {
-      titleLine1: "Augmentez vos revenus",
-      titleLine2: "de 30% en 90 jours.",
-      subtitle: "Ou nous travaillons jusqu'à ce que vous y arriviez rapidement.",
-      desc: "Nous aidons les entreprises africaines à structurer leur croissance, renforcer leurs opérations et augmenter leurs revenus — grâce au conseil, aux outils SaaS et aux ressources de formation.",
+      titleLine1: "Croissance du chiffre d'affaires.",
+      titleLine2: "Plus rapide.",
+      subtitle: "",
+      desc: "Obtenez des résultats en 90 jours — ou nous travaillons gratuitement jusqu'à ce que vous les obteniez.",
       ctaDiagnostic: "Démarrer mon diagnostic",
       ctaVitalCheck: "Découvrir vitalCHECK",
       discover: "Découvrir"
@@ -77,7 +77,7 @@ export const fr = {
       title: "Une plateforme. Trois leviers de croissance.",
       subtitle: "Conseil, outils et formation — tout ce dont votre entreprise a besoin pour passer au niveau supérieur.",
       card1Title: "Conseil stratégique",
-      card1Text: "Diagnostic complet, plan d'action sur mesure et accompagnement opérationnel piloté par des consultants expérimentes de UBB.",
+      card1Text: "Diagnostic complet, plan d'action sur mesure et accompagnement opérationnel piloté par des consultants expérimentés de UBB.",
       card2Title: "Outils SaaS",
       card2Text: "vitalCHECK diagnostique votre entreprise en quelques minutes. HARVESTS 2.0 pilote vos ventes et opérations au quotidien.",
       card3Title: "Ressources & formation",
@@ -187,7 +187,7 @@ export const fr = {
     },
     join: {
       title: "Vous souhaitez rejoindre l'aventure UBB ?",
-      desc: "UBB recrute des partenaires locaux dans toute l'Afrique  pour accompagner les entreprises locales.",
+      desc: "UBB recrute des partenaires locaux dans toute l'Afrique pour accompagner les entreprises locales.",
       ctaPrimary: "Voir les opportunités",
       ctaSecondary: "Nous contacter"
     },
@@ -222,7 +222,7 @@ export const fr = {
       },
       babacar: {
         title: "Community manager & assistant marketing",
-        bio: "Spécialisé en community management, marketing digital et développement commercial, Babacar accompagne les entreprises dans la croissance de leur visibilité. He conçoit des stratégies en acquisition et engagement."
+        bio: "Spécialisé en community management, marketing digital et développement commercial, Babacar accompagne les entreprises dans la croissance de leur visibilité. Il conçoit des stratégies en acquisition et engagement."
       },
       nadinga: {
         title: "Partenaire local · Burkina Faso",

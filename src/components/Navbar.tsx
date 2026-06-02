@@ -36,7 +36,7 @@ export default function Navbar() {
       case "Ressources": return "nav.ebooks";
       case "Blog": return "nav.blog";
       case "Contact": return "nav.contact";
-      case "ActualitÃ©s": return "nav.actualites";
+      case "Actualités": return "nav.actualites";
       case "Diagnostic d'Entreprise": return "nav.enterpriseDiagnostic";
       case "PARTENARIAT": return "nav.applyPartner";
       case "Partenaire Local": return "nav.partner";
@@ -71,13 +71,13 @@ export default function Navbar() {
 
   return (
     <>
-      {/* â”€â”€ Top Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Top Bar ────────────────────────────────────────────── */}
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
         }`}
       >
-        <div className="bg-gold/10 border-b border-gold/20 backdrop-blur-sm">
+        <div className="bg-white border-b border-border-subtle backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-9 text-[11px]">
             {/* Phones */}
             <div className="flex items-center gap-5">
@@ -112,18 +112,18 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* â”€â”€ Main Navbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Main Navbar ─────────────────────────────────────────── */}
       <nav
         className={`fixed left-0 w-full z-40 transition-all duration-500 ${
           scrolled
-            ? "top-0 py-3 shadow-2xl border-b border-white/5"
+            ? "top-0 py-3 shadow-2xl border-b border-white/10"
             : "top-9 py-5"
         }`}
         style={{
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
+          backdropFilter: "blur(20px) saturate(180%)",
           backgroundColor: scrolled
-            ? "rgba(13, 13, 13, 0.88)"
-            : "transparent",
+            ? "rgba(20, 18, 16, 0.97)"
+            : "rgba(20, 18, 16, 0.82)",
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -138,16 +138,16 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-serif font-bold tracking-wider text-text-primary leading-tight">
+              <span className="text-lg font-serif font-bold tracking-wider text-white leading-tight">
                 UBB
               </span>
-              <span className="text-[8px] font-sans font-light uppercase tracking-[0.2em] text-gold hidden sm:inline">
+              <span className="text-[8px] font-sans font-bold uppercase tracking-[0.2em] text-white hidden sm:inline">
                 Ubuntu Business Builders
               </span>
             </div>
           </Link>
 
-          {/* â”€â”€ Desktop Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* ── Desktop Navigation ─────────────────────────────── */}
           <div className="hidden lg:flex items-center gap-1">
             {mainLinks.map((item) => {
               const itemKey = getTranslationKey(item.name);
@@ -164,7 +164,7 @@ export default function Navbar() {
                       className={`group flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                         activeDropdown === item.name
                           ? "text-gold bg-gold/10"
-                          : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                          : "text-white/80 hover:text-white hover:bg-white/10"
                       }`}
                     >
                       {itemName}
@@ -181,7 +181,7 @@ export default function Navbar() {
                       className={`relative block px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                         location.pathname === item.href
                           ? "text-gold bg-gold/10"
-                          : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                          : "text-white/80 hover:text-white hover:bg-white/10"
                       }`}
                     >
                       {itemName}
@@ -242,7 +242,7 @@ export default function Navbar() {
                 className={`text-[10px] font-bold tracking-wider px-2 py-0.5 rounded transition-all duration-300 cursor-pointer ${
                   language === "fr"
                     ? "text-gold bg-gold/15"
-                    : "text-text-muted hover:text-text-primary"
+                    : "text-white/50 hover:text-white"
                 }`}
               >
                 FR
@@ -252,7 +252,7 @@ export default function Navbar() {
                 className={`text-[10px] font-bold tracking-wider px-2 py-0.5 rounded transition-all duration-300 cursor-pointer ${
                   language === "en"
                     ? "text-gold bg-gold/15"
-                    : "text-text-muted hover:text-text-primary"
+                    : "text-white/50 hover:text-white"
                 }`}
               >
                 EN
@@ -262,9 +262,9 @@ export default function Navbar() {
             {/* CTA */}
             <Link
               to="/inscription"
-              className="relative overflow-hidden px-6 py-2.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(184,115,51,0.45)] hover:scale-105 active:scale-95"
+              className="relative overflow-hidden px-6 py-2.5 text-sm font-bold uppercase tracking-widest text-white rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(160,82,45,0.45)] hover:scale-105 active:scale-95"
               style={{
-                background: "linear-gradient(135deg, #D4A574 0%, #B87333 60%, #8B5220 100%)",
+                background: "linear-gradient(135deg, #D08555 0%, #A0522D 60%, #7A3E1E 100%)",
               }}
             >
               <span className="relative z-10">{t("nav.register")}</span>
@@ -282,7 +282,7 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             id="mobile-menu-toggle"
-            className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-border-subtle text-text-primary hover:bg-white/10 transition-all"
+            className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -301,7 +301,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* â”€â”€ Mobile Menu (slide from right) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Mobile Menu (slide from right) ──────────────────────── */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -322,8 +322,8 @@ export default function Navbar() {
               transition={{ type: "spring", stiffness: 320, damping: 35 }}
               className="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-40 lg:hidden flex flex-col"
               style={{
-                background: "linear-gradient(160deg, #1A1A1A 0%, #0D0D0D 100%)",
-                borderLeft: "1px solid rgba(255,255,255,0.07)",
+                background: "#FFFFFF",
+                borderLeft: "1px solid rgba(0,0,0,0.09)",
               }}
             >
               {/* Drawer Header */}
@@ -338,7 +338,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-text-secondary hover:text-text-primary transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-black/5 text-text-secondary hover:text-text-primary transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -463,7 +463,7 @@ export default function Navbar() {
                       language === "fr" ? "text-gold bg-gold/15" : "text-text-muted"
                     }`}
                   >
-                    FranÃ§ais
+                    Français
                   </button>
                   <button
                     onClick={() => { setLanguage("en"); setIsOpen(false); }}
@@ -479,9 +479,9 @@ export default function Navbar() {
                 <Link
                   to="/inscription"
                   onClick={() => setIsOpen(false)}
-                  className="text-center py-3.5 text-sm font-bold uppercase tracking-widest text-bg-primary rounded-full"
+                  className="text-center py-3.5 text-sm font-bold uppercase tracking-widest text-white rounded-full"
                   style={{
-                    background: "linear-gradient(135deg, #D4A574 0%, #B87333 60%, #8B5220 100%)",
+                    background: "linear-gradient(135deg, #D08555 0%, #A0522D 60%, #7A3E1E 100%)",
                   }}
                 >
                   {t("nav.register")}

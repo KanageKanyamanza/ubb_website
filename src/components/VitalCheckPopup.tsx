@@ -66,7 +66,7 @@ export default function VitalCheckPopup() {
                 />
               ) : (
                 <div className="w-full aspect-[4/3] bg-bg-secondary flex items-center justify-center">
-                  <p className="text-text-muted text-sm italic">Image bientÃ´t disponible</p>
+                  <p className="text-text-muted text-sm italic">Image bientôt disponible</p>
                 </div>
               )}
 
@@ -85,7 +85,7 @@ export default function VitalCheckPopup() {
                     onClick={handleClose}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-gold text-bg-primary font-bold uppercase tracking-widest text-xs rounded-full hover:bg-gold-light transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(184,115,51,0.4)] active:scale-95"
                   >
-                    DÃ©marrer <ArrowRight className="w-3.5 h-3.5" />
+                    Démarrer <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                   <button
                     onClick={handleClose}

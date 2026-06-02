@@ -31,7 +31,7 @@ export default function Ebooks() {
   const handlePayPalSuccess = (details: any) => {
     setPaymentDetails(details);
     setPaymentSuccess(true);
-    console.log("Paiement rÃ©ussi :", details);
+    console.log("Paiement réussi :", details);
     window.scrollTo({ top: document.getElementById('commander')?.offsetTop ? document.getElementById('commander')!.offsetTop - 100 : 0, behavior: 'smooth' });
   };
 
@@ -48,7 +48,7 @@ export default function Ebooks() {
   return (
     <div className="flex flex-col w-full bg-bg-primary overflow-hidden min-h-screen">
       
-      {/* â”€â”€ SECTION 1 â€” HERO PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 1 — HERO PAGE ────────────────────────────────── */}
       <section className="relative pt-40 pb-24 overflow-hidden border-b border-border-subtle flex flex-col items-center justify-center text-center">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 blur-3xl rounded-full pointer-events-none" />
         
@@ -87,7 +87,7 @@ export default function Ebooks() {
                 {PACK_PRICE.displayCFA}
               </span>
               <span className="text-text-secondary text-sm block relative z-10">
-                AccÃ¨s immÃ©diat Â· PDF + Audio
+                Accès immédiat · PDF + Audio
               </span>
             </div>
             
@@ -131,7 +131,7 @@ export default function Ebooks() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 2 â€” HIÃ‰RARCHIE UBB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 2 — HIÉRARCHIE UBB ───────────────────────────── */}
       <section className="py-24 bg-bg-secondary border-b border-border-subtle">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
@@ -191,7 +191,7 @@ export default function Ebooks() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3 â€” CATALOGUE DÃ‰TAILLÃ‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 3 — CATALOGUE DÉTAILLÉ ───────────────────────── */}
       <section className="py-24 bg-bg-primary">
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
@@ -216,7 +216,7 @@ export default function Ebooks() {
                     <h3 className="text-xl font-serif text-text-primary mb-2 flex items-center justify-between">
                       {t(`ebooks.items.item${index + 1}Title`)}
                       <span className="hidden sm:inline-flex items-center text-[10px] font-sans text-green-400 font-bold uppercase tracking-widest">
-                        âœ“ {t("ebooks.content.badge")}
+                        ✓ {t("ebooks.content.badge")}
                       </span>
                     </h3>
                     <p className="text-text-secondary text-sm leading-relaxed">
@@ -236,13 +236,13 @@ export default function Ebooks() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 4 â€” GARANTIE & RÃ‰ASSURANCE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 4 — GARANTIE & RÉASSURANCE ───────────────────── */}
       <section className="py-20 bg-bg-secondary border-t border-border-subtle relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <AnimatedSection delay={0.1}>
               <div className="flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=200" alt="AccÃ¨s immÃ©diat" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=200" alt="Accès immédiat" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
                 <h3 className="text-xl font-serif text-text-primary mb-4">{t("ebooks.assurance.card1Title")}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   {t("ebooks.assurance.card1Desc")}
@@ -252,7 +252,7 @@ export default function Ebooks() {
 
             <AnimatedSection delay={0.2}>
               <div className="flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&q=80&w=200" alt="ConÃ§u pour l'Afrique" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
+                <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&q=80&w=200" alt="Conçu pour l'Afrique" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
                 <h3 className="text-xl font-serif text-text-primary mb-4">{t("ebooks.assurance.card2Title")}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   {t("ebooks.assurance.card2Desc")}
@@ -262,7 +262,7 @@ export default function Ebooks() {
 
             <AnimatedSection delay={0.3}>
               <div className="flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1614064641913-6b20a70e70ab?auto=format&fit=crop&q=80&w=200" alt="Paiement sÃ©curisÃ©" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
+                <img src="https://images.unsplash.com/photo-1614064641913-6b20a70e70ab?auto=format&fit=crop&q=80&w=200" alt="Paiement sécurisé" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
                 <h3 className="text-xl font-serif text-text-primary mb-4">{t("ebooks.assurance.card3Title")}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   {t("ebooks.assurance.card3Desc")}
@@ -274,7 +274,7 @@ export default function Ebooks() {
           <AnimatedSection delay={0.4}>
             <div className="mt-16 bg-bg-primary/50 border border-border-subtle rounded-lg p-6 max-w-2xl mx-auto text-center">
               <p className="text-text-muted text-xs italic leading-relaxed">
-                ðŸ’¡ {t("ebooks.assurance.disclaimer")
+                💡 {t("ebooks.assurance.disclaimer")
                     .replace("{price}", PACK_PRICE.display)
                     .replace("{gbp}", PACK_PRICE.GBP.toFixed(2))}
               </p>
@@ -283,7 +283,7 @@ export default function Ebooks() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 5 â€” COMMANDE (Checkout) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 5 — COMMANDE (Checkout) ──────────────────────── */}
       <section id="commander" className="py-24 bg-bg-primary border-t border-border-subtle relative">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <AnimatedSection>
@@ -301,7 +301,7 @@ export default function Ebooks() {
                   />
                 </div>
 
-                {/* Colonne droite : rÃ©capitulatif + PayPal */}
+                {/* Colonne droite : récapitulatif + PayPal */}
                 <div className="bg-bg-card border border-border-subtle p-8 rounded-sm shadow-xl sticky top-32">
                   <OrderSummary
                     formData={formData}
@@ -328,7 +328,7 @@ export default function Ebooks() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 6 â€” CTA MONTÃ‰E EN GAMME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 6 — CTA MONTÉE EN GAMME ──────────────────────── */}
       <section className="py-24 bg-bg-primary border-t border-border-subtle">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <AnimatedSection>

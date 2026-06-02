@@ -17,7 +17,7 @@ export default function AdminLogin() {
     if (login(username, password)) {
       navigate("/admin/dashboard");
     } else {
-      setError("Identifiants incorrects. Veuillez rÃ©essayer.");
+      setError("Identifiants incorrects. Veuillez réessayer.");
     }
   };
 
@@ -40,7 +40,7 @@ export default function AdminLogin() {
           <div className="h-px w-24 bg-gold/30 mx-auto mb-6" />
           
           <h2 className="text-xl text-text-primary font-medium tracking-wide">Espace Administrateur</h2>
-          <p className="text-text-muted text-sm mt-2">AccÃ¨s rÃ©servÃ© Ã  l'Ã©quipe UBB</p>
+          <p className="text-text-muted text-sm mt-2">Accès réservé à l'équipe UBB</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-bg-card border border-border-subtle p-8 rounded-sm shadow-2xl">
@@ -75,7 +75,7 @@ export default function AdminLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-bg-primary border border-border-subtle rounded-sm py-3.5 pl-12 pr-12 text-text-primary focus:outline-none focus:border-gold/50 transition-colors"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••••"
                   required
                 />
                 <button
@@ -98,7 +98,7 @@ export default function AdminLogin() {
         </form>
         
         <p className="text-center mt-8 text-text-muted text-[10px] uppercase tracking-widest">
-          SystÃ¨me de gestion sÃ©curisÃ© &copy; {new Date().getFullYear()} UBB
+          Système de gestion sécurisé &copy; {new Date().getFullYear()} UBB
         </p>
       </div>
     </div>

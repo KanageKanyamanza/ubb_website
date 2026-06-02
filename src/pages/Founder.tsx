@@ -73,7 +73,7 @@ export default function Founder() {
       </section>
 
       {/* â”€â”€ SECTION 2 â€” BANDE DE CHIFFRES CLÃ‰S â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <section className="py-12 border-b border-border-subtle" style={{ backgroundColor: "#131313" }}>
+      <section className="py-12 border-b border-border-subtle bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border-subtle">
             <div className="flex flex-col items-center text-center px-4">
@@ -266,7 +266,7 @@ export default function Founder() {
       </section>
 
       {/* â”€â”€ SECTION 7 â€” CTA FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <section className="py-24 bg-[#0A0A0A] border-t border-border-subtle text-center relative overflow-hidden">
+      <section className="py-24 bg-bg-secondary border-t border-border-subtle text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/10 blur-[100px] rounded-full pointer-events-none" />
         
         <div className="max-w-3xl mx-auto px-6 relative z-10">
