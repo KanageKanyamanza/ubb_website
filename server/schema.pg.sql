@@ -1,4 +1,4 @@
--- server/schema.pg.sql
+    -- server/schema.pg.sql
 -- Ubuntu Business Builders (UBB)
 -- Schéma PostgreSQL avec données initiales
 

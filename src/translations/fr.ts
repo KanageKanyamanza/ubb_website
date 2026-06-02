@@ -33,9 +33,9 @@ export const fr = {
     contact: "Contact",
     actualites: "Actualités",
     register: "S'inscrire",
-    partner: "Partenaire Local",
-    applyPartner: "Devenir Partenaire",
-    enterpriseDiagnostic: "Diagnostic d'Entreprise"
+    partner: "Partenaire local",
+    applyPartner: "Devenir partenaire",
+    enterpriseDiagnostic: "Diagnostic d'entreprise"
   },
   footer: {
     brandDesc: "Cabinet de conseil panafricain aidant les entreprises africaines à croître durablement grâce à la philosophie Ubuntu, la rigueur et des systèmes de croissance sur mesure.",
@@ -45,7 +45,7 @@ export const fr = {
     joinUbb: "Rejoindre UBB"
   },
   home: {
-    seoTitle: "Accélérateur de Croissance pour Entreprises Africaines",
+    seoTitle: "Accélérateur de croissance pour entreprises africaines",
     seoDesc: "Ubuntu Business Builders (UBB) accompagne les entreprises africaines dans leur structuration et leur croissance. Augmentez vos revenus de 30% en 90 jours grâce à nos solutions vitalCHECK, HARVESTS 2.0 et nos conseils stratégiques sur-mesure.",
     hero: {
       titleLine1: "Augmentez vos revenus",
@@ -58,7 +58,7 @@ export const fr = {
     },
     stats: {
       salesGrowth: "de croissance des ventes en 90 jours",
-      pillars: "Jeunesse éduquée & Entreprises africaines",
+      pillars: "Jeunesse éduquée & entreprises africaines",
       saas: "vitalCHECK & HARVESTS 2.0",
       philosophy: "philosophie au cœur de chaque mission"
     },
@@ -76,11 +76,11 @@ export const fr = {
     solution: {
       title: "Une plateforme. Trois leviers de croissance.",
       subtitle: "Conseil, outils et formation — tout ce dont votre entreprise a besoin pour passer au niveau supérieur.",
-      card1Title: "Conseil Stratégique",
+      card1Title: "Conseil stratégique",
       card1Text: "Diagnostic complet, plan d'action sur mesure et accompagnement opérationnel piloté par des consultants expérimentes de UBB.",
       card2Title: "Outils SaaS",
       card2Text: "vitalCHECK diagnostique votre entreprise en quelques minutes. HARVESTS 2.0 pilote vos ventes et opérations au quotidien.",
-      card3Title: "Ressources & Formation",
+      card3Title: "Ressources & formation",
       card3Text: "E-books, podcasts et formations pour renforcer vos compétences et celles de votre équipe, à votre rythme.",
       card3Cta: "Voir les ressources"
     },
@@ -115,9 +115,9 @@ export const fr = {
       quoteAuthor: "Ambrose Nzeyimana",
       quoteRole: "Fondateur & CEO · UBB",
       quoteCta: "Lire l'histoire complète",
-      detail1Title: "Un Diagnostic Précis",
+      detail1Title: "Un diagnostic précis",
       detail1Text: "15 jours d'analyse approfondie (chiffres, stratégies, entretiens d'équipes) pour identifier avec exactitude les leviers de performance inexploités.",
-      detail2Title: "Rigueur & Discipline",
+      detail2Title: "Rigueur & discipline",
       detail2Text: "Mise en place de réunions quotidiennes ultra-courtes (30 min) axées sur la transparence opérationnelle, la collaboration et l'anticipation quotidienne.",
       ctaTitle: "Votre entreprise peut obtenir les mêmes résultats.",
       ctaPrimary: "Parler à Ambrose",
@@ -134,10 +134,10 @@ export const fr = {
     },
     resources: {
       title: "Ressources pour accélérer votre croissance",
-      packTitle: "Pack Ressources Digitales",
+      packTitle: "Pack ressources digitales",
       packDesc: "E-books, podcasts et formations vidéo pour renforcer vos compétences entrepreneuriales.",
       packCta: "Accéder aux ressources",
-      workbookTitle: "Workbook Offert",
+      workbookTitle: "Workbook offert",
       workbookDesc: '"Comment augmenter de 30% vos ventes mensuelles en 90 jours."',
       workbookCta: "Recevoir le workbook"
     },
@@ -152,7 +152,7 @@ export const fr = {
     }
   },
   team: {
-    seoTitle: "Notre Équipe d'Experts & Partenaires Locaux",
+    seoTitle: "Notre équipe d'experts & partenaires locaux",
     seoDesc: "Découvrez l'équipe d'Ubuntu Business Builders (UBB) : experts en conseil stratégique, ingénierie produit/technologie, marketing de croissance et partenaires locaux sur le terrain en Afrique (Sénégal, Burkina Faso, etc.).",
     hero: {
       tag: "Ubuntu Business Builders · L'équipe",
@@ -160,13 +160,13 @@ export const fr = {
       titleLine2: "dans votre réussite.",
       desc: "Conseil stratégique, technologie et marketing — trois disciplines réunies pour accompagner les entreprises africaines vers une croissance structurée et durable.",
       pill1: "Conseil stratégique",
-      pill2: "Produit & Technologie",
-      pill3: "Croissance & Visibilité"
+      pill2: "Produit & technologie",
+      pill3: "Croissance & visibilité"
     },
     direction: {
-      tag: "Direction & Conseil Stratégique",
+      tag: "Direction & conseil stratégique",
       desc: "Le cœur stratégique d'UBB. Ambrose pilote chaque mission de conseil avec son équipe de direction.",
-      founderTag: "Fondateur & Directeur Exécutif",
+      founderTag: "Fondateur & directeur exécutif",
       bullet1: "Entreprise manufacturière : record de ventes en 90 jours",
       bullet2: "Diagnostic complet en 15 jours, plan d'action précis",
       bullet3: "Méthode des réunions quotidiennes — résultats en 3 mois",
@@ -174,59 +174,59 @@ export const fr = {
       profileFull: "Voir le profil complet →"
     },
     tech: {
-      tag: "Équipe Produit & Technologie",
+      tag: "Équipe produit & technologie",
       desc: "L'équipe qui conçoit et maintient les outils SaaS d'UBB — vitalCHECK, HARVESTS 2.0 et le site de la plateforme."
     },
     growth: {
-      tag: "Équipe Croissance & Visibilité",
+      tag: "Équipe croissance & visibilité",
       desc: "L'équipe qui amplifie la présence d'UBB et de ses clients sur les marchés africains — contenus, réseaux sociaux et stratégie d'acquisition."
     },
     partners: {
-      tag: "Partenaires Locaux & Experts Terrain",
+      tag: "Partenaires locaux & experts terrain",
       desc: "Nos ambassadeurs et experts locaux engagés sur le terrain pour conseiller et transformer les entreprises locales."
     },
     join: {
       title: "Vous souhaitez rejoindre l'aventure UBB ?",
-      desc: "UBB recrute des Partenaires Locaux dans toute l'Afrique  pour accompagner les entreprises locales.",
+      desc: "UBB recrute des partenaires locaux dans toute l'Afrique  pour accompagner les entreprises locales.",
       ctaPrimary: "Voir les opportunités",
       ctaSecondary: "Nous contacter"
     },
     members: {
       ambrose: {
-        title: "Fondateur & Directeur Exécutif",
+        title: "Fondateur & directeur exécutif",
         bio: "Fort de son expérience en gestion de projets et en croissance d'entreprises, Ambrose guide les organisations vers leurs objectifs financiers et stratégiques. Son expertise en structures d'affaires et en optimisation des processus lui permet de concevoir des stratégies sur mesure. Passionné d'analyse et d'innovation, il incarne la mission d'UBB : transformer les défis en opportunités durables."
       },
       cedric: {
-        title: "Responsable Opérations",
-        bio: "Diplômé en IT-Finance, Cédric soutient UBB dans la structuration de ses missions stratégiques et la performance de ses équipes. En tant que Responsable des Opérations, il collabore étroitement avec le CEO pour piloter les projets, assurer la qualité des livrables et fluidifier l'organisation. Son expertise en gestion de projets et finance numérique renforce les diagnostics et optimise les outils de décision."
+        title: "Responsable opérations",
+        bio: "Diplômé en IT-Finance, Cédric soutient UBB dans la structuration de ses missions stratégiques et la performance de ses équipes. En tant que responsable des opérations, il collabore étroitement avec le CEO pour piloter les projets, assurer la qualité des livrables et fluidifier l'organisation. Son expertise en gestion de projets et finance numérique renforce les diagnostics et optimise les outils de décision."
       },
       khady: {
-        title: "Web Développeur",
+        title: "Web développeur",
         bio: "Développeuse web polyvalente maîtrisant React, Next.js et Laravel, Khady conçoit des interfaces modernes tout en développant la logique métier côté serveur."
       },
       revhieno: {
-        title: "Développeur Full Stack",
-        bio: "Développeur Web Full Stack passionné, spécialisé en React et Node.js, Roll conçoit des sites modernes, performants et parfaitement adaptés aux besoins métier."
+        title: "Développeur full stack",
+        bio: "Développeur web full stack passionné, spécialisé en React et Node.js, Roll conçoit des sites modernes, performants et parfaitement adaptés aux besoins métier."
       },
       chantal: {
-        title: "Web Développeur & Designer",
+        title: "Web développeur & designer",
         bio: "Passionnée de créativité numérique et de design fonctionnel, Chantal unite technologie et esthétique pour concevoir des expériences digitales harmonieuses."
       },
       andre: {
-        title: "Développeur Full Stack",
+        title: "Développeur full stack",
         bio: "André conçoit et développe des applications web modernes, performantes et adaptés aux besoins des entreprises sur le front-end et le back-end."
       },
       ousseynou: {
-        title: "Community Manager & Assistant Marketing",
+        title: "Community manager & assistant marketing",
         bio: "Professionnel polyvalent à l'intersection de la communication digitale et de la gestion financière, Ousseynou allie rigueur analytique et créativité stratégique pour accompagner les marques et maximiser la performance."
       },
       babacar: {
-        title: "Community Manager & Assistant Marketing",
-        bio: "Spécialisé en Community Management, Marketing Digital et Développement Commercial, Babacar accompagne les entreprises dans la croissance de leur visibilité. He conçoit des stratégies en acquisition et engagement."
+        title: "Community manager & assistant marketing",
+        bio: "Spécialisé en community management, marketing digital et développement commercial, Babacar accompagne les entreprises dans la croissance de leur visibilité. He conçoit des stratégies en acquisition et engagement."
       },
       nadinga: {
-        title: "Partenaire Local · Burkina Faso",
-        bio: "Nadinga Soapaaba Raoul est un technicien agronome dynamique, rigoureux et orienté résultats, doté d’une solide formation en agro-sylvo-pastorale et agronomie à l’Université Saint Thomas d’Aquin. Il possède une expérience pratique en recherche agronomique, transformation agroalimentaire et montage de projets. Polyvalent, maîtrisant les outils bureautiques et les techniques culturales, il se distingue par son esprit d’équipe, son assiduité et son engagement professionnel."
+        title: "Partenaire local · Burkina Faso",
+        bio: "Nadinga Soapaaba Raoul est un technicien agronome dynamique, rigoureux et orienté résultats, doté d'une solide formation en agro-sylvo-pastorale et agronomie à l'Université Saint Thomas d'Aquin. Il possède une expérience pratique en recherche agronomique, transformation agroalimentaire et montage de projets. Polyvalent, maîtrisant les outils bureautiques et les techniques culturales, il se distingue par son esprit d'équipe, son assiduité et son engagement professionnel."
       }
     },
     chips: {
@@ -244,30 +244,30 @@ export const fr = {
       "Marketing digital": "Marketing digital",
       "Node.js": "Node.js",
       "PWA": "PWA",
-      "Full Stack": "Full Stack",
+      "Full Stack": "Full stack",
       "UI/UX": "UI/UX",
       "Développement web": "Développement web",
       "Création graphique": "Création graphique",
       "Front-end": "Front-end",
       "Back-end": "Back-end",
       "UX/UI": "UX/UI",
-      "Community Management": "Community Management",
+      "Community Management": "Community management",
       "SEO": "SEO",
       "Finance": "Finance",
       "Branding": "Branding",
-      "Marketing Digital": "Marketing Digital",
-      "Développement Commercial": "Développement Commercial",
+      "Marketing Digital": "Marketing digital",
+      "Développement Commercial": "Développement commercial",
       "Acquisition": "Acquisition",
       "Agronomie": "Agronomie",
       "Burkina Faso": "Burkina Faso",
-      "Projets Agricoles": "Projets Agricoles"
+      "Projets Agricoles": "Projets agricoles"
     }
   },
   founder: {
-    seoTitle: "Ambrose Nzeyimana - Fondateur & Visionnaire UBB",
+    seoTitle: "Ambrose Nzeyimana - Fondateur & visionnaire UBB",
     seoDesc: "Découvrez le parcours d'Ambrose Nzeyimana, fondateur d'Ubuntu Business Builders (UBB). Expert en structuration d'affaires, auteur et conférencier, il a orchestré plus de 20 diagnostics stratégiques et propulsé la croissance de dizaines d'entreprises en Afrique.",
     hero: {
-      founderTitle: "Fondateur & Directeur Exécutif · UBB",
+      founderTitle: "Fondateur & directeur exécutif · UBB",
       quote: '"Transformer les entreprises africaines de l\'intérieur."',
       desc: "Ambrose Nzeyimana a fondé Ubuntu Business Builders avec une conviction simple : les entreprises africaines ont tout ce qu'il faut pour croître — elles ont besoin d'un système, pas d'un miracle.",
       linkedin: "Voir le profil LinkedIn",
@@ -286,27 +286,27 @@ export const fr = {
     },
     expertise: {
       title: "Domaines d'expertise",
-      card1Title: "Diagnostic Stratégique",
+      card1Title: "Diagnostic stratégique",
       card1Desc: "Analyse approfondie des opérations, finances et processus commerciaux. Ambrose identifie les blocages invisibles que les équipes internes ne voient plus.",
-      card2Title: "Transformation Opérationnelle",
+      card2Title: "Transformation opérationnelle",
       card2Desc: "Mise en place de systèmes de gestion, réunions structurées et indicateurs de performance adaptés aux réalités africaines.",
-      card3Title: "Croissance des Revenus",
+      card3Title: "Croissance des revenus",
       card3Desc: "Plan d'action orienté résultats commerciaux. Méthode prouvée : +30% de ventes en 90 jours dans des secteurs variés."
     },
     timeline: {
       title: "Parcours",
       subtitle: "De la conviction à l'impact.",
-      item1Tag: "Leadership & Analyse",
-      item1Title: "Parcours Académique & Conférences",
+      item1Tag: "Leadership & analyse",
+      item1Title: "Parcours académique & conférences",
       item1Desc: "Formé en sciences politiques, économie et systèmes d'information, Ambrose s'est spécialisé dans la géopolitique de la région des Grands Lacs et la transformation des organisations. Son expertise l'a amené à intervenir en tant que conférencier et analyste auprès d'institutions prestigieuses telles que la London School of Economics (LSE) et l'Université de Cambridge, abordant les enjeux de développement durable et d'autonomie des économies africaines.",
-      item2Tag: "Conseil International",
-      item2Title: "Direction de Cabinets & Accompagnement",
+      item2Tag: "Conseil international",
+      item2Title: "Direction de cabinets & accompagnement",
       item2Desc: "Fort d'une solide expérience de conseil à l'international, Ambrose a dirigé des cabinets et initiatives spécialisés dans la transformation opérationnelle et l'implémentation du leadership I-BUNTU. En tant que coordinateur de mouvements panafricains et expert-conseil, il a accompagné de nombreux dirigeants à structurer leurs chaînes de valeur et à développer des modèles managériaux hautement performants fondés sur la collaboration collective.",
       item3Tag: "2025-2026",
       item3Title: "Fondation d'Ubuntu Business Builders",
       item3Desc: "Création d'UBB au Sénégal avec une vision claire : devenir le partenaire de croissance de référence des entreprises africaines établies. SARL · RCCM SN.DKR.2026.B.1650",
       item4Tag: "2026",
-      item4Title: "Première mission documentée — Secteur Hygiène",
+      item4Title: "Première mission documentée — secteur hygiène",
       item4Desc: "Intervention dans une entreprise manufacturière de produits d'hygiène en Afrique. Diagnostic en 15 jours, mise en place des réunions quotidiennes, records de ventes atteints en 90 jours — un exploit inédit en 11 ans d'existence."
     },
     philosophy: {
@@ -314,16 +314,16 @@ export const fr = {
       desc: "La philosophie Ubuntu guide chaque mission d'Ambrose. Il ne s'agit pas de transformer une entreprise de l'extérieur — il s'agit de travailler avec les équipes, de l'intérieur, jusqu'à ce que le changement devienne naturel et durable."
     },
     essay: {
-      tag: "Étude de cas · Message du Fondateur",
-      title: "La Force Transformatrice de la Rigueur et de la Discipline: Une Expérience Réelle",
+      tag: "Étude de cas · message du fondateur",
+      title: "La force transformatrice de la rigueur et de la discipline: une expérience réelle",
       p1: "Il y a quelques années, j'ai eu l'opportunité d'aider une entreprise manufacturière en difficulté en Afrique, spécialisée dans les produits d'hygiène. Mon expertise en conseil d'affaires a été sollicitée par un ami qui connaissait les difficultés de cette entreprise.",
-      h1: "Un Diagnostic Précis, une Prescription Efficace",
+      h1: "Un diagnostic précis, une prescription efficace",
       p2: "J'ai passé quinze jours à analyser en profondeur l'entreprise: chiffres, stratégies, et entretiens avec les équipes. L'objectif était d'identifier les obstacles et les leviers de croissance. Un rapport détaillé avec un plan d'action précis a été remis aux dirigeants, qui m'ont confié sa mise en œuvre.",
-      h2: "La Magie des Réunions Quotidiennes",
+      h2: "La magie des réunions quotidiennes",
       p3: "La transformation a débuté avec des réunions quotidiennes à 10 heures, impliquant tous les managers. Ces réunions de trente minutes étaient axées sur la transparence, la collaboration et l'anticipation. Chaque manager présentait les avancées de la veille, exprimait ses besoins pour faciliter la coordination, et présentait les plans d'action pour la journée à venir.",
-      resultTitle: "Résultats Concrets",
+      resultTitle: "Résultats concrets",
       resultText: "En trois mois, l'entreprise a atteint des records de ventes, un exploit inédit en onze ans d'existence.",
-      modelTitle: "Un Modèle Exportable",
+      modelTitle: "Un modèle exportable",
       modelText: "Cette expérience a démontré la puissance de la rigueur et de la discipline. Ce modèle peut être appliqué à toute entreprise africaine souhaitant se transformer.",
       h3: "Pourquoi l'Afrique?",
       p4: "L'Afrique possède un potentiel immense et chaque entreprise mérite d'atteindre son plein potentiel. Mon équipe et moi sommes prêts à relever ce défi avec vous."
@@ -336,66 +336,66 @@ export const fr = {
     }
   },
   jobs: {
-    seoTitle: "Opportunités de Carrières & Partenaires Locaux UBB",
-    seoDesc: "Rejoignez Ubuntu Business Builders (UBB) en tant que Partenaire Local. Portez la vision Ubuntu dans votre pays (Sénégal, Côte d'Ivoire, Cameroun, RDC, Burkina Faso...) et accélérez la croissance des entreprises africaines locales.",
+    seoTitle: "Opportunités de carrières & partenaires locaux UBB",
+    seoDesc: "Rejoignez Ubuntu Business Builders (UBB) en tant que partenaire local. Portez la vision Ubuntu dans votre pays (Sénégal, Côte d'Ivoire, Cameroun, RDC, Burkina Faso...) et accélérez la croissance des entreprises africaines locales.",
     hero: {
-      tag: "Recrutement & Partenariats",
-      titleLine1: "Devenir Partenaire",
-      titleLine2: "Local UBB",
+      tag: "Recrutement & partenariats",
+      titleLine1: "Devenir partenaire",
+      titleLine2: "local UBB",
       desc: "Rejoignez une élite panafricaine dédiée à l'accélération de la croissance des entreprises africaines."
     },
     proposition: {
-      tag: "Expansion Continentale",
-      title: "Portez la Vision Ubuntu dans votre Écosystème",
+      tag: "Expansion continentale",
+      title: "Portez la vision Ubuntu dans votre écosystème",
       p1: "UBB recherche des partenaires locaux passionnés pour étendre son impact. Nous ciblons des experts et des leaders capables de porter la vision Ubuntu au sein de leurs communautés respectives.",
       p2: "Que vous soyez au Sénégal, au Mali, en Côte d'Ivoire, au Cameroun, en RDC ou partout ailleurs sur le continent, votre connaissance du terrain est notre plus grand atout pour transformer l'économie africaine.",
-      ctaPrimary: "Rôle & Responsabilités",
-      ctaSecondary: "Apports & Rémunération",
+      ctaPrimary: "Rôle & responsabilités",
+      ctaSecondary: "Apports & rémunération",
       quote: '"L\'Afrique ne se construira pas par la charité, mais par l\'entrepreneuriat structuré."'
     },
     benefits: {
       title: "Pourquoi nous rejoindre ?",
-      card1Title: "Impact Direct",
+      card1Title: "Impact direct",
       card1Desc: "Contribuez concrètement à la structuration et au succès des champions locaux de votre pays.",
-      card2Title: "Prestige & Réseau",
+      card2Title: "Prestige & réseau",
       card2Desc: "Rejoignez un réseau fermé d'experts et de dirigeants à travers toute l'Afrique.",
-      card3Title: "Modèle Gagnant",
+      card3Title: "Modèle gagnant",
       card3Desc: "Bénéficiez d'une structure de rémunération attractive basée sur la performance et la croissance."
     },
     compensation: {
-      title: "Structure de Rémunération",
+      title: "Structure de rémunération",
       desc: "Nous avons conçu un modèle qui valorise l'expertise locale et récompense l'engagement à long terme.",
       cta: "Consulter la documentation détaillée"
     },
     cta: {
       title: "Prêt à changer la donne ?",
       desc: "Le prochain chapitre de la croissance africaine s'écrit avec vous. Posez votre candidature pour devenir le représentant UBB dans votre pays.",
-      cta: "Postuler Maintenant"
+      cta: "Postuler maintenant"
     }
   },
   postuler: {
-    seoTitle: "Postuler — Devenir Partenaire Local UBB | Ubuntu Business Builders",
-    seoDesc: "Rejoignez l'élite panafricaine UBB en tant que Partenaire Local. Portez la vision Ubuntu dans votre pays et accélérez la croissance des entreprises africaines.",
+    seoTitle: "Postuler — devenir partenaire local UBB | Ubuntu Business Builders",
+    seoDesc: "Rejoignez l'élite panafricaine UBB en tant que partenaire local. Portez la vision Ubuntu dans votre pays et accélérez la croissance des entreprises africaines.",
     hero: {
       tag: "Rejoindre l'élite UBB",
       titleLine1: "Postuler comme",
-      titleLine2: "Partenaire Local",
+      titleLine2: "Partenaire local",
       desc: "Représentez UBB dans votre pays et transformez l'économie africaine une entreprise à la fois."
     },
     benefits: {
       title: "Ce que vous gagnez",
       desc: "En rejoignant l'écosystème UBB en tant que partenaire local.",
-      card1Title: "Impact Continental",
+      card1Title: "Impact continental",
       card1Desc: "Contribuez à la structuration de dizaines d'entreprises dans votre pays.",
-      card2Title: "Prestige & Réseau Élite",
+      card2Title: "Prestige & réseau élite",
       card2Desc: "Accédez à un réseau fermé de dirigeants et experts à travers l'Afrique.",
-      card3Title: "Formation & Outils UBB",
+      card3Title: "Formation & outils UBB",
       card3Desc: "Accès complet à tous les outils, méthodologies et formations internes UBB.",
-      card4Title: "Rémunération Attractive",
+      card4Title: "Rémunération attractive",
       card4Desc: "Un modèle basé sur la performance qui valorise votre engagement à long terme."
     },
     form: {
-      title: "Votre Candidature",
+      title: "Votre candidature",
       subtitle: "Notre équipe vous contacte sous 48h après réception.",
       prenom: "Prénom *",
       nom: "Nom *",
@@ -405,7 +405,7 @@ export const fr = {
       paysPlaceholder: "Votre pays",
       linkedin: "Profil LinkedIn",
       motivation: "Motivation *",
-      motivationPlaceholder: "Pourquoi souhaitez-vous devenir Partenaire Local UBB ? Décrivez votre expérience et vos ambitions...",
+      motivationPlaceholder: "Pourquoi souhaitez-vous devenir partenaire local UBB ? Décrivez votre expérience et vos ambitions...",
       submitting: "Envoi en cours...",
       submit: "Soumettre ma candidature",
       security: "🔒 Vos informations sont strictement confidentielles.",
@@ -428,11 +428,11 @@ export const fr = {
     }
   },
   register: {
-    seoTitle: "Rejoindre la Communauté UBB - Inscription",
+    seoTitle: "Rejoindre la communauté UBB - inscription",
     seoDesc: "Inscrivez-vous dès maintenant pour rejoindre la communauté d'Ubuntu Business Builders (UBB) et accéder en exclusivité à nos programmes d'accélération de croissance, nos outils SaaS (vitalCHECK, HARVESTS 2.0) et nos événements exclusifs.",
     hero: {
-      tag: "Opportunité de Croissance",
-      title: "Rejoindre la Communauté",
+      tag: "Opportunité de croissance",
+      title: "Rejoindre la communauté",
       desc: "Ubuntu Business Builders"
     },
     form: {
@@ -444,10 +444,10 @@ export const fr = {
       company: "Nom de l'entreprise",
       industry: "Secteur d'activité",
       industryPlaceholder: "Sélectionnez votre secteur...",
-      industry1: "Agriculture & Agroalimentaire",
-      industry2: "Technologie & Digital",
-      industry3: "Construction & Immobilier",
-      industry4: "Services Financiers",
+      industry1: "Agriculture & agroalimentaire",
+      industry2: "Technologie & digital",
+      industry3: "Construction & immobilier",
+      industry4: "Services financiers",
       industry5: "Autre",
       submit: "Rejoindre la communauté UBB",
       disclaimer: "En nous rejoignant, vous acceptez de recevoir nos communications stratégiques et nos offres exclusives destinées à la croissance des entreprises africaines.",
@@ -457,8 +457,8 @@ export const fr = {
     }
   },
   ebooks: {
-    seoTitle: "Pack E-books Stratégiques & Guides Pratiques | UBB",
-    seoDesc: "Téléchargez le Pack d'E-books d'Ubuntu Business Builders (UBB). Des guides et ressources essentiels conçus spécifiquement pour structurer, financer et propulser le développement commercial de votre entreprise en Afrique.",
+    seoTitle: "Pack e-books stratégiques & guides pratiques | UBB",
+    seoDesc: "Téléchargez le pack d'e-books d'Ubuntu Business Builders (UBB). Des guides et ressources essentiels conçus spécifiquement pour structurer, financer et propulser le développement commercial de votre entreprise en Afrique.",
     hero: {
       tag: "Ressources · Ubuntu Business Builders",
       titleLine1: "Accélérez votre croissance.",
@@ -468,7 +468,7 @@ export const fr = {
       cta: "Obtenir le pack"
     },
     webinar: {
-      tag: "Contenu Audio & Vidéo",
+      tag: "Contenu audio & vidéo",
       title: "Webinaire UBB",
       desc: "Regardez notre webinaire exclusif pour aller plus loin dans votre transformation entrepreneuriale.",
       fallback: "Votre navigateur ne supporte pas la lecture vidéo."
@@ -494,9 +494,9 @@ export const fr = {
       item1Desc: "Le guide pratique pour définir vos priorités, organiser vos équipes et mesurer vos résultats — en 12 semaines.",
       item2Title: "Le diagnostic d'entreprise pas à pas",
       item2Desc: "Comment identifier les freins invisibles qui bloquent la croissance de votre entreprise. Méthode UBB complète.",
-      item3Title: "Série audio : Entrepreneurs africains",
+      item3Title: "Série audio : entrepreneurs africains",
       item3Desc: "Épisodes audio avec des entrepreneurs africains qui ont transformé leur entreprise grâce à la rigueur et aux systèmes de croissance.",
-      item4Title: "Module vidéo : Les réunions qui transforment",
+      item4Title: "Module vidéo : les réunions qui transforment",
       item4Desc: "La méthode des réunions quotidiennes utilisée par UBB dans ses missions. Expliquée pas à pas, avec exemples réels.",
       item5Title: "Workbook : +30% de ventes en 90 jours",
       item5Desc: "Le workbook offert d'UBB — exercices pratiques, grilles d'analyse et plans d'action à compléter pour augmenter vos ventes en 90 jours."
@@ -530,7 +530,7 @@ export const fr = {
       zipCodePlaceholder: "Ex: 10000",
       country: "Pays",
       summaryTitle: "Récapitulatif de commande",
-      packTitle: "Pack Ressources Digitales UBB",
+      packTitle: "Pack ressources digitales UBB",
       packDesc: "E-books + Podcasts + Cours vidéos",
       coupon: "Coupon de réduction",
       total: "Total",
@@ -578,7 +578,7 @@ export const fr = {
     zipCodePlaceholder: "Ex: 10000",
     country: "Pays",
     summaryTitle: "Récapitulatif de commande",
-    packTitle: "Pack Ressources Digitales UBB",
+    packTitle: "Pack ressources digitales UBB",
     packDesc: "E-books + Podcasts + Cours vidéos",
     coupon: "Coupon de réduction",
     total: "Total",
@@ -604,17 +604,17 @@ export const fr = {
   },
 
   workbook: {
-    seoTitle: "Workbook Gratuit — Augmentez vos ventes de 30% en 90 jours | UBB",
+    seoTitle: "Workbook gratuit — augmentez vos ventes de 30% en 90 jours | UBB",
     seoDesc: "Recevez gratuitement le workbook UBB : 'Comment augmenter de 30% vos ventes mensuelles en 90 jours'. Méthode éprouvée pour les entreprises africaines.",
     hero: {
-      tag: "100% Gratuit",
+      tag: "100% gratuit",
       titleLine1: "Augmentez vos ventes",
       titleLine2: "de 30% en 90 jours.",
       desc: "Le workbook opérationnel conçu pour les entreprises africaines qui veulent croître rapidement."
     },
     left: {
       cardTitle: "Workbook UBB",
-      cardTag: "Guide opérationnel · PDF Premium",
+      cardTag: "Guide opérationnel · PDF premium",
       cardIntro: "Ce workbook concentre les méthodes qu'Ambrose Nzeyimana et son équipe utilisent pour aider des entreprises africaines à battre leurs propres records de ventes en seulement 90 jours.",
       item1Title: "La méthode des 90 jours",
       item1Desc: "Un cadre structuré, semaine par semaine, pour générer des résultats mesurables.",
@@ -635,7 +635,7 @@ export const fr = {
       phone: "WhatsApp / Téléphone",
       country: "Pays *",
       countryPlaceholder: "Sélectionnez votre pays",
-      submit: "Recevoir le Workbook Gratuit",
+      submit: "Recevoir le workbook gratuit",
       submitting: "Envoi en cours...",
       security: "🔒 Vos données sont confidentielles. Aucun spam.",
       successTitle: "Félicitations, {prenom} !",
@@ -645,7 +645,7 @@ export const fr = {
     }
   },
   contact: {
-    seoTitle: "Nous Contacter — Parler à l'Équipe UBB | Ubuntu Business Builders",
+    seoTitle: "Nous contacter — parler à l'équipe UBB | Ubuntu Business Builders",
     seoDesc: "Contactez l'équipe Ubuntu Business Builders. Diagnostic d'entreprise, conseil stratégique, partenariat — notre équipe vous répond sous 48h.",
     hero: {
       tag: "Parlons de votre entreprise",
@@ -694,12 +694,12 @@ export const fr = {
     }
   },
   actualites: {
-    seoTitle: "Actualités & Galerie de Photos d'Ubuntu",
+    seoTitle: "Actualités & galerie de photos d'Ubuntu",
     seoDesc: "Suivez l'actualité d'Ubuntu Business Builders (UBB) : missions de conseil sur le terrain, ateliers de formation, lancements de produits technologiques et événements majeurs en Afrique.",
     hero: {
       title: "Actualités UBB",
       subtitle: "Webinaires, événements et lancements — suivez l'aventure UBB.",
-      tag: "publications"
+      tag: "Publications"
     },
     filter: {
       all: "Tous"
@@ -710,7 +710,7 @@ export const fr = {
       cta: "Voir toutes les publications"
     },
     tools: {
-      title: "Nos Outils pour Votre Croissance",
+      title: "Nos outils pour votre croissance",
       subtitle: "Deux produits conçus pour les entreprises africaines.",
       vitalcheck: {
         badge: "🔬 Outil de diagnostic",
@@ -736,7 +736,7 @@ export const fr = {
     placeholder: "Écrivez votre message...",
     send: "Envoyer",
     diagnosticPrompt: "Je veux faire un diagnostic",
-    partnerPrompt: "Devenir Partenaire Local",
+    partnerPrompt: "Devenir partenaire local",
     pricingPrompt: "Prix des services"
   },
   vitalcheckPopup: {
