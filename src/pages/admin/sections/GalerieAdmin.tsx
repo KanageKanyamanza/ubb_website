@@ -216,13 +216,29 @@ export default function GalerieAdmin() {
                         accept="image/*"
                         onChange={(e) => {
                           const file = e.target.files?.[0];
-                          if (file) {
-                            const reader = new FileReader();
-                            reader.onloadend = () => {
-                              setUrl(reader.result as string);
-                            };
-                            reader.readAsDataURL(file);
-                          }
+                          if (!file) return;
+
+                          const MAX_WIDTH = 1200;
+                          const QUALITY = 0.75;
+
+                          const img = new Image();
+                          const objectUrl = URL.createObjectURL(file);
+                          img.onload = () => {
+                            const canvas = document.createElement('canvas');
+                            let w = img.width;
+                            let h = img.height;
+                            if (w > MAX_WIDTH) {
+                              h = Math.round((h * MAX_WIDTH) / w);
+                              w = MAX_WIDTH;
+                            }
+                            canvas.width = w;
+                            canvas.height = h;
+                            canvas.getContext('2d')!.drawImage(img, 0, 0, w, h);
+                            const compressed = canvas.toDataURL('image/jpeg', QUALITY);
+                            setUrl(compressed);
+                            URL.revokeObjectURL(objectUrl);
+                          };
+                          img.src = objectUrl;
                         }}
                         className="absolute inset-0 opacity-0 cursor-pointer z-10"
                       />
