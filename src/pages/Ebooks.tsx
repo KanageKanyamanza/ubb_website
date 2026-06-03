@@ -45,6 +45,10 @@ export default function Ebooks() {
     setPaymentDetails(null);
   };
 
+  const scrollToCheckout = () => {
+    document.getElementById('commander')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <div className="flex flex-col w-full bg-bg-primary overflow-hidden min-h-screen">
       
@@ -207,7 +211,10 @@ export default function Ebooks() {
           <div className="grid grid-cols-1 gap-6 mb-12">
             {PACK_CONTENTS.map((item, index) => (
               <AnimatedSection key={index} delay={index * 0.1}>
-                <div className="bg-bg-card border border-border-subtle rounded-xl p-6 hover:border-gold/30 transition-colors flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+                <div
+                  onClick={scrollToCheckout}
+                  className="bg-bg-card border border-border-subtle rounded-xl p-6 hover:border-gold/40 hover:shadow-[0_0_20px_rgba(184,115,51,0.1)] transition-all cursor-pointer flex flex-col sm:flex-row gap-6 items-start sm:items-center group"
+                >
                   <img src={item.image} alt={t(`ebooks.items.item${index + 1}Title`)} className="w-20 h-20 object-cover rounded-lg border border-white/5 shadow-lg flex-shrink-0" />
                   <div className="flex-1">
                     <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[10px] font-bold uppercase tracking-widest rounded-full mb-3">
@@ -223,6 +230,7 @@ export default function Ebooks() {
                       {t(`ebooks.items.item${index + 1}Desc`)}
                     </p>
                   </div>
+                  <ArrowRight className="w-5 h-5 text-gold opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                 </div>
               </AnimatedSection>
             ))}
