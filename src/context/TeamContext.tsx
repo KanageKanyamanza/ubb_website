@@ -11,6 +11,7 @@ export interface TeamMember {
   chips: string[];
   category: "direction" | "tech" | "growth" | "partners";
   visible: boolean;
+  linkedin?: string;
 }
 
 interface TeamContextType {

@@ -1,7 +1,7 @@
 ﻿// src/pages/admin/sections/TeamAdmin.tsx
 import React, { useState } from "react";
 import { useTeam, TeamMember } from "../../../context/TeamContext";
-import { Plus, Edit2, Eye, EyeOff, Trash2, X, User, Image, FileText, Check, Award, Briefcase, Hash } from "lucide-react";
+import { Plus, Edit2, Eye, EyeOff, Trash2, X, User, Image, FileText, Check, Award, Briefcase, Hash, Linkedin } from "lucide-react";
 
 export default function TeamAdmin() {
   const { team, addMember, updateMember, deleteMember, toggleMemberVisibility } = useTeam();
@@ -18,6 +18,7 @@ export default function TeamAdmin() {
   const [chipsText, setChipsText] = useState("");
   const [category, setCategory] = useState<"direction" | "tech" | "growth" | "partners">("tech");
   const [visible, setVisible] = useState(true);
+  const [linkedin, setLinkedin] = useState("");
 
   const openModal = (member?: TeamMember) => {
     if (member) {
@@ -29,6 +30,7 @@ export default function TeamAdmin() {
       setChipsText(member.chips.join(", "));
       setCategory(member.category);
       setVisible(member.visible);
+      setLinkedin(member.linkedin || "");
     } else {
       setEditingMember(null);
       setName("");
@@ -38,6 +40,7 @@ export default function TeamAdmin() {
       setChipsText("");
       setCategory("tech");
       setVisible(true);
+      setLinkedin("");
     }
     setIsModalOpen(true);
   };
@@ -58,6 +61,7 @@ export default function TeamAdmin() {
       chips,
       category,
       visible,
+      linkedin: linkedin.trim() || undefined,
     };
 
     if (editingMember) {
@@ -134,6 +138,19 @@ export default function TeamAdmin() {
               <p className="text-text-secondary text-xs leading-relaxed line-clamp-3 mb-4">
                 {member.bio}
               </p>
+
+              {/* LinkedIn indicator */}
+              {member.linkedin && (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[10px] text-gold/70 hover:text-gold transition-colors mb-2"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Linkedin className="w-3 h-3" /> LinkedIn
+                </a>
+              )}
 
               {/* Chips */}
               <div className="flex flex-wrap gap-1.5 mb-6">
@@ -281,7 +298,21 @@ export default function TeamAdmin() {
                 />
               </div>
 
-              {/* Row 5: Visibility */}
+              {/* Row 5: LinkedIn */}
+              <div>
+                <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
+                  <Linkedin className="w-3 h-3 text-gold" /> Profil LinkedIn (optionnel)
+                </label>
+                <input
+                  type="url"
+                  value={linkedin}
+                  onChange={(e) => setLinkedin(e.target.value)}
+                  className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm font-mono"
+                  placeholder="https://linkedin.com/in/nom-prenom"
+                />
+              </div>
+
+              {/* Row 6: Visibility */}
               <div>
                 <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2">Statut de Visibilité</label>
                 <button

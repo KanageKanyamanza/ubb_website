@@ -88,6 +88,10 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
+// Migration : ajoute la colonne linkedin si elle n'existe pas encore
+pool.query("ALTER TABLE team_members ADD COLUMN IF NOT EXISTS linkedin TEXT")
+  .catch(() => {});
+
 // ────────────────────────────────────────────────────────────────
 //  HEALTH CHECK — diagnostic connexion DB
 // ────────────────────────────────────────────────────────────────
@@ -128,7 +132,7 @@ app.get('/api/team', async (req, res) => {
 });
 
 app.post('/api/team', async (req, res) => {
-  const { name, title, img, bio, chips, category, visible } = req.body;
+  const { name, title, img, bio, chips, category, visible, linkedin } = req.body;
   if (!name || !title || !bio) {
     return res.status(400).json({ error: "Les champs nom, titre et biographie sont obligatoires" });
   }
@@ -139,8 +143,8 @@ app.post('/api/team', async (req, res) => {
 
   try {
     await pool.query(
-      'INSERT INTO team_members (id, name, title, img, bio, chips, category, visible) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
-      [id, name, title, img, bio, chipsString, category || 'tech', isVisible]
+      'INSERT INTO team_members (id, name, title, img, bio, chips, category, visible, linkedin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+      [id, name, title, img, bio, chipsString, category || 'tech', isVisible, linkedin || null]
     );
     res.status(201).json({ message: "Membre ajouté avec succès", id });
   } catch (error) {
@@ -150,7 +154,7 @@ app.post('/api/team', async (req, res) => {
 
 app.put('/api/team/:id', async (req, res) => {
   const { id } = req.params;
-  const { name, title, img, bio, chips, category, visible } = req.body;
+  const { name, title, img, bio, chips, category, visible, linkedin } = req.body;
 
   if (!name || !title || !bio) {
     return res.status(400).json({ error: "Les champs nom, titre et biographie sont obligatoires" });
@@ -161,8 +165,8 @@ app.put('/api/team/:id', async (req, res) => {
 
   try {
     const { rowCount } = await pool.query(
-      'UPDATE team_members SET name = $1, title = $2, img = $3, bio = $4, chips = $5, category = $6, visible = $7 WHERE id = $8',
-      [name, title, img, bio, chipsString, category, isVisible, id]
+      'UPDATE team_members SET name = $1, title = $2, img = $3, bio = $4, chips = $5, category = $6, visible = $7, linkedin = $8 WHERE id = $9',
+      [name, title, img, bio, chipsString, category, isVisible, linkedin || null, id]
     );
 
     if (rowCount === 0) {

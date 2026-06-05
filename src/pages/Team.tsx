@@ -10,6 +10,14 @@ import { useLanguage } from "../context/LanguageContext";
 export default function Team() {
   const { t } = useLanguage();
 
+  // t() returns the key when no translation is found, which is always truthy.
+  // This helper returns the chip's translation only when it actually exists.
+  const translateChip = (chip: string) => {
+    const key = `team.chips.${chip}`;
+    const result = t(key);
+    return result !== key ? result : chip;
+  };
+
   useSEO({
     title: t("team.seoTitle"),
     description: t("team.seoDesc"),
@@ -83,11 +91,11 @@ export default function Team() {
                         {t("team.direction.founderTag")}
                       </span>
                       <h2 className="text-5xl font-serif text-text-primary mb-2">{member.name}</h2>
-                      <h3 className="text-gold uppercase tracking-wide text-sm font-bold mb-6">{t(`team.members.${member.id}.title`) || member.title}</h3>
+                      <h3 className="text-gold uppercase tracking-wide text-sm font-bold mb-6">{member.title}</h3>
                       <div className="w-[60px] h-[3px] bg-gold mb-6" />
                       
                       <p className="text-text-secondary text-[15px] leading-relaxed mb-8">
-                        {t(`team.members.${member.id}.bio`) || member.bio}
+                        {member.bio}
                       </p>
 
                       <ul className="space-y-3 mb-8">
@@ -108,7 +116,7 @@ export default function Team() {
                       <div className="flex flex-wrap gap-2 mb-8">
                         {member.chips.map((chip) => (
                           <span key={chip} className="px-3 py-1.5 bg-bg-primary border border-border-subtle text-text-muted text-[10px] uppercase tracking-wider rounded-full">
-                            {t(`team.chips.${chip}`) || chip}
+                            {translateChip(chip)}
                           </span>
                         ))}
                       </div>
@@ -153,20 +161,25 @@ export default function Team() {
                   
                   <div className="lg:col-span-7">
                     <h2 className="text-4xl font-serif text-text-primary mb-2">{member.name}</h2>
-                    <h3 className="text-gold uppercase tracking-wide text-sm font-bold mb-6">{t(`team.members.${member.id}.title`) || member.title}</h3>
+                    <h3 className="text-gold uppercase tracking-wide text-sm font-bold mb-6">{member.title}</h3>
                     <div className="w-[60px] h-[3px] bg-gold/50 mb-6" />
                     
                     <p className="text-text-secondary text-[15px] leading-relaxed mb-8">
-                      {t(`team.members.${member.id}.bio`) || member.bio}
+                      {member.bio}
                     </p>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {member.chips.map((chip) => (
                         <span key={chip} className="px-3 py-1.5 bg-bg-primary border border-border-subtle text-text-muted text-[10px] uppercase tracking-wider rounded-full">
-                          {t(`team.chips.${chip}`) || chip}
+                          {translateChip(chip)}
                         </span>
                       ))}
                     </div>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-sm font-bold uppercase tracking-widest transition-colors">
+                        <Linkedin className="w-4 h-4" /> LinkedIn
+                      </a>
+                    )}
                   </div>
                 </div>
               </AnimatedSection>
@@ -200,17 +213,22 @@ export default function Team() {
                   </div>
                   <div className="p-8 flex-1 flex flex-col -mt-20 relative z-10">
                     <h3 className="font-serif text-3xl text-text-primary mb-1">{member.name}</h3>
-                    <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{t(`team.members.${member.id}.title`) || member.title}</p>
+                    <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{member.title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
-                      {t(`team.members.${member.id}.bio`) || member.bio}
+                      {member.bio}
                     </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
+                    <div className="flex flex-wrap gap-2 mt-auto mb-4">
                       {member.chips.map((chip) => (
                         <span key={chip} className="px-3 py-1 bg-bg-primary border border-border-subtle text-text-muted text-[10px] uppercase tracking-wider rounded-full">
-                          {t(`team.chips.${chip}`) || chip}
+                          {translateChip(chip)}
                         </span>
                       ))}
                     </div>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-xs font-bold uppercase tracking-widest transition-colors mt-auto">
+                        <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                      </a>
+                    )}
                   </div>
                 </div>
               </AnimatedSection>
@@ -244,17 +262,22 @@ export default function Team() {
                   </div>
                   <div className="p-8 flex-1 flex flex-col -mt-20 relative z-10">
                     <h3 className="font-serif text-3xl text-text-primary mb-1">{member.name}</h3>
-                    <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{t(`team.members.${member.id}.title`) || member.title}</p>
+                    <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{member.title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
-                      {t(`team.members.${member.id}.bio`) || member.bio}
+                      {member.bio}
                     </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
+                    <div className="flex flex-wrap gap-2 mt-auto mb-4">
                       {member.chips.map((chip) => (
                         <span key={chip} className="px-3 py-1 bg-bg-primary border border-border-subtle text-text-muted text-[10px] uppercase tracking-wider rounded-full">
-                          {t(`team.chips.${chip}`) || chip}
+                          {translateChip(chip)}
                         </span>
                       ))}
                     </div>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-xs font-bold uppercase tracking-widest transition-colors mt-auto">
+                        <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                      </a>
+                    )}
                   </div>
                 </div>
               </AnimatedSection>
@@ -288,17 +311,22 @@ export default function Team() {
                   </div>
                   <div className="p-8 flex-1 flex flex-col -mt-20 relative z-10">
                     <h3 className="font-serif text-3xl text-text-primary mb-1">{member.name}</h3>
-                    <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{t(`team.members.${member.id}.title`) || member.title}</p>
+                    <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{member.title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1">
-                      {t(`team.members.${member.id}.bio`) || member.bio}
+                      {member.bio}
                     </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
+                    <div className="flex flex-wrap gap-2 mt-auto mb-4">
                       {member.chips.map((chip) => (
                         <span key={chip} className="px-3 py-1 bg-bg-primary border border-border-subtle text-text-muted text-[10px] uppercase tracking-wider rounded-full">
-                          {t(`team.chips.${chip}`) || chip}
+                          {translateChip(chip)}
                         </span>
                       ))}
                     </div>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-xs font-bold uppercase tracking-widest transition-colors mt-auto">
+                        <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                      </a>
+                    )}
                   </div>
                 </div>
               </AnimatedSection>
