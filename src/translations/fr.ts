@@ -51,7 +51,7 @@ export const fr = {
       titleLine1: "Croissance du chiffre d'affaires.",
       titleLine2: "Plus rapide.",
       subtitle: "",
-      desc: "Obtenez des résultats en 90 jours — ou nous travaillons gratuitement jusqu'à ce que vous les obteniez.",
+      desc: "Obtenez des résultats en 90 jours — durant lesquels nous travaillons gratuitement jusqu'à ce que vous les obteniez.",
       ctaDiagnostic: "Démarrer mon diagnostic",
       ctaVitalCheck: "Découvrir vitalCHECK",
       discover: "Découvrir"

@@ -132,7 +132,7 @@ Lien S'inscrire : https://www.growthubb.space/53f142ca-43a07785
 `;
 
 export const QUICK_REPLIES = [
-  "C'est quoi UBB ?",
+  "Qu'est-ce que UBB ?",
   "Quels sont vos services ?",
   "Comment vous contacter ?",
   "Devenir partenaire UBB",
