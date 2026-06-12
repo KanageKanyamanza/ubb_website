@@ -376,57 +376,67 @@ export const en: typeof fr = {
     }
   },
   postuler: {
-    seoTitle: "Apply — Become a Local UBB Partner | Ubuntu Business Builders",
-    seoDesc: "Join the UBB pan-African elite as a Local Partner. Carry the Ubuntu vision in your country and accelerate the growth of African businesses.",
+    seoTitle: "vitalCHECK Partnership | Ubuntu Business Builders",
+    seoDesc: "Join the vitalCHECK network and monetize your expertise by supporting business transformation at scale.",
     hero: {
-      tag: "Join the UBB Elite",
-      titleLine1: "Apply as a",
-      titleLine2: "Local Partner",
-      desc: "Represent UBB in your country and transform the African economy one company at a time."
+      tag: "VITALCHECK PARTNERSHIP",
+      titleLine1: "Join the",
+      titleLine2: "vitalCHECK network",
+      subtitleTool: "(business diagnostic tool)",
+      subtitleDesc: "Monetize your expertise by supporting business transformation at scale."
     },
-    benefits: {
-      title: "What you gain",
-      desc: "By joining the UBB ecosystem as a local partner.",
-      card1Title: "Continental Impact",
-      card1Desc: "Contribute to the structuring of dozens of businesses in your country.",
-      card2Title: "Prestige & Elite Network",
-      card2Desc: "Access a closed network of leaders and experts across Africa.",
-      card3Title: "UBB Training & Tools",
-      card3Desc: "Complete access to all UBB tools, methodologies, and internal training.",
-      card4Title: "Attractive Compensation",
-      card4Desc: "A performance-based model that values your long-term commitment."
+    entities: {
+      title: "Who can join the network?",
+      desc: "This program is open to a wide range of organizations and professionals",
+      e1: "Local consulting firms (strategy, finance, organization)",
+      e2: "Independent sector consultants",
+      e3: "Structures like SEEP Network",
+      e4: "Hybrid structures like GAPI (Mozambique)",
+      e5: "Incubators, accelerators and entrepreneurial hubs",
+      e6: "Financial institutions (banks, microfinance and fintech)",
+      e7: "International organizations and development agencies",
+      e8: "Professional networks and business associations",
+      e9: "Technology companies (ERP, SaaS, data)",
+      e10: "NGOs and development organizations"
+    },
+    options: {
+      title: "Choose your option",
+      desc: "Two options to join the vitalCHECK network according to your structure",
+      opt1Tag: "Option 1",
+      opt1Title: "Co-Branding",
+      opt1Item1Label: "Monthly subscription",
+      opt1Item1Value: "$30",
+      opt1Item2Label: "Training",
+      opt1Item2Value: "$150",
+      opt1Item3Label: "Revenue share",
+      opt1Item3Value: "30% of fees",
+      opt2Tag: "Option 2",
+      opt2Title: "White Label",
+      opt2Item1Label: "Initial access fee",
+      opt2Item1Value: "$1,000",
+      opt2Item2Label: "Training",
+      opt2Item2Value: "$150",
+      opt2Item3Label: "Revenue share",
+      opt2Item3Value: "20% of fees"
     },
     form: {
-      title: "Your Application",
-      subtitle: "Our team will contact you within 48h of receipt.",
-      prenom: "First Name *",
-      nom: "Last Name *",
-      email: "Email *",
-      telephone: "Phone *",
-      pays: "Country *",
-      paysPlaceholder: "Your country",
-      linkedin: "LinkedIn Profile",
-      motivation: "Motivation *",
-      motivationPlaceholder: "Why do you want to become a UBB Local Partner? Describe your experience and ambitions...",
+      title: "Apply now",
+      subtitle: "Fill in the form below to join the vitalCHECK network",
+      prenom: "First Name",
+      nom: "Last Name",
+      email: "Email",
+      telephone: "Phone",
+      pays: "Country",
+      paysPlaceholder: "Select",
+      linkedin: "LinkedIn (optional)",
+      motivation: "Motivation",
+      motivationPlaceholder: "Describe your organization and why you want to join the vitalCHECK network...",
       submitting: "Submitting...",
       submit: "Submit my application",
-      security: "🔒 Your information is strictly confidential.",
+      security: "Your data is treated confidentially",
       successTitle: "Application received!",
-      successDesc: "Thank you, {prenom}. Our team will review your application and get back to you within 48 hours.",
-      successSpam: "Also check your spam folder if you do not receive a reply."
-    },
-    faq: {
-      title: "Frequently Asked Questions",
-      q1: "What profile are you looking for?",
-      a1: "We are looking for passionate African professionals or entrepreneurs in business development, with an in-depth knowledge of their local market and an established network.",
-      q2: "Is this a full-time job?",
-      a2: "No. The UBB local partnership is flexible. You can maintain your current activities while representing UBB in your ecosystem.",
-      q3: "What is the selection process?",
-      a3: "After receiving your application, our team will contact you for an interview. The complete process takes 2 to 3 weeks.",
-      q4: "Are there any fees to become a partner?",
-      a4: "No, no entry fees. We invest in your tools, training, and development from day one.",
-      helpTitle: "A specific question?",
-      helpContact: "Contact us directly:"
+      successDesc: "Thank you {prenom}, your application has been successfully submitted. Our team will contact you within 48 hours.",
+      successSpam: "Please check your spam folder."
     }
   },
   register: {
@@ -508,6 +518,11 @@ export const en: typeof fr = {
       subtitle: "A complete pack. All-inclusive. Immediate access.",
       badge: "Included in the pack",
       footer: "5 resources · Immediate access after payment · Digital format"
+    },
+    additional: {
+      title: "Additional Resources",
+      subtitle: "Extra content updated regularly by our team.",
+      cta: "Access"
     },
     assurance: {
       card1Title: "Immediate access",

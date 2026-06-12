@@ -12,9 +12,12 @@ import { OrderSummary } from "../components/checkout/OrderSummary";
 import { CheckoutSuccess } from "../components/checkout/CheckoutSuccess";
 import { useSEO } from "../hooks/useSEO";
 import { useLanguage } from "../context/LanguageContext";
+import { useResources } from "../context/ResourcesContext";
 
 export default function Ebooks() {
   const { t } = useLanguage();
+  const { resources } = useResources();
+  const visibleResources = resources.filter((r) => r.visible);
 
   useSEO({
     title: t("ebooks.seoTitle"),
@@ -243,6 +246,58 @@ export default function Ebooks() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* ── SECTION 3B — RESSOURCES COMPLÉMENTAIRES (gérées depuis l'admin) ── */}
+      {visibleResources.length > 0 && (
+        <section className="py-24 bg-bg-secondary border-t border-b border-border-subtle">
+          <div className="max-w-5xl mx-auto px-6">
+            <AnimatedSection className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-serif text-text-primary mb-4">{t("ebooks.additional.title")}</h2>
+              <p className="text-gold text-lg italic">{t("ebooks.additional.subtitle")}</p>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 gap-6">
+              {visibleResources.map((item, index) => (
+                <AnimatedSection key={item.id} delay={index * 0.1}>
+                  <a
+                    href={item.link || undefined}
+                    target={item.link ? "_blank" : undefined}
+                    rel={item.link ? "noreferrer" : undefined}
+                    className={`bg-bg-card border border-border-subtle rounded-xl p-6 hover:border-gold/40 hover:shadow-[0_0_20px_rgba(184,115,51,0.1)] transition-all flex flex-col sm:flex-row gap-6 items-start sm:items-center group ${item.link ? "cursor-pointer" : ""}`}
+                  >
+                    {item.image && (
+                      item.type === "Formation vidéo" ? (
+                        <video src={item.image} controls className="w-full sm:w-40 rounded-lg border border-white/5 shadow-lg flex-shrink-0" />
+                      ) : (
+                        <img src={item.image} alt={item.title} className="w-20 h-20 object-cover rounded-lg border border-white/5 shadow-lg flex-shrink-0" />
+                      )
+                    )}
+                    <div className="flex-1">
+                      <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[10px] font-bold uppercase tracking-widest rounded-full mb-3">
+                        {item.type}
+                      </span>
+                      <h3 className="text-xl font-serif text-text-primary mb-2 flex items-center justify-between">
+                        {item.title}
+                        {item.pages && (
+                          <span className="hidden sm:inline-flex items-center text-[10px] font-sans text-gold font-bold uppercase tracking-widest">
+                            {item.pages}
+                          </span>
+                        )}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                    {item.link && (
+                      <ArrowRight className="w-5 h-5 text-gold opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                    )}
+                  </a>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── SECTION 4 — GARANTIE & RÉASSURANCE ───────────────────── */}
       <section className="py-20 bg-bg-secondary border-t border-border-subtle relative overflow-hidden">

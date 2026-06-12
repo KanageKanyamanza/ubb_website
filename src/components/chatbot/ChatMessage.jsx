@@ -42,7 +42,7 @@ export default function ChatMessage({ message }) {
         <div className="flex flex-col">
           <div className={`p-3 text-[13px] leading-relaxed shadow-lg ${
             isBot 
-              ? "bg-[#1A1A1A] border border-gold/20 text-text-primary rounded-tr-xl rounded-br-xl rounded-bl-xl" 
+              ? "bg-[#1A1A1A] border border-gold/20 text-white rounded-tr-xl rounded-br-xl rounded-bl-xl"
               : "bg-gold-gradient text-bg-primary font-medium rounded-tl-xl rounded-bl-xl rounded-br-xl"
           }`}>
             <div className="whitespace-pre-wrap">

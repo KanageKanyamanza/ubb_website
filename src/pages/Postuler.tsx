@@ -1,7 +1,6 @@
-﻿// src/pages/Postuler.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight, CheckCircle, Globe, Award, Users, Briefcase, ChevronDown } from "lucide-react";
+import { ArrowRight, CheckCircle, Briefcase, Users, Globe, Building2, Landmark, Cpu, Heart, Network, Banknote, BookOpen } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 import { useSEO } from "../hooks/useSEO";
@@ -13,7 +12,7 @@ export default function Postuler() {
   useSEO({
     title: t("postuler.seoTitle"),
     description: t("postuler.seoDesc"),
-    keywords: "partenaire local ubb, postuler, partenariat afrique, ubuntu business builders",
+    keywords: "partenaire vitalcheck, co-branding, marque blanche, ubuntu business builders",
   });
 
   const [form, setForm] = useState({
@@ -21,7 +20,6 @@ export default function Postuler() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -36,37 +34,49 @@ export default function Postuler() {
     }, 1400);
   };
 
+  const entityIcons = [
+    <Briefcase className="w-5 h-5" />,
+    <Users className="w-5 h-5" />,
+    <Network className="w-5 h-5" />,
+    <Globe className="w-5 h-5" />,
+    <Building2 className="w-5 h-5" />,
+    <Banknote className="w-5 h-5" />,
+    <Landmark className="w-5 h-5" />,
+    <BookOpen className="w-5 h-5" />,
+    <Cpu className="w-5 h-5" />,
+    <Heart className="w-5 h-5" />,
+  ];
+
+  const entities = entityIcons.map((icon, i) => ({
+    icon,
+    label: t(`postuler.entities.e${i + 1}`),
+  }));
+
+  const options = [
+    {
+      tag: t("postuler.options.opt1Tag"),
+      title: t("postuler.options.opt1Title"),
+      items: [
+        { label: t("postuler.options.opt1Item1Label"), value: t("postuler.options.opt1Item1Value") },
+        { label: t("postuler.options.opt1Item2Label"), value: t("postuler.options.opt1Item2Value") },
+        { label: t("postuler.options.opt1Item3Label"), value: t("postuler.options.opt1Item3Value") },
+      ],
+    },
+    {
+      tag: t("postuler.options.opt2Tag"),
+      title: t("postuler.options.opt2Title"),
+      items: [
+        { label: t("postuler.options.opt2Item1Label"), value: t("postuler.options.opt2Item1Value") },
+        { label: t("postuler.options.opt2Item2Label"), value: t("postuler.options.opt2Item2Value") },
+        { label: t("postuler.options.opt2Item3Label"), value: t("postuler.options.opt2Item3Value") },
+      ],
+    },
+  ];
+
   const pays = [
-    { value: "Sénégal", label: t("countries.senegal") },
-    { value: "Côte d'Ivoire", label: t("countries.cote_divoire") },
-    { value: "Cameroun", label: t("countries.cameroun") },
-    { value: "Mali", label: t("countries.mali") },
-    { value: "Burkina Faso", label: t("countries.burkina_faso") },
-    { value: "RDC", label: t("countries.rdc") },
-    { value: "Congo", label: t("countries.congo") },
-    { value: "Togo", label: t("countries.togo") },
-    { value: "Bénin", label: t("countries.benin") },
-    { value: "Guinée", label: t("countries.guinee") },
-    { value: "Niger", label: t("countries.niger") },
-    { value: "Mauritanie", label: t("countries.mauritanie") },
-    { value: "Gabon", label: t("countries.gabon") },
-    { value: "Tchad", label: t("countries.tchad") },
-    { value: "Madagascar", label: t("countries.madagascar") },
-    { value: "Autre pays africain", label: t("countries.autre") }
-  ];
-
-  const benefits = [
-    { icon: <Globe className="w-6 h-6 text-gold" />, title: t("postuler.benefits.card1Title"), desc: t("postuler.benefits.card1Desc") },
-    { icon: <Award className="w-6 h-6 text-gold" />, title: t("postuler.benefits.card2Title"), desc: t("postuler.benefits.card2Desc") },
-    { icon: <Users className="w-6 h-6 text-gold" />, title: t("postuler.benefits.card3Title"), desc: t("postuler.benefits.card3Desc") },
-    { icon: <Briefcase className="w-6 h-6 text-gold" />, title: t("postuler.benefits.card4Title"), desc: t("postuler.benefits.card4Desc") },
-  ];
-
-  const faqs = [
-    { q: t("postuler.faq.q1"), a: t("postuler.faq.a1") },
-    { q: t("postuler.faq.q2"), a: t("postuler.faq.a2") },
-    { q: t("postuler.faq.q3"), a: t("postuler.faq.a3") },
-    { q: t("postuler.faq.q4"), a: t("postuler.faq.a4") },
+    "Sénégal", "Côte d'Ivoire", "Cameroun", "Mali", "Burkina Faso",
+    "RDC", "Congo", "Togo", "Bénin", "Guinée", "Niger",
+    "Mauritanie", "Gabon", "Tchad", "Madagascar", "Autre pays africain",
   ];
 
   return (
@@ -83,35 +93,41 @@ export default function Postuler() {
 
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <AnimatedSection>
-            <span className="text-gold text-[11px] uppercase tracking-[0.5em] font-bold block mb-8">{t("postuler.hero.tag")}</span>
-            <h1 className="text-6xl md:text-8xl font-serif text-text-primary mb-8 italic leading-[1.1]">
+            <span className="text-gold text-[11px] uppercase tracking-[0.5em] font-bold block mb-8">
+              {t("postuler.hero.tag")}
+            </span>
+            <h1 className="text-5xl md:text-7xl font-serif text-text-primary mb-8 italic leading-[1.1]">
               {t("postuler.hero.titleLine1")}<br />
               <span className="text-gold-gradient not-italic">{t("postuler.hero.titleLine2")}</span>
             </h1>
-            <p className="text-text-secondary text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              {t("postuler.hero.desc")}
+            <p className="text-text-secondary text-xl max-w-3xl mx-auto mb-4 leading-relaxed">
+              {t("postuler.hero.subtitleTool")}
+            </p>
+            <p className="text-text-secondary text-lg max-w-3xl mx-auto mb-10 leading-relaxed">
+              {t("postuler.hero.subtitleDesc")}
             </p>
             <GoldDivider className="mx-auto" />
           </AnimatedSection>
         </div>
       </section>
 
-      {/* ── BENEFITS ──────────────────────────────────────── */}
+      {/* ── ENTITÉS CIBLES ────────────────────────────────── */}
       <section className="py-20 bg-bg-secondary border-b border-border-subtle">
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-serif italic text-text-primary mb-4">{t("postuler.benefits.title")}</h2>
-            <p className="text-text-secondary">{t("postuler.benefits.desc")}</p>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-text-primary mb-4">
+              {t("postuler.entities.title")}
+            </h2>
+            <p className="text-text-secondary">{t("postuler.entities.desc")}</p>
           </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((b, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 h-full hover:border-gold/30 transition-all hover:shadow-[0_8px_30px_rgba(184,115,51,0.08)] group">
-                  <div className="w-12 h-12 rounded-xl bg-bg-secondary border border-border-subtle flex items-center justify-center mb-6 group-hover:border-gold/40 transition-colors">
-                    {b.icon}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {entities.map((e, i) => (
+              <AnimatedSection key={i} delay={i * 0.06}>
+                <div className="flex items-start gap-4 bg-bg-card border border-border-subtle rounded-xl p-5 hover:border-gold/30 transition-all group h-full">
+                  <div className="w-9 h-9 rounded-lg bg-bg-secondary border border-border-subtle flex items-center justify-center flex-shrink-0 text-gold group-hover:border-gold/40 transition-colors">
+                    {e.icon}
                   </div>
-                  <h3 className="text-lg font-serif text-text-primary mb-3">{b.title}</h3>
-                  <p className="text-text-muted text-sm leading-relaxed">{b.desc}</p>
+                  <span className="text-text-secondary text-sm leading-relaxed">{e.label}</span>
                 </div>
               </AnimatedSection>
             ))}
@@ -119,151 +135,143 @@ export default function Postuler() {
         </div>
       </section>
 
-      {/* ── FORM + FAQ ────────────────────────────────────── */}
-      <section className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-            {/* Form */}
-            <AnimatedSection>
-              <AnimatePresence mode="wait">
-                {!submitted ? (
-                  <motion.div
-                    key="form"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="bg-bg-card border border-border-subtle rounded-2xl p-10 relative overflow-hidden"
-                  >
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-                    <h3 className="text-2xl font-serif text-text-primary mb-2">{t("postuler.form.title")}</h3>
-                    <p className="text-text-secondary text-sm mb-8">{t("postuler.form.subtitle")}</p>
-
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.prenom")}</label>
-                          <input type="text" name="prenom" required value={form.prenom} onChange={handleChange} placeholder="Jean"
-                            className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
-                        </div>
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.nom")}</label>
-                          <input type="text" name="nom" required value={form.nom} onChange={handleChange} placeholder="Koné"
-                            className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.email")}</label>
-                        <input type="email" name="email" required value={form.email} onChange={handleChange} placeholder="vous@exemple.com"
-                          className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.telephone")}</label>
-                          <input type="tel" name="telephone" required value={form.telephone} onChange={handleChange} placeholder="+225 00 00 00 00"
-                            className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
-                        </div>
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.pays")}</label>
-                          <select name="pays" required value={form.pays} onChange={handleChange}
-                            className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm focus:outline-none focus:border-gold/60 transition-colors appearance-none">
-                            <option value="">{t("postuler.form.paysPlaceholder")}</option>
-                            {pays.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.linkedin")}</label>
-                        <input type="url" name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="https://linkedin.com/in/votre-profil"
-                          className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.motivation")}</label>
-                        <textarea name="motivation" required value={form.motivation} onChange={handleChange}
-                          rows={4} placeholder={t("postuler.form.motivationPlaceholder")}
-                          className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors resize-none" />
-                      </div>
-
-                      <button type="submit" disabled={loading}
-                        className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2">
-                        {loading ? (
-                          <><div className="w-4 h-4 border-2 border-bg-primary/40 border-t-bg-primary rounded-full animate-spin" /> {t("postuler.form.submitting")}</>
-                        ) : (
-                          <>{t("postuler.form.submit")} <ArrowRight className="w-4 h-4" /></>
-                        )}
-                      </button>
-                      <p className="text-text-muted text-[11px] text-center">{t("postuler.form.security")}</p>
-                    </form>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="bg-bg-card border border-gold/30 rounded-2xl p-12 text-center relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gold/5" />
-                    <div className="relative z-10">
-                      <div className="w-20 h-20 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-10 h-10 text-gold" />
-                      </div>
-                      <h3 className="text-3xl font-serif text-text-primary mb-4">{t("postuler.form.successTitle")}</h3>
-                      <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                        {t("postuler.form.successDesc").replace("{prenom}", form.prenom)}
-                      </p>
-                      <p className="text-text-muted text-sm">{t("postuler.form.successSpam")}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </AnimatedSection>
-
-            {/* FAQ */}
-            <AnimatedSection delay={0.2} className="lg:sticky lg:top-32">
-              <h3 className="text-2xl font-serif italic text-text-primary mb-8">{t("postuler.faq.title")}</h3>
-              <div className="space-y-3">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="bg-bg-card border border-border-subtle rounded-xl overflow-hidden">
-                    <button
-                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                      className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-bg-secondary transition-colors"
-                    >
-                      <span className="font-serif text-text-primary text-sm">{faq.q}</span>
-                      <ChevronDown className={`w-4 h-4 text-gold flex-shrink-0 ml-4 transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`} />
-                    </button>
-                    <AnimatePresence>
-                      {openFaq === i && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <p className="px-6 pb-5 text-text-secondary text-sm leading-relaxed border-t border-border-subtle pt-4">{faq.a}</p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10 p-6 bg-gold/5 border border-gold/20 rounded-xl">
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  <span className="text-gold font-semibold">{t("postuler.faq.helpTitle")}</span><br />
-                  {t("postuler.faq.helpContact")}<br />
-                  <a href="tel:+221771970713" className="text-gold hover:text-gold-light transition-colors">+221 77 197 07 13</a>
-                </p>
-              </div>
-            </AnimatedSection>
+      {/* ── OPTIONS ───────────────────────────────────────── */}
+      <section className="py-20 border-b border-border-subtle">
+        <div className="max-w-4xl mx-auto px-6">
+          <AnimatedSection className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-serif italic text-text-primary mb-4">
+              {t("postuler.options.title")}
+            </h2>
+            <p className="text-text-secondary">{t("postuler.options.desc")}</p>
+          </AnimatedSection>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {options.map((opt, i) => (
+              <AnimatedSection key={i} delay={i * 0.15}>
+                <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 relative overflow-hidden hover:border-gold/40 transition-all hover:shadow-[0_8px_30px_rgba(184,115,51,0.10)] h-full">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gold/70 block mb-3">
+                    {opt.tag}
+                  </span>
+                  <h3 className="text-2xl font-serif italic text-text-primary mb-8">{opt.title}</h3>
+                  <ul className="space-y-4">
+                    {opt.items.map((item, j) => (
+                      <li key={j} className="flex items-center justify-between border-b border-border-subtle/50 pb-4 last:border-0 last:pb-0">
+                        <span className="text-text-secondary text-sm">{item.label}</span>
+                        <span className="text-gold font-bold text-sm">{item.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── FORMULAIRE ────────────────────────────────────── */}
+      <section className="py-24">
+        <div className="max-w-2xl mx-auto px-6">
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif italic text-text-primary mb-4">
+              {t("postuler.form.title")}
+            </h2>
+            <p className="text-text-secondary">{t("postuler.form.subtitle")}</p>
+          </AnimatedSection>
+
+          <AnimatePresence mode="wait">
+            {!submitted ? (
+              <motion.div
+                key="form"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="bg-bg-card border border-border-subtle rounded-2xl p-10 relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.prenom")}</label>
+                      <input type="text" name="prenom" required value={form.prenom} onChange={handleChange} placeholder="Jean"
+                        className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.nom")}</label>
+                      <input type="text" name="nom" required value={form.nom} onChange={handleChange} placeholder="Koné"
+                        className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.email")}</label>
+                    <input type="email" name="email" required value={form.email} onChange={handleChange} placeholder="vous@exemple.com"
+                      className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.telephone")}</label>
+                      <input type="tel" name="telephone" required value={form.telephone} onChange={handleChange} placeholder="+225 00 00 00 00"
+                        className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.pays")}</label>
+                      <select name="pays" required value={form.pays} onChange={handleChange}
+                        className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm focus:outline-none focus:border-gold/60 transition-colors appearance-none">
+                        <option value="">{t("postuler.form.paysPlaceholder")}</option>
+                        {pays.map(p => <option key={p} value={p}>{p}</option>)}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.linkedin")}</label>
+                    <input type="url" name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="https://linkedin.com/in/votre-profil"
+                      className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors" />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2">{t("postuler.form.motivation")}</label>
+                    <textarea name="motivation" required value={form.motivation} onChange={handleChange}
+                      rows={4} placeholder={t("postuler.form.motivationPlaceholder")}
+                      className="w-full bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3 text-text-primary text-sm placeholder-text-muted focus:outline-none focus:border-gold/60 transition-colors resize-none" />
+                  </div>
+
+                  <button type="submit" disabled={loading}
+                    className="w-full py-4 bg-gold text-bg-primary font-bold uppercase tracking-widest text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(184,115,51,0.4)] disabled:opacity-70 disabled:cursor-wait flex items-center justify-center gap-2">
+                    {loading ? (
+                      <><div className="w-4 h-4 border-2 border-bg-primary/40 border-t-bg-primary rounded-full animate-spin" /> {t("postuler.form.submitting")}</>
+                    ) : (
+                      <>{t("postuler.form.submit")} <ArrowRight className="w-4 h-4" /></>
+                    )}
+                  </button>
+                  <p className="text-text-muted text-[11px] text-center">{t("postuler.form.security")}</p>
+                </form>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-bg-card border border-gold/30 rounded-2xl p-12 text-center relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gold/5" />
+                <div className="relative z-10">
+                  <div className="w-20 h-20 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-10 h-10 text-gold" />
+                  </div>
+                  <h3 className="text-3xl font-serif text-text-primary mb-4">{t("postuler.form.successTitle")}</h3>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                    {t("postuler.form.successDesc").replace("{prenom}", form.prenom)}
+                  </p>
+                  <p className="text-text-muted text-sm">{t("postuler.form.successSpam")}</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </div>
   );
 }
-

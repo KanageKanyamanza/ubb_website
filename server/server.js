@@ -92,6 +92,19 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 pool.query("ALTER TABLE team_members ADD COLUMN IF NOT EXISTS linkedin TEXT")
   .catch(() => {});
 
+// Migration : crée la table des ressources (e-books, guides, etc.) si elle n'existe pas encore
+pool.query(`CREATE TABLE IF NOT EXISTS resources (
+  id VARCHAR(100) PRIMARY KEY,
+  type VARCHAR(100) NOT NULL DEFAULT 'E-book',
+  title VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  image TEXT,
+  link TEXT,
+  pages VARCHAR(100),
+  visible BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)`).catch(() => {});
+
 // ────────────────────────────────────────────────────────────────
 //  HEALTH CHECK — diagnostic connexion DB
 // ────────────────────────────────────────────────────────────────
@@ -344,6 +357,78 @@ app.delete('/api/projects/:id', async (req, res) => {
     const { rowCount } = await pool.query('DELETE FROM strategic_projects WHERE id = $1', [id]);
     if (rowCount === 0) return res.status(404).json({ error: "Projet introuvable" });
     res.json({ message: "Projet supprimé avec succès" });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de la suppression", details: error.message });
+  }
+});
+
+// ────────────────────────────────────────────────────────────────
+//  API ROUTES : RESSOURCES (E-BOOKS, GUIDES, ETC.)
+// ────────────────────────────────────────────────────────────────
+
+app.get('/api/resources', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM resources ORDER BY created_at ASC');
+    res.json(rows.map(item => ({ ...item, visible: Boolean(item.visible) })));
+  } catch (error) {
+    res.status(500).json({ error: "Erreur serveur", details: error.message });
+  }
+});
+
+app.post('/api/resources', async (req, res) => {
+  const { type, title, description, image, link, pages, visible } = req.body;
+  if (!title || !description) {
+    return res.status(400).json({ error: "Le titre et la description sont obligatoires" });
+  }
+  const id = 'res-' + Date.now();
+  try {
+    await pool.query(
+      'INSERT INTO resources (id, type, title, description, image, link, pages, visible) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+      [id, type || 'E-book', title, description, image || '', link || '', pages || '', visible !== false]
+    );
+    res.status(201).json({ message: "Ressource ajoutée avec succès", id });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de l'ajout", details: error.message });
+  }
+});
+
+app.put('/api/resources/:id', async (req, res) => {
+  const { id } = req.params;
+  const { type, title, description, image, link, pages, visible } = req.body;
+  if (!title || !description) {
+    return res.status(400).json({ error: "Le titre et la description sont obligatoires" });
+  }
+  try {
+    const { rowCount } = await pool.query(
+      'UPDATE resources SET type = $1, title = $2, description = $3, image = $4, link = $5, pages = $6, visible = $7 WHERE id = $8',
+      [type || 'E-book', title, description, image || '', link || '', pages || '', visible !== false, id]
+    );
+    if (rowCount === 0) return res.status(404).json({ error: "Ressource introuvable" });
+    res.json({ message: "Ressource mise à jour avec succès" });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors de la mise à jour", details: error.message });
+  }
+});
+
+app.patch('/api/resources/:id/toggle', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { rows } = await pool.query('SELECT visible FROM resources WHERE id = $1', [id]);
+    if (rows.length === 0) return res.status(404).json({ error: "Ressource introuvable" });
+    const newVisibility = !rows[0].visible;
+    await pool.query('UPDATE resources SET visible = $1 WHERE id = $2', [newVisibility, id]);
+    res.json({ message: "Visibilité mise à jour", visible: newVisibility });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur lors du changement de visibilité", details: error.message });
+  }
+});
+
+app.delete('/api/resources/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { rowCount } = await pool.query('DELETE FROM resources WHERE id = $1', [id]);
+    if (rowCount === 0) return res.status(404).json({ error: "Ressource introuvable" });
+    res.json({ message: "Ressource supprimée avec succès" });
   } catch (error) {
     res.status(500).json({ error: "Erreur lors de la suppression", details: error.message });
   }

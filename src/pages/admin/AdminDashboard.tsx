@@ -2,15 +2,16 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { 
-  Image as ImageIcon, 
-  Layout, 
-  Settings, 
-  LogOut, 
-  ExternalLink, 
-  Menu, 
+import {
+  Image as ImageIcon,
+  Layout,
+  Settings,
+  LogOut,
+  ExternalLink,
+  Menu,
   X,
   User as UserIcon,
+  BookOpen,
   ChevronRight
 } from "lucide-react";
 
@@ -18,9 +19,10 @@ import {
 import GalerieAdmin from "./sections/GalerieAdmin";
 import ProjectsAdmin from "./sections/ProjectsAdmin";
 import TeamAdmin from "./sections/TeamAdmin";
+import RessourcesAdmin from "./sections/RessourcesAdmin";
 import SettingsAdmin from "./sections/SettingsAdmin";
 
-type ActiveTab = "gallery" | "projects" | "team" | "settings";
+type ActiveTab = "gallery" | "projects" | "team" | "resources" | "settings";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("gallery");
@@ -37,6 +39,7 @@ export default function AdminDashboard() {
     { id: "gallery", label: "Galerie d'images", icon: <ImageIcon className="w-5 h-5" /> },
     { id: "projects", label: "Projets Stratégiques", icon: <Layout className="w-5 h-5" /> },
     { id: "team", label: "Membres de l'Équipe", icon: <UserIcon className="w-5 h-5" /> },
+    { id: "resources", label: "Ressources", icon: <BookOpen className="w-5 h-5" /> },
     { id: "settings", label: "Paramètres", icon: <Settings className="w-5 h-5" /> },
   ];
 
@@ -45,6 +48,7 @@ export default function AdminDashboard() {
       case "gallery": return <GalerieAdmin />;
       case "projects": return <ProjectsAdmin />;
       case "team": return <TeamAdmin />;
+      case "resources": return <RessourcesAdmin />;
       case "settings": return <SettingsAdmin />;
       default: return <GalerieAdmin />;
     }

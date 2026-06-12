@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import { AuthProvider } from "./context/AuthContext";
 import { NewsProvider } from "./context/NewsContext";
 import { TeamProvider } from "./context/TeamContext";
+import { ResourcesProvider } from "./context/ResourcesContext";
 import { ProtectedRoute } from "./components/admin/ProtectedRoute";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -68,33 +69,35 @@ export default function App() {
       <AuthProvider>
         <NewsProvider>
           <TeamProvider>
-            <Router>
-              <ScrollToTop />
-              <AppLayout>
-                <Routes>
-                  {/* Public Routes */}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/team" element={<Team />} />
-                  <Route path="/founder" element={<Founder />} />
-                  <Route path="/jobs" element={<Jobs />} />
-                  <Route path="/ebooks" element={<Ebooks />} />
-                  <Route path="/actualites" element={<Actualites />} />
-                  <Route path="/inscription" element={<Register />} />
-                  <Route path="/workbook" element={<Workbook />} />
-                  <Route path="/postuler" element={<Postuler />} />
-                  <Route path="/contact" element={<Contact />} />
-                  
-                  {/* Admin Routes */}
-                  <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
-                  <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin/dashboard" element={
-                    <ProtectedRoute>
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  } />
-                </Routes>
-              </AppLayout>
-            </Router>
+            <ResourcesProvider>
+              <Router>
+                <ScrollToTop />
+                <AppLayout>
+                  <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/team" element={<Team />} />
+                    <Route path="/founder" element={<Founder />} />
+                    <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/ebooks" element={<Ebooks />} />
+                    <Route path="/actualites" element={<Actualites />} />
+                    <Route path="/inscription" element={<Register />} />
+                    <Route path="/workbook" element={<Workbook />} />
+                    <Route path="/postuler" element={<Postuler />} />
+                    <Route path="/contact" element={<Contact />} />
+
+                    {/* Admin Routes */}
+                    <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin/dashboard" element={
+                      <ProtectedRoute>
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    } />
+                  </Routes>
+                </AppLayout>
+              </Router>
+            </ResourcesProvider>
           </TeamProvider>
         </NewsProvider>
       </AuthProvider>

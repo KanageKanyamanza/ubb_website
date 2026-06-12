@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS ebook_orders;
 DROP TABLE IF EXISTS community_members;
 DROP TABLE IF EXISTS partner_applications;
 DROP TABLE IF EXISTS contact_messages;
+DROP TABLE IF EXISTS resources;
 DROP TABLE IF EXISTS strategic_projects;
 DROP TABLE IF EXISTS news_gallery;
 DROP TABLE IF EXISTS team_members;
@@ -53,6 +54,19 @@ CREATE TABLE strategic_projects (
     description TEXT NOT NULL,
     link TEXT NOT NULL,
     "linkLabel" VARCHAR(100) NOT NULL DEFAULT 'En savoir plus →',
+    visible BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table resources (e-books, guides, etc. ajoutables depuis le dashboard admin)
+CREATE TABLE resources (
+    id VARCHAR(100) PRIMARY KEY,
+    type VARCHAR(100) NOT NULL DEFAULT 'E-book',
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    image TEXT,
+    link TEXT,
+    pages VARCHAR(100),
     visible BOOLEAN NOT NULL DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

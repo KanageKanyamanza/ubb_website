@@ -374,57 +374,67 @@ export const fr = {
     }
   },
   postuler: {
-    seoTitle: "Postuler — devenir partenaire local UBB | Ubuntu Business Builders",
-    seoDesc: "Rejoignez l'élite panafricaine UBB en tant que partenaire local. Portez la vision Ubuntu dans votre pays et accélérez la croissance des entreprises africaines.",
+    seoTitle: "Partenariat vitalCHECK | Ubuntu Business Builders",
+    seoDesc: "Rejoignez le réseau vitalCHECK et monétisez votre expertise en accompagnant la transformation des entreprises à grande échelle.",
     hero: {
-      tag: "Rejoindre l'élite UBB",
-      titleLine1: "Postuler comme",
-      titleLine2: "Partenaire local",
-      desc: "Représentez UBB dans votre pays et transformez l'économie africaine une entreprise à la fois."
+      tag: "PARTENARIAT VITALCHECK",
+      titleLine1: "Rejoignez le réseau",
+      titleLine2: "vitalCHECK",
+      subtitleTool: "(outil de diagnostic d'entreprises)",
+      subtitleDesc: "Monétisez votre expertise en accompagnant la transformation des entreprises à grande échelle."
     },
-    benefits: {
-      title: "Ce que vous gagnez",
-      desc: "En rejoignant l'écosystème UBB en tant que partenaire local.",
-      card1Title: "Impact continental",
-      card1Desc: "Contribuez à la structuration de dizaines d'entreprises dans votre pays.",
-      card2Title: "Prestige & réseau élite",
-      card2Desc: "Accédez à un réseau fermé de dirigeants et experts à travers l'Afrique.",
-      card3Title: "Formation & outils UBB",
-      card3Desc: "Accès complet à tous les outils, méthodologies et formations internes UBB.",
-      card4Title: "Rémunération attractive",
-      card4Desc: "Un modèle basé sur la performance qui valorise votre engagement à long terme."
+    entities: {
+      title: "Qui peut rejoindre le réseau ?",
+      desc: "Ce programme s'adresse à un large éventail de structures et de professionnels",
+      e1: "Les cabinets de conseil locaux (stratégie, finance, organisation)",
+      e2: "Les consultants indépendants sectoriels",
+      e3: "Les structures comme SEEP Network",
+      e4: "Les structures hybrides type GAPI (Mozambique)",
+      e5: "Les Incubateurs, accélérateurs et hubs entrepreneuriaux",
+      e6: "Institutions financières (banques, microfinance et fintech)",
+      e7: "Organisations internationales et agences de développement",
+      e8: "Réseaux professionnels et associations d'entreprises",
+      e9: "Sociétés technologiques (ERP, SaaS, data)",
+      e10: "ONG et organisations de développement"
+    },
+    options: {
+      title: "Choisissez votre formule",
+      desc: "Deux options pour intégrer le réseau vitalCHECK selon votre structure",
+      opt1Tag: "Option 1",
+      opt1Title: "Co-Branding",
+      opt1Item1Label: "Abonnement mensuel",
+      opt1Item1Value: "30$",
+      opt1Item2Label: "Formation",
+      opt1Item2Value: "150$",
+      opt1Item3Label: "Rétrocession",
+      opt1Item3Value: "30% des honoraires",
+      opt2Tag: "Option 2",
+      opt2Title: "Marque Blanche",
+      opt2Item1Label: "Droit d'accès initial",
+      opt2Item1Value: "1 000$",
+      opt2Item2Label: "Formation",
+      opt2Item2Value: "150$",
+      opt2Item3Label: "Rétrocession",
+      opt2Item3Value: "20% des honoraires"
     },
     form: {
-      title: "Votre candidature",
-      subtitle: "Notre équipe vous contacte sous 48h après réception.",
-      prenom: "Prénom *",
-      nom: "Nom *",
-      email: "Email *",
-      telephone: "Téléphone *",
-      pays: "Pays *",
-      paysPlaceholder: "Votre pays",
-      linkedin: "Profil LinkedIn",
-      motivation: "Motivation *",
-      motivationPlaceholder: "Pourquoi souhaitez-vous devenir partenaire local UBB ? Décrivez votre expérience et vos ambitions...",
+      title: "Postuler maintenant",
+      subtitle: "Remplissez le formulaire ci-dessous pour rejoindre le réseau vitalCHECK",
+      prenom: "Prénom",
+      nom: "Nom",
+      email: "Email",
+      telephone: "Téléphone",
+      pays: "Pays",
+      paysPlaceholder: "Sélectionner",
+      linkedin: "LinkedIn (optionnel)",
+      motivation: "Motivation",
+      motivationPlaceholder: "Décrivez votre structure et pourquoi vous souhaitez rejoindre le réseau vitalCHECK...",
       submitting: "Envoi en cours...",
       submit: "Soumettre ma candidature",
-      security: "🔒 Vos informations sont strictement confidentielles.",
+      security: "Vos données sont traitées de manière confidentielle",
       successTitle: "Candidature reçue !",
-      successDesc: "Merci, {prenom}. Notre équipe va examiner votre dossier et vous recontacter dans les 48 heures.",
-      successSpam: "Vérifiez aussi vos spams si vous ne recevez pas de réponse."
-    },
-    faq: {
-      title: "Questions fréquentes",
-      q1: "Quel profil recherchez-vous ?",
-      a1: "Nous recherchons des professionnels ou entrepreneurs africains passionnés par le développement des affaires, avec une connaissance approfondie de leur marché local et un réseau établi.",
-      q2: "Est-ce un emploi à temps plein ?",
-      a2: "Non. Le partenariat local UBB est flexible. Vous pouvez maintenir vos activités actuelles tout en représentant UBB dans votre écosystème.",
-      q3: "Quel est le processus de sélection ?",
-      a3: "Après réception de votre candidature, notre équipe vous contacte pour un entretien. Le processus complet prend 2 à 3 semaines.",
-      q4: "Y a-t-il des frais pour devenir partenaire ?",
-      a4: "Non, aucun frais d'entrée. Nous investissons dans vos outils, votre formation et votre développement dès le premier jour.",
-      helpTitle: "Une question spécifique ?",
-      helpContact: "Contactez-nous directement :"
+      successDesc: "Merci {prenom}, votre candidature a bien été transmise. Notre équipe vous contactera sous 48h.",
+      successSpam: "Pensez à vérifier vos spams."
     }
   },
   register: {
@@ -506,6 +516,11 @@ export const fr = {
       subtitle: "Un pack complet. Tout inclus. Accès immédiat.",
       badge: "Inclus dans le pack",
       footer: "5 ressources · Accès immédiat après paiement · Format digital"
+    },
+    additional: {
+      title: "Ressources complémentaires",
+      subtitle: "Des contenus additionnels mis à jour régulièrement par notre équipe.",
+      cta: "Accéder"
     },
     assurance: {
       card1Title: "Accès immédiat",
