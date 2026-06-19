@@ -34,7 +34,7 @@ export const fr = {
     actualites: "Actualités",
     register: "S'inscrire",
     partner: "Partenaire local",
-    applyPartner: "Devenir partenaire",
+    applyPartner: "Partenariat",
     enterpriseDiagnostic: "Diagnostic d'entreprise"
   },
   footer: {

@@ -36,7 +36,7 @@ export const en: typeof fr = {
     actualites: "News",
     register: "Register",
     partner: "Local Partner",
-    applyPartner: "Become a Partner",
+    applyPartner: "Partnership",
     enterpriseDiagnostic: "Business Diagnostic"
   },
   footer: {
