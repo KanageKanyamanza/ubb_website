@@ -1,5 +1,5 @@
 // src/components/checkout/PayPalButton.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CheckoutFormData } from "../../hooks/useCheckoutForm";
 
 interface PayPalButtonProps {
@@ -23,6 +23,11 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
 }) => {
   const [payPalReady, setPayPalReady] = useState(false);
   const apiBase = import.meta.env.VITE_API_BASE || import.meta.env.VITE_API_URL || '';
+
+  // Keep the latest form data accessible without forcing the PayPal
+  // Buttons widget to re-render on every keystroke (which breaks the SDK).
+  const formDataRef = useRef(formData);
+  formDataRef.current = formData;
 
   useEffect(() => {
     // Load PayPal SDK dynamically
@@ -75,7 +80,7 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: formData.email,
+            email: formDataRef.current.email,
             amount: '20.00',
             currency: 'GBP',
             description: 'Pack Ressources Digitales UBB — E-books',
@@ -132,7 +137,7 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
 
     }).render("#paypal-button-container");
 
-  }, [payPalReady, disabled, formData.email]);
+  }, [payPalReady, disabled]);
 
   return (
     <div className="w-full">

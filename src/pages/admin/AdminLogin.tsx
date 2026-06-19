@@ -9,12 +9,18 @@ export default function AdminLogin() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (login(username, password)) {
+    setError("");
+    setIsSubmitting(true);
+    const success = await login(username, password);
+    setIsSubmitting(false);
+
+    if (success) {
       navigate("/admin/dashboard");
     } else {
       setError("Identifiants incorrects. Veuillez réessayer.");
@@ -90,9 +96,10 @@ export default function AdminLogin() {
 
             <button
               type="submit"
-              className="w-full py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(184,115,51,0.3)] transition-all mt-4"
+              disabled={isSubmitting}
+              className="w-full py-4 bg-gold-gradient text-bg-primary font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(184,115,51,0.3)] transition-all mt-4 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Se connecter
+              {isSubmitting ? "Connexion..." : "Se connecter"}
             </button>
           </div>
         </form>

@@ -2,11 +2,39 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const crypto = require('crypto');
 const pool = require('./db');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
+const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH;
+const ADMIN_PASSWORD_SALT = process.env.ADMIN_PASSWORD_SALT;
+const ADMIN_SESSION_SECRET = process.env.JWT_SECRET;
+const ADMIN_SESSION_DURATION_MS = 12 * 60 * 60 * 1000; // 12h
+
+if (!ADMIN_USERNAME || !ADMIN_PASSWORD_HASH || !ADMIN_PASSWORD_SALT || !ADMIN_SESSION_SECRET) {
+  console.warn('⚠️ Configuration admin incomplète. Vérifiez ADMIN_USERNAME, ADMIN_PASSWORD_HASH, ADMIN_PASSWORD_SALT et JWT_SECRET.');
+}
+
+function hashPassword(password, salt) {
+  return crypto.scryptSync(password, salt, 64).toString('hex');
+}
+
+function safeEqual(a, b) {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
+function createSessionToken(username) {
+  const payload = Buffer.from(JSON.stringify({ username, expiresAt: Date.now() + ADMIN_SESSION_DURATION_MS })).toString('base64url');
+  const signature = crypto.createHmac('sha256', ADMIN_SESSION_SECRET).update(payload).digest('base64url');
+  return `${payload}.${signature}`;
+}
 
 const PAYPAL_MODE = process.env.PAYPAL_MODE === 'sandbox' ? 'sandbox' : 'live';
 const PAYPAL_API_BASE = PAYPAL_MODE === 'sandbox'
@@ -444,20 +472,19 @@ app.post('/api/admin/login', async (req, res) => {
     return res.status(400).json({ error: "Veuillez saisir votre nom d'utilisateur et mot de passe" });
   }
 
-  try {
-    const { rows } = await pool.query('SELECT * FROM admins WHERE username = $1', [username]);
-    if (rows.length === 0) {
-      return res.status(401).json({ error: "Identifiants invalides" });
-    }
-
-    if (username === 'ubb_admin' && password === 'UBB@2026!') {
-      return res.json({ success: true, token: "ubb_session_token_example_2026" });
-    }
-
-    res.status(401).json({ error: "Mot de passe incorrect" });
-  } catch (error) {
-    res.status(500).json({ error: "Erreur lors de l'authentification", details: error.message });
+  if (!ADMIN_USERNAME || !ADMIN_PASSWORD_HASH || !ADMIN_PASSWORD_SALT || !ADMIN_SESSION_SECRET) {
+    return res.status(500).json({ error: "Configuration admin manquante sur le serveur" });
   }
+
+  const usernameMatches = safeEqual(username, ADMIN_USERNAME);
+  const passwordHash = hashPassword(password, ADMIN_PASSWORD_SALT);
+  const passwordMatches = safeEqual(passwordHash, ADMIN_PASSWORD_HASH);
+
+  if (!usernameMatches || !passwordMatches) {
+    return res.status(401).json({ error: "Identifiants invalides" });
+  }
+
+  res.json({ success: true, token: createSessionToken(username), expiresIn: ADMIN_SESSION_DURATION_MS });
 });
 
 // ────────────────────────────────────────────────────────────────

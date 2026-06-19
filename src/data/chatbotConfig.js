@@ -117,7 +117,7 @@ Lien : https://www.growthubb.space/81b2ec35
 Téléphone 1 : +221 77 197 07 13
 Téléphone 2 : +221 77 453 67 04
 WhatsApp    : +221 77 197 07 13
-Email       : info@growthubb.space
+Email       : contact@ubbuntu.com
 Site web    : https://www.growthubb.space
 
 === RÉSEAUX SOCIAUX ===

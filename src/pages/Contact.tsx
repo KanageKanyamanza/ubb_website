@@ -6,9 +6,10 @@ import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
 import { useSEO } from "../hooks/useSEO";
 import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../translations";
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useSEO({
     title: t("contact.seoTitle"),
@@ -33,8 +34,8 @@ export default function Contact() {
     }, 1200);
   };
 
-  // Subjects from translation
-  const sujets: string[] = t("contact.form.subjects") as unknown as string[];
+  const tr = translations[language].contact;
+  const sujets: string[] = tr.form.subjects;
 
   const contactInfo = [
     {
@@ -46,19 +47,19 @@ export default function Contact() {
     {
       icon: <Mail className="w-5 h-5 text-gold" />,
       labelKey: "contact.info.email",
-      lines: ["info@growthubb.space"],
+      lines: ["contact@ubbuntu.com"],
       type: "email"
     },
     {
       icon: <MapPin className="w-5 h-5 text-gold" />,
       labelKey: "contact.info.office",
-      lines: t("contact.info.officeLines") as unknown as string[],
+      lines: tr.info.officeLines,
       type: "text"
     },
     {
       icon: <Clock className="w-5 h-5 text-gold" />,
       labelKey: "contact.info.availability",
-      lines: t("contact.info.availabilityLines") as unknown as string[],
+      lines: tr.info.availabilityLines,
       type: "text"
     },
   ];
