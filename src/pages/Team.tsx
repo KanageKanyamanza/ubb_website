@@ -208,10 +208,10 @@ export default function Team() {
                 <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden group relative flex flex-col h-full hover:border-gold/30 transition-colors">
                   <div className="relative aspect-square overflow-hidden bg-bg-secondary">
                     <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-40" />
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
                   </div>
-                  <div className="p-8 flex-1 flex flex-col -mt-20 relative z-10">
+                  <div className="p-8 flex-1 flex flex-col">
                     <h3 className="font-serif text-3xl text-text-primary mb-1">{member.name}</h3>
                     <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{member.title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
@@ -257,10 +257,10 @@ export default function Team() {
                 <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden group relative flex flex-col h-full hover:border-gold/30 transition-colors">
                   <div className="relative aspect-square overflow-hidden bg-bg-secondary">
                     <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-40" />
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
                   </div>
-                  <div className="p-8 flex-1 flex flex-col -mt-20 relative z-10">
+                  <div className="p-8 flex-1 flex flex-col">
                     <h3 className="font-serif text-3xl text-text-primary mb-1">{member.name}</h3>
                     <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{member.title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
@@ -306,10 +306,10 @@ export default function Team() {
                 <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden group relative flex flex-col h-full hover:border-gold/30 transition-colors shadow-lg">
                   <div className="relative aspect-square overflow-hidden bg-bg-secondary">
                     <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-40" />
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
                   </div>
-                  <div className="p-8 flex-1 flex flex-col -mt-20 relative z-10">
+                  <div className="p-8 flex-1 flex flex-col">
                     <h3 className="font-serif text-3xl text-text-primary mb-1">{member.name}</h3>
                     <p className="text-gold uppercase tracking-widest text-[11px] font-bold mb-4">{member.title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1">
