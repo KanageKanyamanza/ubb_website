@@ -15,6 +15,25 @@ export default function TeamAdmin() {
   const [title, setTitle] = useState("");
   const [img, setImg] = useState("");
   const [bio, setBio] = useState("");
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const objectUrl = URL.createObjectURL(file);
+    const image = new window.Image();
+    image.onload = () => {
+      const MAX = 600;
+      let w = image.width;
+      let h = image.height;
+      if (w > MAX) { h = Math.round((h * MAX) / w); w = MAX; }
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d")!.drawImage(image, 0, 0, w, h);
+      setImg(canvas.toDataURL("image/jpeg", 0.82));
+      URL.revokeObjectURL(objectUrl);
+    };
+    image.src = objectUrl;
+  };
   const [chipsText, setChipsText] = useState("");
   const [category, setCategory] = useState<"direction" | "tech" | "growth" | "partners">("tech");
   const [visible, setVisible] = useState(true);
@@ -238,34 +257,71 @@ export default function TeamAdmin() {
                 </div>
               </div>
 
-              {/* Row 2: Category and Photo URL */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
-                    <Award className="w-3 h-3 text-gold" /> Département / Catégorie
-                  </label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value as any)}
-                    className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm"
-                  >
-                    <option value="direction">Direction & Conseil Stratégique</option>
-                    <option value="tech">Produit & Technologie</option>
-                    <option value="growth">Croissance & Visibilité</option>
-                    <option value="partners">Partenaires Locaux & Terrain</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
-                    <Image className="w-3 h-3 text-gold" /> URL de la Photo
-                  </label>
-                  <input
-                    type="text"
-                    value={img}
-                    onChange={(e) => setImg(e.target.value)}
-                    className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm font-mono"
-                    placeholder="ex: /images/nadinga.jpg (ou lien Unsplash)"
-                  />
+              {/* Row 2: Category */}
+              <div>
+                <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
+                  <Award className="w-3 h-3 text-gold" /> Département / Catégorie
+                </label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as any)}
+                  className="w-full bg-bg-primary border border-border-subtle rounded-sm px-4 py-3 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-sm"
+                >
+                  <option value="direction">Direction & Conseil Stratégique</option>
+                  <option value="tech">Produit & Technologie</option>
+                  <option value="growth">Croissance & Visibilité</option>
+                  <option value="partners">Partenaires Locaux & Terrain</option>
+                </select>
+              </div>
+
+              {/* Row 3: Photo upload */}
+              <div>
+                <label className="block text-text-secondary text-[10px] uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
+                  <Image className="w-3 h-3 text-gold" /> Photo de profil
+                </label>
+                <div className="flex gap-4 items-start">
+                  {/* Preview */}
+                  <div className="w-20 h-20 rounded-full overflow-hidden border border-border-subtle bg-bg-primary flex-shrink-0 flex items-center justify-center">
+                    {img ? (
+                      <img src={img} alt="Aperçu" className="w-full h-full object-cover" />
+                    ) : (
+                      <User className="w-8 h-8 text-text-muted opacity-30" />
+                    )}
+                  </div>
+                  <div className="flex-1 flex flex-col gap-3">
+                    {/* Upload button */}
+                    <div className="relative group">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                      />
+                      <div className="w-full bg-bg-primary border border-dashed border-border-subtle group-hover:border-gold/50 transition-colors rounded-sm py-4 flex items-center justify-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center">
+                          <Plus className="w-4 h-4 text-gold" />
+                        </div>
+                        <span className="text-xs text-text-secondary uppercase tracking-widest font-bold">
+                          Sélectionner depuis l'ordinateur
+                        </span>
+                      </div>
+                    </div>
+                    {/* URL fallback */}
+                    <div className="relative">
+                      <div className="flex items-center gap-3 mb-1.5">
+                        <div className="h-px flex-1 bg-border-subtle" />
+                        <span className="text-[9px] text-text-muted uppercase tracking-widest">Ou entrer une URL</span>
+                        <div className="h-px flex-1 bg-border-subtle" />
+                      </div>
+                      <input
+                        type="text"
+                        value={img}
+                        onChange={(e) => setImg(e.target.value)}
+                        className="w-full bg-bg-primary border border-border-subtle rounded-sm px-3 py-2 text-text-primary focus:outline-none focus:border-gold/50 transition-colors text-xs font-mono"
+                        placeholder="https://... ou /images/photo.jpg"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
