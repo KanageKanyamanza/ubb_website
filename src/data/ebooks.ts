@@ -14,6 +14,13 @@ export const PACK_CONTENTS = [
     description: "Comment identifier les freins invisibles qui bloquent la croissance de votre entreprise. Méthode UBB complète.",
     pages: "[À COMPLÉTER]",
   },
+  {
+    type: "E-book",
+    image: "https://d1yei2z3i6k35z.cloudfront.net/10694324/6899720e2dc39_COV2.png",
+    title: "L'écosystème des incubateurs au Sénégal",
+    description: "Comment intégrer le cercle restreint des projets qui décrochent un financement ?",
+    pages: "[À COMPLÉTER]",
+  },
   // {
   //   type: "Podcast",
   //   image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=200",

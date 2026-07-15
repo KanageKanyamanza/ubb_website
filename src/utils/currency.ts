@@ -5,11 +5,11 @@
 // Pack e-books : £20.00
 
 export const PACK_PRICE = {
-  GBP : 20.00,        // Prix réel PayPal (NE PAS CHANGER)
-  EUR : 23.50,        // Affiché visuellement (arrondi)
-  XOF : 15400,        // Indication en FCFA (arrondi)
-  display: "23,50 €", // Chaîne d'affichage principale
-  displayCFA: "≈ 15 400 FCFA", // Note informative
+  GBP: 20.00,        // Prix réel PayPal (NE PAS CHANGER)
+  EUR: 38.23,        // Affiché visuellement (arrondi)
+  XOF: 25000,        // Indication en FCFA (arrondi)
+  display: "38,23 €", // Chaîne d'affichage principale
+  displayCFA: "≈ 25 000 FCFA", // Note informative
 };
 
 // Formateur de prix pour l'affichage
