@@ -2,6 +2,7 @@
 import { ArrowRight } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import GoldDivider from "../components/ui/GoldDivider";
+import { ImageAutoSlider } from "../components/ui/image-auto-slider";
 import { PACK_CONTENTS } from "../data/ebooks";
 import { PACK_PRICE } from "../utils/currency";
 
@@ -249,102 +250,15 @@ export default function Ebooks() {
 
       {/* ── SECTION 3B — RESSOURCES COMPLÉMENTAIRES (gérées depuis l'admin) ── */}
       {visibleResources.length > 0 && (
-        <section className="py-24 bg-bg-secondary border-t border-b border-border-subtle">
-          <div className="max-w-5xl mx-auto px-6">
-            <AnimatedSection className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-serif text-text-primary mb-4">{t("ebooks.additional.title")}</h2>
-              <p className="text-gold text-lg italic">{t("ebooks.additional.subtitle")}</p>
-            </AnimatedSection>
+        <section className="py-24 bg-bg-secondary border-t border-b border-border-subtle overflow-hidden">
+          <AnimatedSection className="text-center mb-16 px-6">
+            <h2 className="text-3xl md:text-5xl font-serif text-text-primary mb-4">{t("ebooks.additional.title")}</h2>
+            <p className="text-gold text-lg italic">{t("ebooks.additional.subtitle")}</p>
+          </AnimatedSection>
 
-            <div className="grid grid-cols-1 gap-6">
-              {visibleResources.map((item, index) => (
-                <AnimatedSection key={item.id} delay={index * 0.1}>
-                  <a
-                    href={item.link || undefined}
-                    target={item.link ? "_blank" : undefined}
-                    rel={item.link ? "noreferrer" : undefined}
-                    className={`bg-bg-card border border-border-subtle rounded-xl p-6 hover:border-gold/40 hover:shadow-[0_0_20px_rgba(184,115,51,0.1)] transition-all flex flex-col sm:flex-row gap-6 items-start sm:items-center group ${item.link ? "cursor-pointer" : ""}`}
-                  >
-                    {item.image && (
-                      item.type === "Formation vidéo" ? (
-                        <video src={item.image} controls className="w-full sm:w-40 rounded-lg border border-white/5 shadow-lg flex-shrink-0" />
-                      ) : (
-                        <img src={item.image} alt={item.title} className="w-20 h-20 object-cover rounded-lg border border-white/5 shadow-lg flex-shrink-0" />
-                      )
-                    )}
-                    <div className="flex-1">
-                      <span className="inline-block px-3 py-1 bg-gold/10 text-gold text-[10px] font-bold uppercase tracking-widest rounded-full mb-3">
-                        {item.type}
-                      </span>
-                      <h3 className="text-xl font-serif text-text-primary mb-2 flex items-center justify-between">
-                        {item.title}
-                        {item.pages && (
-                          <span className="hidden sm:inline-flex items-center text-[10px] font-sans text-gold font-bold uppercase tracking-widest">
-                            {item.pages}
-                          </span>
-                        )}
-                      </h3>
-                      <p className="text-text-secondary text-sm leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                    {item.link && (
-                      <ArrowRight className="w-5 h-5 text-gold opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                    )}
-                  </a>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
+          <ImageAutoSlider items={visibleResources} />
         </section>
       )}
-
-      {/* ── SECTION 4 — GARANTIE & RÉASSURANCE ───────────────────── */}
-      <section className="py-20 bg-bg-secondary border-t border-border-subtle relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <AnimatedSection delay={0.1}>
-              <div className="flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=200" alt="Accès immédiat" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
-                <h3 className="text-xl font-serif text-text-primary mb-4">{t("ebooks.assurance.card1Title")}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {t("ebooks.assurance.card1Desc")}
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&q=80&w=200" alt="Conçu pour l'Afrique" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
-                <h3 className="text-xl font-serif text-text-primary mb-4">{t("ebooks.assurance.card2Title")}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {t("ebooks.assurance.card2Desc")}
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <div className="flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1614064641913-6b20a70e70ab?auto=format&fit=crop&q=80&w=200" alt="Paiement sécurisé" className="w-20 h-20 object-cover rounded-full mb-6 border border-border-subtle shadow-lg" />
-                <h3 className="text-xl font-serif text-text-primary mb-4">{t("ebooks.assurance.card3Title")}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {t("ebooks.assurance.card3Desc")}
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
-
-          <AnimatedSection delay={0.4}>
-            <div className="mt-16 bg-bg-primary/50 border border-border-subtle rounded-lg p-6 max-w-2xl mx-auto text-center">
-              <p className="text-text-muted text-xs italic leading-relaxed">
-                💡 {t("ebooks.assurance.disclaimer")
-                    .replace("{price}", PACK_PRICE.display)
-                    .replace("{gbp}", PACK_PRICE.GBP.toFixed(2))}
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
       {/* ── SECTION 5 — COMMANDE (Checkout) ──────────────────────── */}
       <section id="commander" className="py-24 bg-bg-primary border-t border-border-subtle relative">
